@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Add Type</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/AddType.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-border">
+        
+        <div class="container top-navbar-container">
+
+            <a class="navbar-brand img-responsive" href="#">
+                
+                <!-- Logo Image -->
+                <img class="img-fluid" src="images/User-Profile/logo.png" alt="">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- col-auto Start -->
+
+            <div class="col-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a class="dropdown-item" href="#">Notes Under Review</a>
+                                <a class="dropdown-item" href="#">Published Notes</a>
+                                <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                <a class="dropdown-item" href="#">Rejected Notes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Members</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#"  id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <a class="dropdown-item" href="#">Spam Reports</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Settings</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link navbar-user-photo" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Update Profile</a>
+                                <a class="dropdown-item" href="#">Change Password</a>
+                                <a class="dropdown-item" href="#" style="color: #6255a5;"><b>Logout</b></a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn navbar-button" type="submit">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- col-auto End -->
+            
+
+        </div>
+
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Add Type Container -->
+
+    <div class="container" id="add-type-container">
+
+        <div class="row">
+
+            <div class="col">
+
+                <h2>Add Type</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="type-name" class="label-text">Type *</label>
+                    <input type="text" class="form-control label-text input-field" id="type-name" placeholder="Type Name">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="label-text">Description *</label>
+                    <textarea class="form-control label-text input-field" id="exampleFormControlTextarea1" rows="5" placeholder="Enter your description"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="add-type-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Add Type Container End -->
+
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid main-footer fixed-bottom">
+
+        <div class="row">
+
+            <div class="col">
+
+                <p>Version : 1.1.24</p>
+
+            </div>
+
+            <div class="col d-flex justify-content-end">
+
+                <p>Copyright &#169; TatvaSoft All rights reserved.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer End -->
+
+
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

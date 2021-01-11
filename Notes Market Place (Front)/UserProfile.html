@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>User Profile</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-border">
+        
+        <div class="container top-navbar-container">
+
+            <a class="navbar-brand img-responsive" href="#">
+                
+                <!-- Logo Image -->
+                <img class="img-fluid" src="images/User-Profile/logo.png" alt="">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- col-auto Start -->
+
+            <div class="col-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-user-photo" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn navbar-button" type="submit">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- col-auto End -->
+            
+
+        </div>
+
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- User Profile Image -->
+    <div class="container-fluid banner">
+
+        <div class="row justify-content-center">
+
+            <div id="user-profile-text">
+
+                <h2>User Profile</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+    <div class="container" id="main-container">
+
+        <form class="form-container" id="user-profile-form-container">
+
+            <!-- Basic Profile Details -->
+
+            <!-- login-heading class is written long ago when you created login page. look at line 63 in style.css -->
+
+            <div class="login-heading pull-left">
+
+                <h2>Basic Profile Details</h2>
+
+            </div>
+
+            <div class="container" id="basic-input-field-container">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="first-name" class="label-text">First Name *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="first-name" placeholder="Enter your first name">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="last-name" class="label-text">Last Name *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="last-name" placeholder="Enter your last name">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="email" class="label-text">Email *</label>
+                            <input type="email" class="form-control user-profile-input-field" id="email" placeholder="Enter your email address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="date-of-birth" class="label-text">Date Of Birth</label>
+                            <input type="date" class="form-control user-profile-input-field" id="date-of-birth" placeholder="Enter your date of birth">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="gender" class="label-text">Gender</label>
+                            <select class="form-control user-profile-input-field" id="gender" placeholder="Select your gender">
+                                <option class="selected">Select Your Gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label for="phone-number-country" class="label-text">Country</label>
+                            <select class="form-control user-profile-input-field" id="phone-number-country" placeholder="+91">
+                                <option value="1">+91</option>
+                                <option value="2">+01</option>
+                                <option value="3">+44</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="phone-number" class="label-text">Phone Number</label>
+                            <input type="text" class="form-control user-profile-input-field" id="phone-number" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="profile-picture" class="label-text">Profile Picture</label>
+                            <input type="file" class="form-control user-profile-input-field" id="profile-picture">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- Address Details -->
+
+            <div class="login-heading pull-left">
+
+                <h2>Address Details</h2>
+
+            </div>
+
+            <div class="container" id="address-input-field-container">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="address-line-1" class="label-text">Address Line 1 *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="address-line-1" placeholder="Enter your address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="address-line-2" class="label-text">Address Line 2 *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="address-line-2" placeholder="Enter your address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="city" class="label-text">City *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="city" placeholder="Enter your city">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="state" class="label-text">State *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="state" placeholder="Enter your state">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="zip-code" class="label-text">Zip Code *</label>
+                            <input type="text" class="form-control user-profile-input-field" id="zip-code" placeholder="Enter your zip code">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="country" class="label-text">Country *</label>
+                            <select class="form-control user-profile-input-field" id="country" placeholder="Select your country">
+                                <option class="selected">Select Your Country</option>
+                                <option value="1">India</option>
+                                <option value="2">USA</option>
+                                <option value="3">UAE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+
+            </div>
+
+
+            <br>
+
+            <!-- University and College Information -->
+
+            <div class="login-heading pull-left">
+
+                <h2>University and College Information</h2>
+
+            </div>
+
+            <div class="container" id="college-input-field-container">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="university" class="label-text">University</label>
+                            <input type="text" class="form-control user-profile-input-field" id="university" placeholder="Enter your university">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="college" class="label-text">College</label>
+                            <input type="text" class="form-control user-profile-input-field" id="college" placeholder="Enter your college">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="user-profile-form-submit"><b>SUBMIT</b></button>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="container-fluid main-footer">
+
+        <div class="container">
+
+            <div class="row copyright-text">
+
+                <p>Copyright &#169; TatvaSoft All rights reserved.</p>
+    
+            </div>
+
+            <ul class="social-list">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

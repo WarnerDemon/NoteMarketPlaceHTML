@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Manage Type</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/ManageType.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-border">
+        
+        <div class="container top-navbar-container">
+
+            <a class="navbar-brand img-responsive" href="#">
+                
+                <!-- Logo Image -->
+                <img class="img-fluid" src="images/User-Profile/logo.png" alt="">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- col-auto Start -->
+
+            <div class="col-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a class="dropdown-item" href="#">Notes Under Review</a>
+                                <a class="dropdown-item" href="#">Published Notes</a>
+                                <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                <a class="dropdown-item" href="#">Rejected Notes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Members</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#"  id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <a class="dropdown-item" href="#">Spam Reports</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Settings</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link navbar-user-photo" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Update Profile</a>
+                                <a class="dropdown-item" href="#">Change Password</a>
+                                <a class="dropdown-item" href="#" style="color: #6255a5;"><b>Logout</b></a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn navbar-button" type="submit">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- col-auto End -->
+            
+
+        </div>
+
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Manage Type Container -->
+
+    <div class="container" id="manage-type-container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2>Manage Type</h2>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-2">
+
+                <button class="btn add-type-button" type="submit">ADD TYPE</button>
+
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-end">
+
+                <input class="form-control mr-2 add-type-search" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn add-type-search-button" type="submit">SEARCH</button>
+                 
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+ 
+            <div class="col table-responsive-md">
+
+                <table class="table shadow-on-hover table-border">
+                    <thead>
+                        <tr>
+                            <th scope="col">SR NO.</th>
+                            <th scope="col">TYPE</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col">DATE ADDED</th>
+                            <th scope="col">ADDED BY</th>
+                            <th scope="col">ACTIVE</th>
+                            <th scope="col">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>Val 1</td>
+                            <td>Lorem Ipsum is simply dummy text</td>
+                            <td>09-10-2020, 10:10</td>
+                            <td>Khyati Patel</td>
+                            <td>Yes</td>
+                            <td><i class="fa fa-pencil mr-sm-2"></i><i class="fa fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>
+                            <td>Val 2</td>
+                            <td>Lorem Ipsum is simply dummy text</td>
+                            <td>10-10-2020, 10:10</td>
+                            <td>Rahul Shah</td>
+                            <td>Yes</td>
+                            <td><i class="fa fa-pencil mr-sm-2"></i><i class="fa fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">3</td>
+                            <td>Val 3</td>
+                            <td>Lorem Ipsum is simply dummy text</td>
+                            <td>11-10-2020, 10:10</td>
+                            <td>Suman Trivedi</td>
+                            <td>No</td>
+                            <td><i class="fa fa-pencil mr-sm-2"></i><i class="fa fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">4</td>
+                            <td>Val 4</td>
+                            <td>Lorem Ipsum is simply dummy text</td>
+                            <td>12-10-2020, 10:10</td>
+                            <td>Raj Malhotra</td>
+                            <td>Yes</td>
+                            <td><i class="fa fa-pencil mr-sm-2"></i><i class="fa fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">5</td>
+                            <td>Val 5</td>
+                            <td>Lorem Ipsum is simply dummy text</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>Niya Patel</td>
+                            <td>No</td>
+                            <td><i class="fa fa-pencil mr-sm-2"></i><i class="fa fa-trash"></i></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Pagination -->
+
+        <div class="row justify-content-center">
+
+            <div class="pagination">
+                <a href="#"><i class="fa fa-angle-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Manage Type End -->
+
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid main-footer fixed-bottom">
+
+        <div class="row">
+
+            <div class="col">
+
+                <p>Version : 1.1.24</p>
+
+            </div>
+
+            <div class="col d-flex justify-content-end">
+
+                <p>Copyright &#169; TatvaSoft All rights reserved.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer End -->
+
+
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

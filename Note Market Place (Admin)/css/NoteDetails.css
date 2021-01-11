@@ -1,0 +1,368 @@
+body, html {
+    height: 100%;
+}
+
+/* ========== Navigation ========== */
+.nav-border{
+
+    border-bottom: 1px solid #d1d1d1;
+
+}
+.navbar-light .navbar-nav .nav-link {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #333333;
+
+}
+.navbar-light .navbar-nav .nav-link:hover {
+
+    color: #6255a5;
+    border-bottom: 3px solid #6255a5;
+
+}
+.navbar-light .navbar-nav .nav-item {
+
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+
+}
+.navbar-user-photo {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url("../images/Dashboard/user-img.png");
+
+}
+.navbar-button {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    background-color: #6555a5;
+    width: 89px;
+    /* height: 30px; */
+    border-radius: 3px;
+    color: #fff;
+    line-height: 22px;
+    /* margin-left: 30px; */
+
+}
+.navbar-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+.top-navbar-container {
+
+    padding: 10px 0px 10px 10px;
+
+}
+.bg-light{
+
+    background-color: rgb(255, 255, 255) !important;
+
+}
+
+
+
+
+
+/* ====================
+        Note Details
+   ==================== */
+
+#note-details-container {
+
+    margin-top: 100px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d1d1d1;
+
+}
+.note-details-padding {
+
+    padding: 15px;
+    
+}
+#note-details-container h4 {
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+#note-details-container h3 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#note-details-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #333333;
+
+}
+.book-download-button {
+
+    background-color: #6255a5;
+    width: 204px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+.book-download-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+.left-list {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 36px;
+    color: #333333;
+
+}
+.right-list {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #6255a5;
+
+}
+.yellow-star {
+
+    color: rgb(254,193,6);
+
+}
+#red-list-item {
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #df3434;
+
+}
+#preview-review-container {
+
+    padding-bottom: 30px;
+
+}
+#preview-review-container h4{
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+
+
+.responsive-wrapper {
+    position: relative;
+    height: 0;    /* gets height from padding-bottom */
+    overflow: hidden;
+    /* put following styles (necessary for overflow and 
+       scrolling handling) inline in .embed-responsive-element-wrapper around iframe because not stable in CSS
+      -webkit-overflow-scrolling: touch; 
+                        overflow: auto; */
+  }
+.responsive-wrapper img,
+.responsive-wrapper object,
+.responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     
+    border-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+  /*
+      css particular to this iframe
+  */
+  
+#Iframe-Cicis-Menu-To-Go {
+    max-width: 666.67px;
+    max-height: 600px;
+    overflow: hidden;
+    border: 1px solid #d1d1d1;
+}
+  /*
+     padding-bottom = h/w as %
+  */
+.responsive-wrapper-padding-bottom-90pct {
+    padding-bottom: 90%;
+}
+
+
+
+#grey-border {
+
+    border: 1px solid #d1d1d1;
+    padding: 0 30px;
+    padding-top: 10px;
+
+}
+#preview-review-container h5 {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #333333;
+    margin: 0;
+
+}
+#preview-review-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #333333;
+
+}
+.grey-border-bottom {
+
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 10px;
+
+}
+.review-image {
+
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: #6255a5;
+
+}
+/* Popup */
+#popup-container {
+
+    padding: 20px 30px 30px 40px;
+
+}
+#popup-top-image {
+
+    width: 63px;
+    height: 63px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+
+}
+#popup-container h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#popup-container h4 {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #333333;
+
+}
+#popup-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #333333;
+
+}
+
+
+
+
+
+
+/* ========== Footer ========== */
+
+.main-footer {
+
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid #d1d1d1;
+
+}
+
+.copyright-text {
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #333333;
+
+    margin-top: 40px;
+
+}
+
+/* ========== Social Icon ========== */
+
+.social-list {
+
+    float: right;
+    position: relative;
+    margin-top: -45px;
+    padding: 0;
+
+}
+
+ul.social-list li {
+
+    display: inline-block;
+    padding: 0;
+
+}
+ul.social-list li a {
+
+
+    background-color: #6555a5;
+    border: 1px solid #fff;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    line-height: 35px;
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    padding-left: 10px;
+    /* margin-left: 5px; */
+
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Buyer Requests</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-border">
+        
+        <div class="container top-navbar-container">
+
+            <a class="navbar-brand img-responsive" href="#">
+                
+                <!-- Logo Image -->
+                <img class="img-fluid" src="images/User-Profile/logo.png" alt="">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- col-auto Start -->
+
+            <div class="col-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Buyes Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-user-photo" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn navbar-button" type="submit">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- col-auto End -->
+            
+
+        </div>
+
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Buyer Request Container -->
+
+    <div class="container" id="buyer-request-container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h3>Buyer Requests</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <input class="form-control mr-2 dashboard-search" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn dashboard-search-button" type="submit">SEARCH</button>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+ 
+            <div class="col table-responsive-md">
+
+                <table class="table shadow-on-hover table-border">
+                    <thead>
+                      <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">NOTE TITLE</th>
+                        <th scope="col">CATEGORY</th>
+                        <th scope="col">BUYER</th>
+                        <th scope="col">PHONE NO.</th>
+                        <th scope="col">SELL TYPE</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">DOWNLOADED DATE/TIME</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td class="title-color">Data Science</td>
+                            <td>Science</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Paid</td>
+                            <td>$250</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>
+                            <td class="title-color">Accounts</td>
+                            <td>Commerce</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">3</td>
+                            <td class="title-color">Social Studies</td>
+                            <td>Social</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">4</td>
+                            <td class="title-color">AI</td>
+                            <td>IT</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Paid</td>
+                            <td>$158</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">5</td>
+                            <td class="title-color">Lorem ipsum</td>
+                            <td>Lorem</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">6</td>
+                            <td class="title-color">Data Science</td>
+                            <td>Science</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Paid</td>
+                            <td>$250</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">7</td>
+                            <td class="title-color">Accounts</td>
+                            <td>Commerce</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">8</td>
+                            <td class="title-color">Social Studies</td>
+                            <td>Social</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">9</td>
+                            <td class="title-color">AI</td>
+                            <td>IT</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Paid</td>
+                            <td>$158</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">10</td>
+                            <td class="title-color">Lorem ipsum</td>
+                            <td>Lorem</td>
+                            <td>testing123@gmail.com</td>
+                            <td>+91 9876543210</td>
+                            <td>Free</td>
+                            <td>$0</td>
+                            <td>27 Nov 2020, 11:24:34</td>
+                            <td><i class="fa fa-eye"></i></td>
+                            <td class="dropdown"><i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                    <a href="#">Allow Download</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Pagination -->
+
+        <div class="row justify-content-center">
+
+            <div class="pagination">
+                <a href="#"><i class="fa fa-angle-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Buyer Request Container End -->
+
+
+    <br>
+
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid main-footer">
+
+        <div class="container">
+
+            <div class="row copyright-text">
+
+                <p>Copyright &#169; TatvaSoft All rights reserved.</p>
+    
+            </div>
+
+            <ul class="social-list">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Footer End -->
+
+
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

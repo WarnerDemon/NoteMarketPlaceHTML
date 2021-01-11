@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Note Details</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top nav-border">
+        
+        <div class="container top-navbar-container">
+
+            <a class="navbar-brand img-responsive" href="#">
+                
+                <!-- Logo Image -->
+                <img class="img-fluid" src="images/User-Profile/logo.png" alt="">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- col-auto Start -->
+
+            <div class="col-auto">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-user-photo" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn navbar-button" type="submit">Login</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- col-auto End -->
+            
+
+        </div>
+
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Note Detail main container -->
+    
+    <div class="container" id="note-details-container">
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h4>Notes Details</h4>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-3 note-details-padding">
+                        
+                <img src="images/Notes Details/1.jpg" alt="">
+            
+            </div>
+
+            <div class="col-xl-4 note-details-padding">
+
+                <h3>Computer Science</h3>
+                <p>Science</p>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero repellat quisquam incidunt nobis, eum sed tempora nihil ab molestiae est dignissimos quam officiis tenetur deleniti vitae, quas maiores recusandae. Temporibus?
+                </p>
+                <button class="btn book-download-button" type="submit" data-toggle="modal" data-target="#exampleModal">DOWNLOAD / $15</button>
+
+            </div>
+
+            <div class="col-xl-5 note-details-padding">
+
+                <div class="row">
+                    <div class="col-md-12 left-list">Institution:<span class="pull-right right-list">Univercity of Califormia</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Country:<span class="pull-right right-list">United State</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Course Name:<span class="pull-right right-list">Computer Engineering</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Course code:<span class="pull-right right-list">248705</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Professor:<span class="pull-right right-list">Mr. Richard Brown</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Number of Pages:<span class="pull-right right-list">277</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Approved Date:<span class="pull-right right-list">November 25 2020</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Rating:
+                        <span class="pull-right right-list">
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            100 Reviews
+                        </span>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="red-list-item">5 Users marked this note as inappropriate</div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Note Detail main container End -->
+
+    <!-- preview-review-container -->
+
+    <div class="container" id="preview-review-container">
+
+        <div class="row">
+
+            <div class="col-md-5">
+                <h4>Notes Preview</h4>
+                <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                    <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                        <iframe src="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">
+                            <p style="font-size: 110%;"><em><strong>ERROR: </strong>  
+                                An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
+                            </p>
+                        </iframe>
+                    </div>
+                </div>
+                  
+            </div>
+
+            <div class="col-md-7">
+                <h4>Customer Reviews</h4>
+
+                <div class="row" id="grey-border">
+
+                    <div class="row grey-border-bottom">
+
+                        <div class="col-md-2" align="center">
+                            
+                            <img class="review-image" src="images/Notes Details/team-1.jpg" alt="">
+                            
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <h5>Rechard Brown</h5>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit debitis voluptas</p>
+
+                        </div>
+                        
+                    </div>
+                    <div class="row grey-border-bottom">
+
+                        <div class="col-md-2" align="center">
+                            
+                            <img class="review-image" src="images/Notes Details/team-2.jpg" alt="">
+                            
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <h5>Dan Brown</h5>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit debitis voluptas</p>
+
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-2" align="center">
+                            
+                            <img class="review-image" src="images/Notes Details/team-3.jpg" alt="">
+                            
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <h5>Maria</h5>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star yellow-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit debitis voluptas</p>
+
+                        </div>
+                        
+                    </div>
+
+                    
+
+                </div>
+                    
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- preview-review-container End-->
+
+    <!-- Thanks Popup -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="popup-container">
+
+                <div class="row">
+
+                    <div class="col">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                </div>
+            
+                <div class="row">
+
+                    <div class="col" align="center">
+
+                        <div id="popup-top-image">
+                            <img src="images/Notes Details/SUCCESS.png" alt="">
+                        </div>
+                        <br>
+                        <h2>
+                            Thank you for purchasing!
+                        </h2>
+                        <br>
+                        <br>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col">
+
+                        <h4>Dear Smith,</h4>
+                        <p>
+                            As this is paid notes - you need to play to seller Rahil Shah offline.
+                            We will send him an email that you want to download this note. He may contact you further for payment process completion.
+                            <br><br>
+                            In case, you have urgency,<br>
+                            Please contact us on +91 95377345959.
+                            <br><br>
+                            Once he receives the payment and acknowledge us - selected notes you can see over my downloads tab for download.
+                            <br><br>
+                            Have a good day.
+
+                        </p>
+
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- Thanks Popup End -->
+
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid main-footer">
+
+        <div class="container">
+
+            <div class="row copyright-text">
+
+                <p>Copyright &#169; TatvaSoft All rights reserved.</p>
+    
+            </div>
+
+            <ul class="social-list">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Footer End -->
+
+
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

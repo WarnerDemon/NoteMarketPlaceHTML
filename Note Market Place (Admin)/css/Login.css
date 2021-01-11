@@ -1,0 +1,191 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    
+    /* The image used */
+    background: url("../images/pre-login/banner-with-overlay.jpg") no-repeat;
+
+    width: 100%;
+    
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    zoom: 80%;
+
+}
+
+/* ====================
+        Login Page
+   ==================== */
+
+#login-page {
+
+    padding-top: 100px;
+
+}
+
+#top-logo {
+
+    margin-bottom: 25px;
+
+}
+
+.form-container {
+
+    background: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+
+}
+
+.login-heading h2 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+    text-align: center;
+
+}
+.login-heading p {
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #333333;
+    text-align: center;
+
+}
+
+
+.label-text {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+.input-field {
+
+    border: 1px solid #6255a5;
+    width: 480px;
+    height: 50px;
+    border-radius: 3px;
+
+}
+#forgot-password {
+
+    float: right;
+
+}
+#forgot-password a {
+
+    color: #6255a5;
+
+}
+
+/* ========== Eye Icon CSS ========== */
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 2;
+}
+/* #exampleCheck {
+
+    border: 1px solid #d1d1d1;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    
+
+}  */
+.login-button {
+
+    background-color: #6255a5;
+    width: 480px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+.login-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+.login-bottom {
+
+    text-align: center;
+    margin-top: 20px;
+
+}
+.login-bottom a{
+
+    color: #6255a5;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    #form-login-button {
+        width: 300px;
+        height: 30px;
+    }
+    .input-field {
+        width: 300px;
+        height: 30px;
+    }
+    
+    /* White Container Box */
+    #login-form-container{
+        width: 400px;
+        height: 500px;
+    }
+
+    /* .bg {
+        height: 120%;
+    } */
+
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    #form-login-button {
+        width: 200px;
+        height: 30px;
+    }
+    .input-field {
+        width: 200px;
+        height: 30px;
+    }
+    
+    /* White Container Box */
+    #login-form-container {
+        width: 300px;
+        height: 550px;
+    }
+    /* .bg {
+        height: 120%;
+    } */
+
+}
