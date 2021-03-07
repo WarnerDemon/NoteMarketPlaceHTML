@@ -1,0 +1,279 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.NoteTable>
+@{
+
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/NavbarAfter.cshtml";
+
+}
+<!-- Dashboard Container -->
+
+<div class="container" id="dashboard-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Dashboard</h2>
+        </div>
+        <div class="col-md-6" align="right">
+            <button class="btn" type="submit" id="add-note-button" onclick="location.href='@Url.Action("AddNotes", "AddNotes")'">ADD NOTE</button>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <!-- Left -->
+
+        <div class="col-xl-6 mb-2">
+
+            <div class="dashboard-border">
+
+                <div class="row" align="center">
+
+                    <div class="col-md-4" id="my-earning-border">
+
+                        <img src="~/Content/FrontContent/images/Dashboard/earning-icon.svg" alt="">
+                        <h3>My earning</h3>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h3>100</h3>
+                        <p>Number of notes sold</p>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h3>$10,00,000</h3>
+                        <p>Money Earned</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right -->
+        <div class="col-xl-6">
+
+            <div class="row" align="center">
+
+                <div class="col-md-4 mb-2">
+
+                    <div class="dashboard-border">
+                        <h3>38</h3>
+                        <p>My Downloads</p>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-2">
+
+                    <div class="dashboard-border">
+                        <h3>12</h3>
+                        <p>My Rejected Notes</p>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-2">
+
+                    <div class="dashboard-border">
+                        <h3>102</h3>
+                        <p>Buyes Requests</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Dashboard Container End -->
+<!-- Progress Notes Container -->
+
+<div class="container" id="progress-container">
+
+    @using (Html.BeginForm("Dashboard", "Dashboard", FormMethod.Get))
+    {
+        <div class="row">
+
+            <div class="col-md-6">
+                <h3>In Progress Notes</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <input class="form-control mr-2 dashboard-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn dashboard-search-button" type="submit">SEARCH</button>
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.ActionLink("ADDED DATE","Dashboard", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("TITLE", "Dashboard", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "Dashboard", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col" class="text-center">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td scope="row">@item.CreatedDate.Value.ToShortDateString()</td>
+                            <td>@item.Title</td>
+                            <td>@item.CategoryTable.Name</td>
+                            <td>@item.ReferenceDataTable.StatusName</td>
+                            @if (@item.ReferenceDataTable.StatusName == "Draft")
+                            {
+                                <td align="center"><a href="@Url.Action("AddNotes","AddNotes", new { id = item.NID })"><abbr title="Edit Note"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("DeleteBook","Dashboard", new { noteid = item.NID})" onclick = "return confirm('Are you sure you wants to delete this book?');"><abbr title="Delete Note"><i class="fa fa-trash-o"></i></abbr></a></td>
+                            }
+                            else
+                            {
+                                <td align="center"><abbr title="Edit Note"><i class="fa fa-eye"></i></abbr></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page , search = Request.QueryString["search"]}))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Progress Notes Container End-->
+<!-- Published Notes Container -->
+
+<div class="container" id="published-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h3>Published Notes</h3>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <input class="form-control mr-2 dashboard-search" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn dashboard-search-button" type="submit">SEARCH</button>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">ADDED DATE</th>
+                        <th scope="col">TITLE</th>
+                        <th scope="col">CATEGORY</th>
+                        <th scope="col">SELL TYPE</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col" class="text-center">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">09-10-2020</td>
+                        <td>Data Science</td>
+                        <td>Science</td>
+                        <td>Paid</td>
+                        <td>$575</td>
+                        <td align="center"><i class="fa fa-eye"></i></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">10-10-2020</td>
+                        <td>Accounts</td>
+                        <td>Commerce</td>
+                        <td>Free</td>
+                        <td>$0</td>
+                        <td align="center"><i class="fa fa-eye"></i></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">11-10-2020</td>
+                        <td>Social Studies</td>
+                        <td>Social</td>
+                        <td>Free</td>
+                        <td>$0</td>
+                        <td align="center"><i class="fa fa-eye"></i></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">12-10-2020</td>
+                        <td>AI</td>
+                        <td>IT</td>
+                        <td>Paid</td>
+                        <td>$3542</td>
+                        <td align="center"><i class="fa fa-eye"></i></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">13-10-2020</td>
+                        <td>Lorem ipsum</td>
+                        <td>Lorem</td>
+                        <td>Free</td>
+                        <td>$0</td>
+                        <td align="center"><i class="fa fa-eye"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Published Notes Container End-->

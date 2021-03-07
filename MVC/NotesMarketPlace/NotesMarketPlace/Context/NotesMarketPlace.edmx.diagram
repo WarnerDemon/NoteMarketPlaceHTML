@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8021c0f6d2b94df5ab9517b56701eff4" Name="Diagram1">
+        <EntityTypeShape EntityType="NotesMarketPlace.AdminTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.CategoryTable" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.ContactUsTable" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.CountryTable" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.NotesAttachmentTable" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.NoteTable" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.ReferenceDataTable" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.RejectedTable" Width="1.5" PointX="12.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.ReviewTable" Width="1.5" PointX="9.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.RoleTable" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.SpamTable" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.SystemConfigurationTable" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.TransectionTable" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.TypeTable" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UserProfileTable" Width="1.5" PointX="10.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UserTable" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_CategoryTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_CountryTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_CountryTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NotesAttachmentTable_NoteTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NotesAttachmentTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_ReferenceDataTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_TypeTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_UserTable1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_RejectedTable_NoteTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_ReviewTable_NoteTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Table_1_NoteTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_TransectionTable_NoteTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_ReferenceDataTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_RejectedTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_ReviewTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserTable_RoleTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Table_1_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_TransectionTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_TransectionTable_UserTable1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserTable_UserTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

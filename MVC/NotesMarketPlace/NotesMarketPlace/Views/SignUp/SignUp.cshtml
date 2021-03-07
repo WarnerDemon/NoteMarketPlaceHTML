@@ -1,0 +1,125 @@
+﻿@model NotesMarketPlace.Models.UserTable
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Sign Up</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/style.css">
+
+    <style>
+        .form-error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <section id="sign-up-page" class="bg">
+
+        <div class="container">
+
+            <div class="row justify-content-center" id="top-logo">
+
+                <img src="~/Content/FrontContent/images/pre-login/top-logo.png" alt="">
+
+            </div>
+
+            <div class="row justify-content-center">
+
+                @using (Html.BeginForm("SignUp", "SignUp", FormMethod.Post, new { @class = "form-container", @id = "sign-up-container" }))
+                {
+                    <div class="login-heading">
+
+                        <h2>Create an Account</h2>
+                        <p>Enter your details to SignUp</p>
+                        @if (TempData["Success"] != null)
+                        {
+                            <h4 class="success-message"><i class="fa fa-check-circle"></i> @TempData["Success"]</h4>
+                        }
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FirstName" class="label-text">First Name *</label>
+                        @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "form-error" })
+                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control label-text input-field", @id = "first-name", @placeholder = "First Name" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LastName" class="label-text">Last Name *</label>
+                        @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "form-error" })
+                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control label-text input-field", @id = "last-name", @placeholder = "Last Name" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="label-text">Email</label>
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-error" })
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control label-text input-field", @id = "sign-up-email", @placeholder = "Enter email" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="label-text">Password</label>
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "form-error" })
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control input-field", @id = "sign-up-password", @placeholder = "Enter Your Password" })
+                        <span toggle="#sign-up-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="label-text">Confirm Password</label>
+                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control input-field", @id = "sign-up-confirm-password", @placeholder = "Re-Enter Your Password" })
+                        <span toggle="#sign-up-confirm-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "form-error" })
+                    </div>
+
+                    <button type="submit" class="btn btn-block login-button" id="form-sign-up-button">SIGN UP</button>
+
+                    <div class="login-bottom label-text">
+
+                        <p>Already have an account? <a href="@Url.Action("Login","SignUp")">Login</a></p>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- JQuery -->
+    <script src="~/Scripts/FrontJs/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/FrontJs/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/FrontJs/script.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

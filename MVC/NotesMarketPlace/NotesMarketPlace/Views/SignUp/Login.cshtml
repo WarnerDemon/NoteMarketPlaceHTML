@@ -1,0 +1,107 @@
+﻿@model NotesMarketPlace.Models.UserLogin
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Login</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/style.css">
+
+    <style>
+        .form-error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section id="login-page" class="bg">
+
+        <div class="container">
+
+            <div class="row justify-content-center" id="top-logo">
+
+                <img src="~/Content/FrontContent/images/pre-login/top-logo.png" alt="">
+
+            </div>
+
+            <div class="row justify-content-center">
+
+                @using (Html.BeginForm("Login", "SignUp", FormMethod.Post, new { @class = "form-container", @id = "login-form-container" }))
+                {
+                    //<form class="form-container" id="login-form-container">
+                    @Html.AntiForgeryToken()
+
+                    <div class="login-heading">
+
+                        <h2>Login</h2>
+                        <p>Enter your email address and password to login</p>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="label-text">Email</label>
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-error" })
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control label-text input-field", @id = "exampleInputEmail1", @placeholder = "Enter email" })
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="label-text">Password</label>
+                        <label for="exampleInputPassword1" class="label-text" id="forgot-password"><a href="@Url.Action("ForgotPassword","SignUp")">Forgot Password?</a></label>
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "form-error" })
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control input-field", @id = "exampleInputPassword1", @placeholder = "Password" })
+                        <span toggle="#exampleInputPassword1" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        @Html.ValidationMessageFor(x => x.RememberMe, "", new { @class = "form-error" })
+                        @Html.CheckBoxFor(x => x.RememberMe, new { @class = "form-check-input", @id = "exampleCheck" })
+                        <label class="form-check-label label-text" for="exampleCheck1">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn btn-block login-button" id="form-login-button">LOGIN</button>
+
+                    <div class="login-bottom label-text">
+
+                        <p>Don't have an account? <a href="">@Html.ActionLink("SignUp", "SignUp")</a></p>
+
+                    </div>
+
+                    //</form>
+                }
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- JQuery -->
+    <script src="~/Scripts/FrontJs/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/FrontJs/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/FrontJs/script.js"></script>
+
+</body>
+</html>

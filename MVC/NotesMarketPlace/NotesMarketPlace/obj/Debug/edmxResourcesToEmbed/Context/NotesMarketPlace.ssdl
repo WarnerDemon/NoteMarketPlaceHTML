@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NotesMarketPlace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminTable">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProfilePicture" Type="varbinary(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryTable">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactUsTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CountryTable">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotesAttachmentTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FilePath" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NoteTable">
+    <Key>
+      <PropertyRef Name="NID" />
+    </Key>
+    <Property Name="NID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="DisplayPicture" Type="varchar(max)" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="NumberOfPages" Type="int" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="InstituteName" Type="varchar" MaxLength="200" />
+    <Property Name="CourseName" Type="varchar" MaxLength="100" />
+    <Property Name="CourseCode" Type="varchar" MaxLength="100" />
+    <Property Name="Professor" Type="varchar" MaxLength="100" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="PreviewAttachment" Type="varchar(max)" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="ActionBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceDataTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RejectedTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="int" Nullable="false" />
+    <Property Name="RejectedBy" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ReviewTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="int" Nullable="false" />
+    <Property Name="ReviewBy" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RoleTable">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpamTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="int" Nullable="false" />
+    <Property Name="SpamBy" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SystemConfigurationTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupportEmail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SupportPhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Facebook" Type="varchar(max)" />
+    <Property Name="Twitter" Type="varchar(max)" />
+    <Property Name="LinkedIn" Type="varchar(max)" />
+    <Property Name="DefaultNoteImage" Type="varbinary(max)" Nullable="false" />
+    <Property Name="DefaultProfilePicture" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransectionTable">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="BuyerID" Type="int" Nullable="false" />
+    <Property Name="SellerID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TypeTable">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfileTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="Gender" Type="varchar" MaxLength="20" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProfilePicture" Type="varbinary(max)" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryID" Type="int" Nullable="false" />
+    <Property Name="University" Type="varchar" MaxLength="100" />
+    <Property Name="College" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTable">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SecretCode" Type="uniqueidentifier" />
+  </EntityType>
+  <Association Name="FK_NotesAttachmentTable_NoteTable">
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
+    <End Role="NotesAttachmentTable" Type="Self.NotesAttachmentTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTable">
+        <PropertyRef Name="NID" />
+      </Principal>
+      <Dependent Role="NotesAttachmentTable">
+        <PropertyRef Name="NID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotesAttachmentTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+    <End Role="NotesAttachmentTable" Type="Self.NotesAttachmentTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="NotesAttachmentTable">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_CategoryTable">
+    <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryTable">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_CountryTable">
+    <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="0..1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_ReferenceDataTable">
+    <End Role="ReferenceDataTable" Type="Self.ReferenceDataTable" Multiplicity="1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceDataTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_TypeTable">
+    <End Role="TypeTable" Type="Self.TypeTable" Multiplicity="0..1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeTable">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteTable_UserTable1">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="NoteTable">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDataTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+    <End Role="ReferenceDataTable" Type="Self.ReferenceDataTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="ReferenceDataTable">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RejectedTable_NoteTable">
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
+    <End Role="RejectedTable" Type="Self.RejectedTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTable">
+        <PropertyRef Name="NID" />
+      </Principal>
+      <Dependent Role="RejectedTable">
+        <PropertyRef Name="NID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RejectedTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="RejectedTable" Type="Self.RejectedTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="RejectedTable">
+        <PropertyRef Name="RejectedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewTable_NoteTable">
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
+    <End Role="ReviewTable" Type="Self.ReviewTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTable">
+        <PropertyRef Name="NID" />
+      </Principal>
+      <Dependent Role="ReviewTable">
+        <PropertyRef Name="NID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="ReviewTable" Type="Self.ReviewTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="ReviewTable">
+        <PropertyRef Name="ReviewBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_1_NoteTable">
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
+    <End Role="SpamTable" Type="Self.SpamTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTable">
+        <PropertyRef Name="NID" />
+      </Principal>
+      <Dependent Role="SpamTable">
+        <PropertyRef Name="NID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_1_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="SpamTable" Type="Self.SpamTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="SpamTable">
+        <PropertyRef Name="SpamBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransectionTable_NoteTable">
+    <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
+    <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteTable">
+        <PropertyRef Name="NID" />
+      </Principal>
+      <Dependent Role="TransectionTable">
+        <PropertyRef Name="NID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransectionTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="TransectionTable">
+        <PropertyRef Name="BuyerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransectionTable_UserTable1">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="TransectionTable">
+        <PropertyRef Name="SellerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfileTable_CountryTable">
+    <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="1" />
+    <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTable">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="UserProfileTable">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfileTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="UserProfileTable">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfileTable_UserTable1">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+    <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="UserProfileTable">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTable_RoleTable">
+    <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="1" />
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleTable">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="UserTable">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTable_UserTable">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+    <End Role="UserTable1" Type="Self.UserTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="UserTable1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NotesMarketPlaceStoreContainer">
+    <EntitySet Name="AdminTable" EntityType="Self.AdminTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUsTable" EntityType="Self.ContactUsTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryTable" EntityType="Self.CountryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotesAttachmentTable" EntityType="Self.NotesAttachmentTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteTable" EntityType="Self.NoteTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferenceDataTable" EntityType="Self.ReferenceDataTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RejectedTable" EntityType="Self.RejectedTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewTable" EntityType="Self.ReviewTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpamTable" EntityType="Self.SpamTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemConfigurationTable" EntityType="Self.SystemConfigurationTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransectionTable" EntityType="Self.TransectionTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeTable" EntityType="Self.TypeTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfileTable" EntityType="Self.UserProfileTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_NotesAttachmentTable_NoteTable" Association="Self.FK_NotesAttachmentTable_NoteTable">
+      <End Role="NoteTable" EntitySet="NoteTable" />
+      <End Role="NotesAttachmentTable" EntitySet="NotesAttachmentTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotesAttachmentTable_UserTable" Association="Self.FK_NotesAttachmentTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="NotesAttachmentTable" EntitySet="NotesAttachmentTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_CategoryTable" Association="Self.FK_NoteTable_CategoryTable">
+      <End Role="CategoryTable" EntitySet="CategoryTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_CountryTable" Association="Self.FK_NoteTable_CountryTable">
+      <End Role="CountryTable" EntitySet="CountryTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_ReferenceDataTable" Association="Self.FK_NoteTable_ReferenceDataTable">
+      <End Role="ReferenceDataTable" EntitySet="ReferenceDataTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_TypeTable" Association="Self.FK_NoteTable_TypeTable">
+      <End Role="TypeTable" EntitySet="TypeTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_UserTable" Association="Self.FK_NoteTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteTable_UserTable1" Association="Self.FK_NoteTable_UserTable1">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="NoteTable" EntitySet="NoteTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDataTable_UserTable" Association="Self.FK_ReferenceDataTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="ReferenceDataTable" EntitySet="ReferenceDataTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RejectedTable_NoteTable" Association="Self.FK_RejectedTable_NoteTable">
+      <End Role="NoteTable" EntitySet="NoteTable" />
+      <End Role="RejectedTable" EntitySet="RejectedTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RejectedTable_UserTable" Association="Self.FK_RejectedTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="RejectedTable" EntitySet="RejectedTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewTable_NoteTable" Association="Self.FK_ReviewTable_NoteTable">
+      <End Role="NoteTable" EntitySet="NoteTable" />
+      <End Role="ReviewTable" EntitySet="ReviewTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewTable_UserTable" Association="Self.FK_ReviewTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="ReviewTable" EntitySet="ReviewTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_1_NoteTable" Association="Self.FK_Table_1_NoteTable">
+      <End Role="NoteTable" EntitySet="NoteTable" />
+      <End Role="SpamTable" EntitySet="SpamTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_1_UserTable" Association="Self.FK_Table_1_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="SpamTable" EntitySet="SpamTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransectionTable_NoteTable" Association="Self.FK_TransectionTable_NoteTable">
+      <End Role="NoteTable" EntitySet="NoteTable" />
+      <End Role="TransectionTable" EntitySet="TransectionTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransectionTable_UserTable" Association="Self.FK_TransectionTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="TransectionTable" EntitySet="TransectionTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransectionTable_UserTable1" Association="Self.FK_TransectionTable_UserTable1">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="TransectionTable" EntitySet="TransectionTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfileTable_CountryTable" Association="Self.FK_UserProfileTable_CountryTable">
+      <End Role="CountryTable" EntitySet="CountryTable" />
+      <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfileTable_UserTable" Association="Self.FK_UserProfileTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfileTable_UserTable1" Association="Self.FK_UserProfileTable_UserTable1">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTable_RoleTable" Association="Self.FK_UserTable_RoleTable">
+      <End Role="RoleTable" EntitySet="RoleTable" />
+      <End Role="UserTable" EntitySet="UserTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTable_UserTable" Association="Self.FK_UserTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTable" />
+      <End Role="UserTable1" EntitySet="UserTable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,2254 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    
+    /* The image used */
+    background: url("../images/pre-login/banner-with-overlay.jpg") no-repeat;
+
+    width: 100%;
+    
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    zoom: 75%;
+
+}
+input.input-validation-error,
+textarea.input-validation-error,
+select.input-validation-error {
+
+    border:1px solid red;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Login Page
+   ==================== */
+
+#login-page {
+
+    padding-top: 100px;
+
+}
+
+#top-logo {
+
+    margin-bottom: 25px;
+
+}
+
+.form-container {
+
+    background: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+
+}
+
+.login-heading h2 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+    text-align: center;
+
+}
+.login-heading p {
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #333333;
+    text-align: center;
+
+}
+
+
+.label-text {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+.input-field {
+
+    border: 1px solid #6255a5;
+    width: 480px;
+    height: 50px;
+    border-radius: 3px;
+
+}
+#forgot-password {
+
+    float: right;
+
+}
+#forgot-password a {
+
+    color: #6255a5;
+
+}
+
+/* ========== Eye Icon CSS ========== */
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 2;
+}
+/* #exampleCheck {
+
+    border: 1px solid #d1d1d1;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    
+
+}  */
+.login-button {
+
+    background-color: #6255a5;
+    width: 480px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+.login-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+.login-bottom {
+
+    text-align: center;
+    margin-top: 20px;
+
+}
+.login-bottom a{
+
+    color: #6255a5;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    #form-login-button {
+        width: 300px;
+        height: 30px;
+    }
+    .input-field {
+        width: 300px;
+        height: 30px;
+    }
+    
+    /* White Container Box */
+    #login-form-container{
+        width: 400px;
+        height: 500px;
+    }
+
+    /* .bg {
+        height: 120%;
+    } */
+
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    #form-login-button {
+        width: 200px;
+        height: 30px;
+    }
+    .input-field {
+        width: 200px;
+        height: 30px;
+    }
+    
+    /* White Container Box */
+    #login-form-container {
+        width: 300px;
+        height: 550px;
+    }
+    /* .bg {
+        height: 120%;
+    } */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+    Forgot Password Page
+   ==================== */
+
+
+
+#forgot-password-page {
+
+    padding-top: 150px;
+
+}
+
+#forgot-password-container h4 {
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #33cc33;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+
+    #forgot-password-submit {
+        width: 300px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 300px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #forgot-password-container {
+        width: 400px;
+        height: 300px;
+    }
+
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    #forgot-password-submit {
+        width: 200px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 200px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #forgot-password-container {
+        width: 300px;
+        height: 350px;
+    }
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+    Change Password Page
+   ==================== */
+
+#change-password-page {
+
+    padding-top: 150px;
+
+}
+#Change-password-submit {
+
+    margin-top: 30px;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    #Change-password-submit {
+        width: 300px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 300px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #change-password-container {
+        width: 400px;
+        height: 480px;
+    }
+
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    #Change-password-submit {
+        width: 200px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 200px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #change-password-container {
+        width: 300px;
+        height: 520px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Sign Up Page
+   ==================== */
+
+
+.login-heading h4 {
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #33cc33;
+    text-align: center;
+
+}
+#sign-up-page {
+
+    padding-top: 50px;
+
+}
+
+#form-sign-up-button {
+
+    margin-top: 30px;
+    
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    #form-sign-up-button {
+        width: 300px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 300px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #sign-up-container {
+        width: 400px;
+        height: 680px;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    #form-sign-up-button {
+        width: 200px;
+        height: 30px;
+    }
+    /* .input-field {
+        width: 200px;
+        height: 30px;
+    } */
+
+    /* White Container Box */
+    #sign-up-container {
+        width: 300px;
+        height: 700px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        User Profile
+   ==================== */
+
+
+
+/* ========== Navigation ========== */
+.nav-border{
+
+    /* border-bottom: 1px solid #d1d1d1; */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+}
+.navbar-light .navbar-nav .nav-link {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #333333;
+
+}
+.navbar-light .navbar-nav .nav-link:hover {
+
+    color: #6255a5;
+    border-bottom: 3px solid #6255a5;
+
+}
+.navbar-light .navbar-nav .nav-item {
+
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+
+}
+.navbar-user-photo {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url("../images/Dashboard/user-img.png");
+
+}
+.navbar-button {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    background-color: #6555a5;
+    width: 89px;
+    /* height: 30px; */
+    border-radius: 3px;
+    color: #fff;
+    line-height: 22px;
+    /* margin-left: 30px; */
+
+}
+.navbar-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+.top-navbar-container {
+
+    padding: 10px 0px 10px 10px;
+
+}
+.bg-light{
+
+    background-color: rgb(255, 255, 255) !important;
+
+}
+
+/* ========== User Profile Banner ========== */
+
+.banner{
+
+    background-image: url("../images/User-Profile/banner-with-overlay.jpg");
+    height: 250px;
+    width: 100%;
+    
+  
+    /* Center and scale the image nicely */
+    background-position: bottom;
+    background-size: cover;
+    position: relative;
+    padding-top: 80px;
+    margin-top: 78px;
+
+}
+#user-profile-text h2 {
+
+    font-family: Open Sans;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #fff;
+
+}
+
+#main-container {
+
+    padding: 10px;
+
+}
+#user-profile-form-container {
+
+    padding: 0;
+    margin-bottom: 0;
+
+}
+#basic-input-field-container {
+
+    padding: 50px 0 0 0;
+
+}
+.user-profile-input-field {
+
+    border: 1px solid #d1d1d1;
+    /* width: 705px; */
+    height: 50px;
+    border-radius: 3px;
+
+}
+
+/* ========== Upload Image ========== */
+
+#profile-picture {
+
+    height: 100px;
+    background-image: url("../images/User-Profile/upload.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+#address-input-field-container {
+
+    padding: 50px 0 0 0;
+
+}
+
+#college-input-field-container {
+
+    padding: 50px 0 0 0;
+
+}
+
+#user-profile-form-submit {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    width: 150px;
+    height: 50px;
+    background-color: #6255a5;
+    border-radius: 3px;
+    margin-top: 10px;
+
+}
+#user-profile-form-submit:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+
+/* ========== Footer ========== */
+
+.main-footer {
+
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid #d1d1d1;
+
+}
+
+.copyright-text {
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #333333;
+
+    margin-top: 40px;
+
+}
+
+/* ========== Social Icon ========== */
+
+.social-list {
+
+    float: right;
+    position: relative;
+    margin-top: -45px;
+    padding: 0;
+
+}
+
+ul.social-list li {
+
+    display: inline-block;
+    padding: 0;
+
+}
+ul.social-list li a {
+
+
+    background-color: #6555a5;
+    border: 1px solid #fff;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    line-height: 35px;
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    text-align: center;
+    /* margin-left: 5px; */
+
+}
+ul.social-list li:nth-child(1) a:hover {
+
+    background-color: #3b5998;
+
+}
+
+ul.social-list li:nth-child(2) a:hover {
+
+    background-color: #00aced;
+
+}
+
+ul.social-list li:nth-child(3) a:hover {
+
+    background-color: #0e76a8;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== Email Verification ========== */
+
+#email-verification-page {
+
+    padding-top: 200px;
+
+}
+#email-verification-content {
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+}
+#email-verification-content h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#dear-smith{
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #333333;
+
+}
+.email-verification-span {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+#email-verification-button {
+
+    width: 540px;
+    height: 50px;
+    border-radius: 3px;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    background-color: #6255a5;
+
+}
+#email-verification-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+@media only screen and (max-width: 650px) {
+
+    #email-verification-button {
+
+        width: 300px;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== Home Page ========== */
+
+.homepage-navbar-container {
+
+    padding: 10px 0px 10px 10px;
+    background-color: transparent;
+
+}
+
+.navbar-dark .navbar-nav .nav-link {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+
+    color: #ffffff;
+    border-bottom: 3px solid #ffffff;
+
+}
+.navbar-dark .navbar-nav .nav-item {
+
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+
+}
+.homepage-navbar-logout-button {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    background-color: #fff;
+    width: 89px;
+    /* height: 30px; */
+    border-radius: 3px;
+    color: #6255a5;
+    line-height: 22px;
+    /* margin-left: 20px; */
+
+}
+/* ========== Home Page Banner ========== */
+
+#home-page-banner{
+
+    background-image: url("../images/User-Profile/banner-with-overlay.jpg");
+    height: 620px;
+    width: 100%;
+    
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding-top: 80px;
+    background-repeat: no-repeat;
+
+}
+
+#homepage-text-on-image {
+    margin-top: 100px;
+}
+
+#homepage-text-on-image h2{
+
+    font-family: Open Sans;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 54px;
+    color: #fff;
+
+}
+#homepage-text-on-image p{
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #fff;
+
+}
+#learn-more-button {
+
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+#about-notes {
+
+    padding: 60px 10px;
+
+}
+#about-notes h2 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#about-notes p {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #333333;
+
+}
+
+
+
+
+
+/* ========== How it Works ========== */
+#how-it-works {
+
+    background-color: #f9f9f9;
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+}
+#how-it-works .col-md-12 h2 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#download-image-circle {
+
+    background-image: url("../images/home/download.png");
+    width: 140px;
+    height: 140px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+
+}
+#seller-image-circle {
+
+    background-image: url("../images/home/seller.png");
+    width: 140px;
+    height: 140px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+
+}
+#how-it-works .col-md-6 h2 {
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+#how-it-works p {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #333333;
+
+}
+#how-it-works-download {
+
+    width: 172px;
+    border-radius: 3px;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    background-color: #6255a5;
+
+}
+#how-it-works-download:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+#how-it-works-sell {
+
+    width: 150px;
+    border-radius: 3px;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    background-color: #6255a5;
+
+}
+#how-it-works-sell:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== Customer ========== */
+#customers-container {
+
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+}
+#customer-heading h2{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+    padding: 10px;
+
+}
+.customer-box {
+
+    width: 100%;
+    /* height: 278px; */
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+    margin: 15px 0;
+    padding: 40px;
+
+}
+.customer-image {
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    /* float: left; */
+    margin-right: 20px;
+    margin-bottom: 30px;
+
+}
+
+.customer-name h2 {
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #6255a5;
+    /* float: left; */
+
+}
+.customer-name p{
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #333333;
+    /* float: left; */
+
+}
+.customer-review p {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 28px;
+    color: #333333;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Search Notes
+   ==================== */
+
+
+
+/* ========== Navigation ========== */
+
+#search-notes-text h2 {
+
+    font-family: Open Sans;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #fff;
+
+}
+#main-container {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+#main-container h2 {
+
+    font-family: Open Sans;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+#grey-bg {
+
+    padding: 30px 15px 14px 15px;
+    background-color: #f9f9f9;
+
+}
+.input-in-grey-box {
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8a8a8a;
+    height: 50px;
+
+}
+.note-detail {
+
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin: 15px 0;
+
+}
+.book-title h5{
+
+    /* height: 50px; */
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #6255a5;
+
+}
+.note-detail ul{
+
+    list-style: none;
+    padding: 0;
+
+}
+.note-detail ul li{
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+.red-text {
+
+    color: red;
+
+}
+.note-detail ul li i{
+
+    margin-right: 10px;
+
+}
+.yellow-star {
+
+    color: rgb(254,193,6);
+
+}
+.note-detail .reviews{
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+    padding-top: 15px;
+
+}
+
+/* ========== Pagination ========== */
+
+.pagination li {
+    display: inline-block;
+    padding-top: 20px;
+}
+  
+.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination > .active > a,
+.pagination > .active > a:hover {
+    background-color: #6255a5;
+    color: #fff;
+    border-radius: 50%;
+}
+.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Note Details
+   ==================== */
+
+#note-details-container {
+
+    margin-top: 100px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d1d1d1;
+
+}
+.note-details-padding {
+
+    padding: 15px;
+    
+}
+#note-details-container h4 {
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+#note-details-container h3 {
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#note-details-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #333333;
+
+}
+.book-download-button {
+
+    background-color: #6255a5;
+    width: 204px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+.book-download-button:hover {
+
+    color: #fff;
+    background-color: #564a91;
+
+}
+.left-list {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 36px;
+    color: #333333;
+
+}
+.right-list {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #6255a5;
+
+}
+#red-list-item {
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #df3434;
+
+}
+#preview-review-container {
+
+    padding-bottom: 30px;
+
+}
+#preview-review-container h4{
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+
+
+.responsive-wrapper {
+    position: relative;
+    height: 0;    /* gets height from padding-bottom */
+    overflow: hidden;
+    /* put following styles (necessary for overflow and 
+       scrolling handling) inline in .embed-responsive-element-wrapper around iframe because not stable in CSS
+      -webkit-overflow-scrolling: touch; 
+                        overflow: auto; */
+  }
+.responsive-wrapper img,
+.responsive-wrapper object,
+.responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     
+    border-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+  /*
+      css particular to this iframe
+  */
+  
+#Iframe-Cicis-Menu-To-Go {
+    max-width: 666.67px;
+    max-height: 600px;
+    overflow: hidden;
+    border: 1px solid #d1d1d1;
+}
+  /*
+     padding-bottom = h/w as %
+  */
+.responsive-wrapper-padding-bottom-90pct {
+    padding-bottom: 90%;
+}
+
+
+
+#grey-border {
+
+    border: 1px solid #d1d1d1;
+    padding: 0 30px;
+    padding-top: 10px;
+
+}
+#preview-review-container h5 {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #333333;
+    margin: 0;
+
+}
+#preview-review-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #333333;
+
+}
+.grey-border-bottom {
+
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 10px;
+
+}
+.review-image {
+
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-size: contain;
+
+}
+
+/* Popup */
+#popup-container {
+
+    padding: 20px 30px 30px 40px;
+
+}
+#popup-top-image {
+
+    width: 63px;
+    height: 63px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+
+}
+#popup-container h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#popup-container h4 {
+
+    font-family: Open Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #333333;
+
+}
+#popup-container p {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #333333;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Dashboard
+   ==================== */
+
+#dashboard-container {
+
+    margin-top: 130px;
+
+}
+#dashboard-container h2{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#add-note-button {
+
+    background-color: #6255a5;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+
+}
+#add-note-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+#dashboard-container h3{
+
+    font-family: Open Sans;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#dashboard-container p{
+
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #333333;
+
+}
+.dashboard-border {
+
+    border: 1px solid #d1d1d1;
+    padding: 30px 6px 15px 6px;
+
+}
+#my-earning-border {
+
+    border-right: 1px solid #d1d1d1;
+
+}
+#progress-container {
+
+    padding-top: 50px;
+
+}
+#progress-container h3{
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+.dashboard-search {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8a8a8a;
+    max-width: 322px;
+    height: 50px;
+    border: 1px solid #d1d1d1;
+}
+.dashboard-search-button {
+
+    background-color: #6255a5;
+    width: 117px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+
+}
+.dashboard-search-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+.table-border {
+
+    border: 1px solid #d1d1d1;
+
+}
+.shadow-on-hover tr:hover {
+
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+
+}
+#progress-container .table th {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #333333;
+
+}
+#progress-container .table td {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+}
+#progress-container .table th a{
+
+    text-decoration: none;
+    color: black;
+
+}
+#progress-container .table td a{
+
+    text-decoration: none;
+    color: black;
+
+}
+abbr[title] {
+    border-bottom: none !important;
+    cursor: inherit !important;
+    text-decoration: none !important;
+}
+
+#published-container {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+#published-container h3 {
+
+    font-family: Open Sans;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+#published-container .table th {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #333333;
+
+}
+#published-container .table td {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Add Notes
+   ==================== */
+
+#add-notes-text h2{
+
+    font-family: Open Sans;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #fff;
+
+}
+#add-notes-main-container h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#display-picture {
+
+    height: 100px;
+    background-image: url("../images/Add-notes/upload-file.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#upload-notes {
+
+    height: 100px;
+    background-image: url("../images/Add-notes/upload-note.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#description{
+
+    height: 150px;
+    text-align: center;
+
+}
+.sell-radio-button {
+
+    width: 40px;
+    height: 40px;
+
+}
+#note-preview {
+
+    height: 126px;
+    background-image: url("../images/Add-notes/upload-file.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.save-publish-button {
+
+    background-color: #6255a5;
+    width: 150px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+.save-publish-button {
+
+    background-color: #6255a5;
+    width: 150px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+.save-publish-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        My Downloads
+   ==================== */
+
+#my-downloads-container {
+
+    margin-top: 130px;
+
+}
+#my-downloads-container h3{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f5f5f5;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: rgb(255, 255, 255);}
+.dropdown:hover .dropdown-content {display: block;}
+
+
+
+
+#add-review-popup-container {
+
+    padding: 20px 30px 20px 30px;
+
+}
+#add-review-popup-container h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#comments {
+
+    height: 100px;
+    text-align: center;
+
+}
+
+/* Rating */
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        My Sold Notes
+   ==================== */
+
+#my-sold-notes-container {
+
+    margin-top: 130px;
+
+}
+#my-sold-notes-container h3{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+.title-color {
+
+    color: #6255a5;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+    My Rejected Notes
+   ==================== */
+
+#my-rejected-notes-container {
+
+    margin-top: 130px;
+
+}
+#my-rejected-notes-container h3{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+    Buyer Requests
+   ==================== */
+
+#buyer-request-container {
+
+    margin-top: 130px;
+
+}
+#buyer-request-container h3{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+#buyer-request-container .table th a {
+    text-decoration: none;
+    color: black;
+}
+
+#buyer-request-container .table td a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+            FAQ
+   ==================== */
+
+
+
+#faq-text h2 {
+
+    font-family: Open Sans;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #fff;
+
+}
+#faq-container {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+#faq-container h2 {
+
+    font-family: Open Sans;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+
+
+#faq-container .accordion:focus,.accordion:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+#faq-container .accordion {
+    background-color: #f3f3f3;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    border-bottom: none;
+}
+
+#faq-container .active, .accordion:hover {
+    background-color: #fff;
+}
+  
+#faq-container .accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+  
+#faq-container .active:after {
+    content: "\2212";
+}
+  
+#faq-container .panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border: 1px solid #d1d1d1;
+    border-top: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================
+        Contact Us
+   ==================== */
+
+
+
+#contact-us-text h2 {
+
+    font-family: Open Sans;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 52px;
+    color: #fff;
+
+}
+#contact-us-container {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+#contact-us-container h2 {
+
+    font-family: Open Sans;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #6255a5;
+
+}
+.contact-us-submit-button {
+
+    background-color: #6255a5;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+
+}
+.contact-us-submit-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}

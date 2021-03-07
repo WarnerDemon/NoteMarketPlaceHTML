@@ -1,0 +1,78 @@
+﻿@model NotesMarketPlace.Context.UserTable
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0 ,user-scalable=no">
+
+    <!-- Title -->
+    <title>Email Verification</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/bootstrap/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/FrontContent/css/style.css">
+
+
+
+</head>
+
+<body>
+
+
+    <section id="email-verification-page" class="bg">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <form class="form-container">
+
+                    <img class="img-fluid" src="~/Content/FrontContent/images/User-Profile/logo.png" alt="">
+
+                    <div id="email-verification-content">
+
+                        <h2>Email Verification</h2>
+                        <span id="dear-smith"><b>Dear @ViewBag.name,</b></span> <br>
+                        <span class="email-verification-span">Thanks for Signing up!</span> <br>
+                        <span class="email-verification-span">Simply click below for email verification.</span>
+
+                    </div>
+
+                    <a href="@Url.Action("Verify","SignUp",new { code = Model.SecretCode.ToString() })" type="submit" class="Button btn btn-primary" id="email-verification-button"><b>VERIFY EMAIL ADDRESS</b></a>
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- JQuery -->
+    <script src="~/Scripts/FrontJs/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/FrontJs/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/FrontJs/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+﻿@model NotesMarketPlace.Models.AddNotes
+@{
+
+    ViewBag.Title = "Add Notes";
+    Layout = "~/Views/Shared/NavbarAfter.cshtml";
+
+}
+
+@{
+    <style>
+        .form-error {
+            color: red;
+        }
+    </style>
+}
+<!-- User Profile Image -->
+<div class="container-fluid banner">
+
+    <div class="row justify-content-center">
+
+        <div id="add-notes-text">
+
+            <h2>Add Notes</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Add Notes Main Container -->
+
+<div class="container" id="add-notes-main-container">
+
+    <br>
+
+    @using (Html.BeginForm("AddNotes", "AddNotes", FormMethod.Post, new { enctype="multipart/form-data" }))
+    {
+        <div class="row">
+
+            <div class="col">
+
+                <h2>Basic Note Details</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    @Html.HiddenFor(x => x.NID)
+                    <label for="title" class="label-text">Title *</label>
+                    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control user-profile-input-field", @id = "title", @placeholder = "Enter your notes title" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="category" class="label-text">Category</label>
+                    @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "form-error" })
+                    @Html.DropDownListFor(x => x.CategoryID, new SelectList(ViewBag.Category, "Value", "Text"),"Select your category",new { @class = "form-control user-profile-input-field", @id="category"})
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="display-picture" class="label-text">Display Picture <span class="form-error" id="uploadpicture-error"></span></label>
+                    @Html.TextBoxFor(x => x.DisplayPicture, new { @class = "form-control user-profile-input-field upload-picture", @id = "display-picture", @onchange = "return picturevalidation()", type = "file" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="upload-notes" class="label-text">Upload Notes * <span class="form-error" id="uploadnotes-error"></span></label>
+                    @Html.ValidationMessageFor(x => x.File, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.File, new { @class = "form-control user-profile-input-field", @id = "upload-notes", @onchange = "return notesvalidation()", type = "file", @multiple = "multiple" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="type" class="label-text">Type</label>
+                    @Html.DropDownListFor(x => x.TypeID, new SelectList(ViewBag.Type, "Value", "Text"),"Select your category", new { @class = "form-control user-profile-input-field", @id = "type"})
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="pages" class="label-text">Number of Pages</label>
+                    @Html.ValidationMessageFor(x => x.NumberOfPages, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.NumberOfPages, new { @class = "form-control user-profile-input-field", @id = "pages", @placeholder = "Enter number of note pages" })
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="description" class="label-text">Description *</label>
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control user-profile-input-field", @id = "description", @placeholder = "Enter your description" })
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h2>Institution Information</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="country" class="label-text">Country</label>
+                    @Html.DropDownListFor(x => x.CountryID, new SelectList(ViewBag.Country, "Value", "Text"),"Select your country", new { @class = "form-control user-profile-input-field", @id = "country" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="institute" class="label-text">Institution Name</label>
+                    @Html.TextBoxFor(x => x.InstituteName, new { @class = "form-control user-profile-input-field", @id = "institute", @placeholder = "Enter your institution name" })
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h2>Course details</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="course-name" class="label-text">Course Name</label>
+                    @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control user-profile-input-field", @id = "course-name", @placeholder = "Enter your course name" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="course-code" class="label-text">Course Code</label>
+                    @Html.TextBoxFor(x => x.CourseCode, new { @class = "form-control user-profile-input-field", @id = "course-code", @placeholder = "Enter your course code" })
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="professor" class="label-text">Professor / Lecturer</label>
+                    @Html.TextBoxFor(x => x.Professor, new { @class = "form-control user-profile-input-field", @id = "course-code", @placeholder = "Enter your professor name" })
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h2>Selling Information</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+
+                <div class="form-group">
+
+                    <label for="sell-for" class="label-text">Sell For *</label>
+                    <br>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input sell-radio-button" type="radio" name="IsPaid" value="False" id="flexRadioDefault1" checked>
+                        <label class="form-check-label label-text" for="flexRadioDefault1">Free</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input sell-radio-button enable_tb" type="radio" name="IsPaid" value="True" id="flexRadioDefault2">
+                        <label class="form-check-label label-text" for="flexRadioDefault2">Paid</label>
+                    </div>
+
+                    <br>
+                    <label for="sell-price" class="label-text">Sell Price *</label>
+                    @Html.ValidationMessageFor(x => x.Price, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control user-profile-input-field", @id = "sell-price", @placeholder = "Enter your price", @disabled="disabled" })
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+
+                <div class="form-group">
+                    <label for="note-preview" class="label-text">Note Preview <span id="attach-for-paid" class="form-error"></span></label>
+                    @Html.ValidationMessageFor(x => x.PreviewAttachment, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.PreviewAttachment, new { @class = "form-control user-profile-input-field", @id = "note-preview", type = "file" })
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <button class="btn save-publish-button" type="submit" name="submitButton" value="1">SAVE</button>
+                <button class="btn save-publish-button" type="submit" name="submitButton" value="2">PUBLISH</button>
+
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+</div>
+
+<!-- Add Notes Main Container End-->

@@ -1,0 +1,152 @@
+body, html {
+    height: 100%;
+}
+
+/* ========== Navigation ========== */
+.nav-border{
+
+    border-bottom: 1px solid #d1d1d1;
+
+}
+.navbar-light .navbar-nav .nav-link {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #333333;
+
+}
+.navbar-light .navbar-nav .nav-link:hover {
+
+    color: #6255a5;
+    border-bottom: 3px solid #6255a5;
+
+}
+.navbar-light .navbar-nav .nav-item {
+
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+
+}
+.navbar-user-photo {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url("../images/Dashboard/user-img.png");
+
+}
+.navbar-button {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    background-color: #6555a5;
+    width: 89px;
+    /* height: 30px; */
+    border-radius: 3px;
+    color: #fff;
+    line-height: 22px;
+    /* margin-left: 30px; */
+
+}
+.navbar-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+.top-navbar-container {
+
+    padding: 10px 0px 10px 10px;
+
+}
+.bg-light{
+
+    background-color: rgb(255, 255, 255) !important;
+
+}
+
+
+
+
+/* ========== My Profile Container ========== */
+#my-profile-container {
+
+    padding-top: 130px;
+    padding-bottom: 20px;
+
+}
+#my-profile-container h2{
+
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+
+}
+.label-text {
+
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}
+.input-field {
+
+    border: 1px solid #d1d1d1;
+    height: 50px;
+    border-radius: 3px;
+
+}
+#profile-picture {
+
+    height: 100px;
+    background-image: url("../images/User-Profile/upload.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#my-profile-submit-button {
+
+    background-color: #6255a5;
+    width: 150px;
+    height: 50px;
+    font-weight: 600;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+
+}
+#my-profile-submit-button:hover {
+
+    background-color: #4f4294;
+    color: #fff;
+
+}
+
+
+
+
+/* ========== Footer ========== */
+.main-footer {
+
+    border-top: 1px solid #d1d1d1;
+    padding-top: 10px;
+
+}
+.main-footer p {
+
+    font-family: Open Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+
+}

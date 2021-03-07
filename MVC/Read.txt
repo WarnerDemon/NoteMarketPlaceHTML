@@ -1,0 +1,2 @@
+While checking code, replace email address and password with
+your email and password in email-verification method 
