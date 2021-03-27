@@ -4,4 +4,4 @@ your email and password in following controller:
 SignUpController.cs
 NoteDetailsController.cs
 MyDownloadsController.cs
-ContavtUsController.cs
+ContactUsController.cs
