@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.15.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.15.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -200,6 +203,7 @@
     <Content Include="Content\FrontContent\images\home\seller.png" />
     <Content Include="Content\FrontContent\images\home\top-logo.png" />
     <Content Include="Content\FrontContent\images\home\twitter.png" />
+    <Content Include="Content\FrontContent\images\loader.gif" />
     <Content Include="Content\FrontContent\images\Notes Details\1.jpg" />
     <Content Include="Content\FrontContent\images\Notes Details\close.png" />
     <Content Include="Content\FrontContent\images\Notes Details\SUCCESS.png" />
@@ -236,7 +240,6 @@
       <DependentUpon>NotesMarketPlace.edmx</DependentUpon>
       <LastGenOutput>NotesMarketPlace.cs</LastGenOutput>
     </Content>
-    <Content Include="Default\UserProfileImage.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\AdminJs\bootstrap\bootstrap-show-password.min.js" />
     <Content Include="Scripts\AdminJs\bootstrap\bootstrap.min.js" />
@@ -323,17 +326,25 @@
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyDownloadsController.cs" />
+    <Compile Include="Controllers\MySoldNotesController.cs" />
     <Compile Include="Controllers\NoteDetailsController.cs" />
     <Compile Include="Controllers\SearchNotesController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddNotes.cs" />
+    <Compile Include="Models\BuyerRequest.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\DisplayReview.cs" />
     <Compile Include="Models\ForgotPassword.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -376,6 +387,12 @@
     <Content Include="Views\SignUp\Login.cshtml" />
     <Content Include="Views\SignUp\ForgotPassword.cshtml" />
     <Content Include="Views\ContactUs\ContactUs.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\UserProfile\UserProfile.cshtml" />
+    <Content Include="Views\MyDownloads\MyDownloads.cshtml" />
+    <Content Include="Views\NoteDetails\ThanksPopup.cshtml" />
+    <Content Include="Views\MySoldNotes\MySoldNotes.cshtml" />
+    <Content Include="Views\SignUp\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -385,6 +402,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Default\" />
     <Folder Include="Members\" />
   </ItemGroup>
   <ItemGroup>

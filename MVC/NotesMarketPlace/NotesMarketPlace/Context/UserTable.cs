@@ -26,9 +26,9 @@ namespace NotesMarketPlace.Context
             this.SpamTable = new HashSet<SpamTable>();
             this.TransectionTable = new HashSet<TransectionTable>();
             this.TransectionTable1 = new HashSet<TransectionTable>();
+            this.UserTable1 = new HashSet<UserTable>();
             this.UserProfileTable = new HashSet<UserProfileTable>();
             this.UserProfileTable1 = new HashSet<UserProfileTable>();
-            this.UserTable1 = new HashSet<UserTable>();
         }
     
         public int UID { get; set; }
@@ -65,11 +65,11 @@ namespace NotesMarketPlace.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransectionTable> TransectionTable1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserTable> UserTable1 { get; set; }
+        public virtual UserTable UserTable2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfileTable> UserProfileTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfileTable> UserProfileTable1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserTable> UserTable1 { get; set; }
-        public virtual UserTable UserTable2 { get; set; }
     }
 }

@@ -47,6 +47,9 @@ namespace NotesMarketPlace.Context
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }
+        public Nullable<double> Rating { get; set; }
+        public Nullable<int> TotalReviews { get; set; }
+        public Nullable<int> TotalSpams { get; set; }
     
         public virtual CategoryTable CategoryTable { get; set; }
         public virtual CountryTable CountryTable { get; set; }

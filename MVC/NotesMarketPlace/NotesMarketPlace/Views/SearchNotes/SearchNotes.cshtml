@@ -1,416 +1,188 @@
-﻿@{ 
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.NoteTable>
+@{
 
     ViewBag.Title = "Search Notes";
     Layout = "~/Views/Shared/NavbarAfter.cshtml";
 
 }
-    <!-- User Profile Image -->
-    <div class="container-fluid banner">
+<!-- User Profile Image -->
+<div class="container-fluid banner">
 
-        <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-            <div id="search-notes-text">
+        <div id="search-notes-text">
 
-                <h2>Search Notes</h2>
-
-            </div>
+            <h2>Search Notes</h2>
 
         </div>
 
     </div>
 
+</div>
 
-    <div class="container" id="main-container">
 
-        <!-- Search & Filters notes -->
+<div class="container" id="main-container">
 
-        <div class="row">
+    <!-- Search & Filters notes -->
 
-            <div class="col">
+    <div class="row">
 
-                <h2>Search and Filters notes</h2>
+        <div class="col">
 
-            </div>
+            <h2>Search and Filters notes</h2>
 
         </div>
 
+    </div>
+
+    @using (Html.BeginForm("SearchNotes", "SearchNotes", FormMethod.Get))
+    {
         <div class="row" id="grey-bg">
 
             <div class="col-md-12 col-sm-12">
                 <div class="active-blue-4 mb-4">
-                    <input class="form-control input-in-grey-box" type="text" placeholder="Search notes here..." aria-label="Search">
+                    <input class="form-control input-in-grey-box" type="text" placeholder="Search notes here..." aria-label="Search" name="search">
                 </div>
             </div>
 
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select type</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("TypeID", ViewBag.Type as SelectList, "Select type", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();"})
             </div>
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select category</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("CategoryID", ViewBag.Category as SelectList, "Select category", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
             </div>
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select univercity</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("InstituteName", ViewBag.Univercity as SelectList, "Select univercity", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
             </div>
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select course</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("CourseName", ViewBag.Course as SelectList, "Select course", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
             </div>
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select country</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("CountryID", ViewBag.Country as SelectList, "Select country", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
             </div>
             <div class="col-md-2 col-sm-2 form-group">
-                <select class="form-control input-in-grey-box" id="exampleFormControlSelect1">
-                    <option>Select rating</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                @Html.DropDownList("Rating", new List<SelectListItem> {
+                   new SelectListItem { Value = "1" , Text = "⭐ +" },
+                   new SelectListItem { Value = "2" , Text = "⭐⭐ +" },
+                   new SelectListItem { Value = "3" , Text = "⭐⭐⭐ +" },
+                   new SelectListItem { Value = "4" , Text = "⭐⭐⭐⭐ +" },
+                   new SelectListItem { Value = "5" , Text = "⭐⭐⭐⭐⭐ +" },
+                }, "Select rating", new { @class = "form-control input-in-grey-box", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
             </div>
 
         </div>
+    }
 
-        <!-- Search & Filters notes End -->
+    <!-- Search & Filters notes End -->
 
-        <br>
+    <br>
 
-        <!-- Total Notes -->
+    <!-- Total Notes -->
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col">
-                <h2>Total 18 notes</h2>
-            </div>
-
+        <div class="col">
+            <h2>Total @ViewBag.TotalBooks notes</h2>
         </div>
-
-
-        <div class="row justify-content-center">
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <span class="reviews">100 reviews</span>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">Computer Science</h5>
-                            <br>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/3.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-                            <h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/4.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">Computer Science Illuminated - Seventh Edition</h5>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <span class="reviews">100 reviews</span>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/5.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">The Principles of Computer Hardware- Oxford</h5>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/6.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-                            <h5 class="card-title">The Computer Book</h5>
-                            <br>
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <span class="reviews">100 reviews</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-
-                            <h5 class="card-title">Computer Science</h5>
-                            <br>
-
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4" style="width: 15rem;">
-
-                <div class="note-detail">
-
-                    <img class="card-img-top" src="~/Content/FrontContent/images/Search/3.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="book-title">
-                            <h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>
-                        </div>
-                        <ul>
-                            <li><i class="fa fa-university"></i>Univercity of California, US</li>
-                            <li><i class="fa fa-book"></i>204 Pages</li>
-                            <li><i class="fa fa-calendar"></i>Thu, Nov 26 2020</li>
-                            <li><i class="fa fa-flag"></i><span class="red-text">5 Users marked this note as inappropriate</span></li>
-                        </ul>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star yellow-star"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <span class="reviews">100 reviews</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Pagination -->
-
-        <div class="row justify-content-center">
-
-            <div class="pagination">
-                <a href="#"><i class="fa fa-angle-left"></i></a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
 
     </div>
+
+
+    <div class="row justify-content-center">
+
+        @if (Model.Count() == 0)
+        {
+            <h4>No record found</h4>
+        }
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style="width: 15rem;">
+
+                <div class="note-detail">
+
+                    <img class="card-img-top note-image-box" src="../@item.DisplayPicture" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="book-title">
+
+                            <h5 class="card-title"><a href="@Url.Action("NoteDetails","NoteDetails", new { nid = item.NID })">@item.Title</a></h5>
+                            
+                        </div>
+                        <ul>
+                            @if (item.InstituteName == null)
+                            {
+                                <li><i class="fa fa-university"></i>@item.CountryTable.CountryName</li>
+                            }
+                            else
+                            {
+                                <li><i class="fa fa-university"></i>@item.InstituteName, @item.CountryTable.CountryName</li>
+                            }
+                            @if (item.NumberOfPages == null)
+                            {
+                                <li><i class="fa fa-book"></i>No. Of Pages Not Available</li>
+                            }
+                            else
+                            {
+                                <li><i class="fa fa-book"></i>@item.NumberOfPages Pages</li>
+                            }
+                            <li><i class="fa fa-calendar"></i>@item.CreatedDate.Value.ToShortDateString()</li>
+                            @if (item.TotalSpams == null)
+                            {
+                                <li><i class="fa fa-flag"></i><span>0 User marked this note as inappropriate</span></li>
+                            }
+                            else
+                            {
+                                <li><i class="fa fa-flag"></i><span class="red-text">@item.TotalSpams Users marked this note as inappropriate</span></li>
+                            }
+                        </ul>
+                        <span class="score">
+                            <span class="score-wrap" style="float: left">
+                                @if (item.Rating == null)
+                                {
+                                    item.Rating = 0;
+                                }
+                                <span class="stars-active" style="width:@item.Rating%">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </span>
+                                <span class="stars-inactive">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </span>
+                            </span>
+                            @if (item.TotalReviews == null)
+                            {
+                                item.TotalReviews = 0;
+                            }
+                            <span style="float: left; margin-left: 5px;">@item.TotalReviews Reviews</span>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("SearchNotes", new { page , search = Request.QueryString["search"], TypeID = Request.QueryString["TypeID"], CategoryID = Request.QueryString["CategoryID"], CourseName = Request.QueryString["CourseName"], CountryID = Request.QueryString["CountryID"] }))
+        </div>
+
+    </div>
+
+
+</div>

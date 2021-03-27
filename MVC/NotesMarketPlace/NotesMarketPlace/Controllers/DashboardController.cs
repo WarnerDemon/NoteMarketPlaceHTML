@@ -56,6 +56,19 @@ namespace NotesMarketPlace.Controllers
                     break;
             }
 
+            ViewBag.SoldNotes = dbobj.TransectionTable.Where(x => x.SellerID == obj.UID && x.IsAllowed == true).Count();
+            if (ViewBag.SoldNotes == 0)
+            {
+                ViewBag.Earning = 0;
+            }
+            else
+            {
+                ViewBag.Earning = dbobj.TransectionTable.Where(x => x.SellerID == obj.UID && x.IsAllowed == true).Select(x => x.Price).Sum();
+            }
+            ViewBag.DownloadNotes = dbobj.TransectionTable.Where(x => x.BuyerID == obj.UID && x.IsDownloaded == true).Count();
+            ViewBag.BuyerRequests = dbobj.TransectionTable.Where(x => x.SellerID == obj.UID && x.IsAllowed == false).Count();
+
+            ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == obj.UID).Select(x=>x.ProfilePicture).FirstOrDefault();
             return View(entry.ToPagedList(page ?? 1, 5));
         }
 

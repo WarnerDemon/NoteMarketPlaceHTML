@@ -19,11 +19,9 @@
         <EntityTypeShape EntityType="NotesMarketPlace.SystemConfigurationTable" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesMarketPlace.TransectionTable" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesMarketPlace.TypeTable" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NotesMarketPlace.UserProfileTable" Width="1.5" PointX="10.25" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NotesMarketPlace.UserTable" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
         <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_CategoryTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_CountryTable" ManuallyRouted="false" />
-        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_CountryTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_NotesAttachmentTable_NoteTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_NotesAttachmentTable_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_NoteTable_ReferenceDataTable" ManuallyRouted="false" />
@@ -41,9 +39,11 @@
         <AssociationConnector Association="NotesMarketPlace.FK_Table_1_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_TransectionTable_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_TransectionTable_UserTable1" ManuallyRouted="false" />
-        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable" ManuallyRouted="false" />
-        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable1" ManuallyRouted="false" />
         <AssociationConnector Association="NotesMarketPlace.FK_UserTable_UserTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UserProfileTable" Width="1.5" PointX="10.5" PointY="12.125" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_CountryTable" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UserProfileTable_UserTable1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -21,7 +21,7 @@ $(function () {
             $("ul button").removeClass("homepage-navbar-logout-button");
             $("ul button").addClass("navbar-button");
 
-            $(".navbar-brand img").attr("src", "images/User-Profile/logo.png");
+            $(".navbar-brand img").attr("src", "Content/FrontContent/images/User-Profile/logo.png");
   
         }
         else {
@@ -35,10 +35,10 @@ $(function () {
             $("ul button").removeClass("navbar-button");
             $("ul button").addClass("homepage-navbar-logout-button");
 
-            $(".navbar-brand img").attr("src", "images/pre-login/top-logo.png");
+            $(".navbar-brand img").attr("src", "Content/FrontContent/images/pre-login/top-logo.png");
   
         }
   
     }
   
-  });
+});

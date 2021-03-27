@@ -34,7 +34,7 @@
 
     <br>
 
-    @using (Html.BeginForm("AddNotes", "AddNotes", FormMethod.Post, new { enctype="multipart/form-data" }))
+    @using (Html.BeginForm("AddNotes", "AddNotes", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="row">
 
@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <label for="category" class="label-text">Category</label>
                     @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "form-error" })
-                    @Html.DropDownListFor(x => x.CategoryID, new SelectList(ViewBag.Category, "Value", "Text"),"Select your category",new { @class = "form-control user-profile-input-field", @id="category"})
+                    @Html.DropDownListFor(x => x.CategoryID, new SelectList(ViewBag.Category, "Value", "Text"), "Select your category", new { @class = "form-control user-profile-input-field", @id = "category" })
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
             <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                     <label for="type" class="label-text">Type</label>
-                    @Html.DropDownListFor(x => x.TypeID, new SelectList(ViewBag.Type, "Value", "Text"),"Select your category", new { @class = "form-control user-profile-input-field", @id = "type"})
+                    @Html.DropDownListFor(x => x.TypeID, new SelectList(ViewBag.Type, "Value", "Text"), "Select your category", new { @class = "form-control user-profile-input-field", @id = "type" })
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
             <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                     <label for="country" class="label-text">Country</label>
-                    @Html.DropDownListFor(x => x.CountryID, new SelectList(ViewBag.Country, "Value", "Text"),"Select your country", new { @class = "form-control user-profile-input-field", @id = "country" })
+                    @Html.DropDownListFor(x => x.CountryID, new SelectList(ViewBag.Country, "Value", "Text"), "Select your country", new { @class = "form-control user-profile-input-field", @id = "country" })
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                     <br>
                     <label for="sell-price" class="label-text">Sell Price *</label>
                     @Html.ValidationMessageFor(x => x.Price, "", new { @class = "form-error" })
-                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control user-profile-input-field", @id = "sell-price", @placeholder = "Enter your price", @disabled="disabled" })
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control user-profile-input-field", @id = "sell-price", @placeholder = "Enter your price", @disabled = "disabled" })
 
                 </div>
 

@@ -8,13 +8,12 @@ namespace NotesMarketPlace.Models
 {
     public class AddNotes
     {
-        public int NID { get; set; }
+        public int? NID { get; set; }
         public int UID { get; set; }
         [Required]
         public string Title { get; set; }
         public int CategoryID { get; set; }
         public HttpPostedFileBase DisplayPicture { get; set; }
-        [Required]
         public HttpPostedFileBase[] File { get; set; }
         public Nullable<int> TypeID { get; set; }
         public Nullable<int> NumberOfPages { get; set; }

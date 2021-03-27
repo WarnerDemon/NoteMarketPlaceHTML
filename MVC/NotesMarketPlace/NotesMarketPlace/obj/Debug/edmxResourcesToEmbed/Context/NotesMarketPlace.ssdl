@@ -88,6 +88,9 @@
     <Property Name="PreviewAttachment" Type="varchar(max)" />
     <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="ActionBy" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="float" />
+    <Property Name="TotalReviews" Type="int" />
+    <Property Name="TotalSpams" Type="int" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
@@ -176,6 +179,9 @@
     <Property Name="Price" Type="int" Nullable="false" />
     <Property Name="BuyerID" Type="int" Nullable="false" />
     <Property Name="SellerID" Type="int" Nullable="false" />
+    <Property Name="IsAllowed" Type="bit" Nullable="false" />
+    <Property Name="IsDownloaded" Type="bit" Nullable="false" />
+    <Property Name="DownloadedDate" Type="datetime" />
     <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="ModifiedDate" Type="datetime" />
@@ -203,7 +209,7 @@
     <Property Name="Gender" Type="varchar" MaxLength="20" />
     <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="ProfilePicture" Type="varbinary(max)" />
+    <Property Name="ProfilePicture" Type="varchar(max)" />
     <Property Name="AddressLine1" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="AddressLine2" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />

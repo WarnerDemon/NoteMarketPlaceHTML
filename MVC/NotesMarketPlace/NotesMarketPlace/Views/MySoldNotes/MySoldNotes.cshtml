@@ -1,0 +1,103 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.TransectionTable>
+@{
+
+    ViewBag.Title = "My Sold Notes";
+    Layout = "~/Views/Shared/NavbarAfter.cshtml";
+
+}
+<div class="container" id="my-sold-notes-container">
+
+    @using (Html.BeginForm("MyDownloads", "MyDownloads", FormMethod.Get))
+    {
+        <div class="row">
+
+            <div class="col-md-6">
+                <h3>My Sold Notes</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <input class="form-control mr-2 dashboard-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn dashboard-search-button" type="submit">SEARCH</button>
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("NOTE TITLE", "MySoldNotes", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "MySoldNotes", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
+                        <th scope="col">BUYER</th>
+                        <th scope="col">SELL TYPE</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">@Html.ActionLink("DOWNLOADED DATE/TIME","MySoldNotes", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td class="title-color">@item.Title</td>
+                            <td>@item.Category</td>
+                            <td>@item.UserTable.Email</td>
+                            @if (item.NoteTable.IsPaid)
+                            {
+                                <td>Paid</td>
+                            }
+                            else
+                            {
+                                <td>Free</td>
+                            }
+                            <td>₹@item.Price</td>
+                            <td>@item.DownloadedDate</td>
+                            <td align="center"><a href="@Url.Action("NoteDetails","NoteDetails", new { nid = item.NID })"><abbr title="View Note"><i class="fa fa-eye"></i></abbr></a></td>
+                            <td class="dropdown">
+                                <i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("Download","NoteDetails", new { nid = item.NID })">Download Note</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("MySoldNotes", new { page, search = Request.QueryString["search"] }))
+        </div>
+
+    </div>
+
+</div>

@@ -39,7 +39,7 @@ namespace NotesMarketPlace.Context
         public virtual DbSet<SystemConfigurationTable> SystemConfigurationTable { get; set; }
         public virtual DbSet<TransectionTable> TransectionTable { get; set; }
         public virtual DbSet<TypeTable> TypeTable { get; set; }
-        public virtual DbSet<UserProfileTable> UserProfileTable { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
+        public virtual DbSet<UserProfileTable> UserProfileTable { get; set; }
     }
 }

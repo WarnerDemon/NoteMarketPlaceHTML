@@ -75,6 +75,9 @@
     <EntitySetMapping Name="NoteTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.NoteTable">
         <MappingFragment StoreEntitySet="NoteTable">
+          <ScalarProperty Name="TotalSpams" ColumnName="TotalSpams" />
+          <ScalarProperty Name="TotalReviews" ColumnName="TotalReviews" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="NID" ColumnName="NID" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -181,6 +184,9 @@
     <EntitySetMapping Name="TransectionTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.TransectionTable">
         <MappingFragment StoreEntitySet="TransectionTable">
+          <ScalarProperty Name="DownloadedDate" ColumnName="DownloadedDate" />
+          <ScalarProperty Name="IsDownloaded" ColumnName="IsDownloaded" />
+          <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
           <ScalarProperty Name="TID" ColumnName="TID" />
           <ScalarProperty Name="NID" ColumnName="NID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -208,32 +214,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserProfileTable">
-      <EntityTypeMapping TypeName="NotesMarketPlace.UserProfileTable">
-        <MappingFragment StoreEntitySet="UserProfileTable">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="UID" ColumnName="UID" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-          <ScalarProperty Name="University" ColumnName="University" />
-          <ScalarProperty Name="College" ColumnName="College" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.UserTable">
         <MappingFragment StoreEntitySet="UserTable">
@@ -250,6 +230,32 @@
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="SecretCode" ColumnName="SecretCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfileTable">
+      <EntityTypeMapping TypeName="NotesMarketPlace.UserProfileTable">
+        <MappingFragment StoreEntitySet="UserProfileTable">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="College" ColumnName="College" />
+          <ScalarProperty Name="University" ColumnName="University" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

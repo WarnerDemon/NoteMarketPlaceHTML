@@ -16,6 +16,12 @@ namespace NotesMarketPlace.Controllers
         [Route("ContactUs")]
         public ActionResult ContactUs()
         {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+            if (obj != null)
+            {
+                ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == obj.UID).Select(x => x.ProfilePicture).FirstOrDefault();
+            }
             return View();
         }
 
@@ -44,12 +50,12 @@ namespace NotesMarketPlace.Controllers
         {
             var fromEmail = new MailAddress("thehamojha@gmail.com"); //Email of Company
             var toEmail = new MailAddress("gohilyagnik3@gmail.com"); //Email of admin
-            var fromEmailPassword = "// Replace with actual password"; // Replace with actual password
+            var fromEmailPassword = "*********"; // Replace with actual password
             string subject = obj.FullName + " - Query";
 
             string body = "Hello," +
                 "<br/><br/>" + obj.Comments +
-                "<br/><br/>Regards," + obj.FullName;
+                "<br/><br/>Regards, " + obj.FullName;
 
             var smtp = new SmtpClient
             {

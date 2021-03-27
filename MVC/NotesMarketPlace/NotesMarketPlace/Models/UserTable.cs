@@ -18,7 +18,7 @@ namespace NotesMarketPlace.Models
         [EmailAddress]
         public string Email { get; set; }
         [Required]
-        [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{5,}", ErrorMessage = "Invalid Password format.")]
+        [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{6,}", ErrorMessage = "Invalid Password format.")]
         public string Password { get; set; }
         [Compare("Password", ErrorMessage = "Incorrect Password")]
         public string ConfirmPassword { get; set; }

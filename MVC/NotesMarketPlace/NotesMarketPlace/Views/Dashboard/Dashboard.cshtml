@@ -44,14 +44,14 @@
 
                     <div class="col-md-4">
 
-                        <h3>100</h3>
+                        <a href="@Url.Action("MySoldNotes","MySoldNotes")" style="text-decoration:none;"><h3>@ViewBag.SoldNotes</h3></a>
                         <p>Number of notes sold</p>
 
                     </div>
 
                     <div class="col-md-4">
 
-                        <h3>$10,00,000</h3>
+                        <h3>₹ @ViewBag.Earning</h3>
                         <p>Money Earned</p>
 
                     </div>
@@ -70,7 +70,7 @@
                 <div class="col-md-4 mb-2">
 
                     <div class="dashboard-border">
-                        <h3>38</h3>
+                        <a href="@Url.Action("MyDownloads","MyDownloads")" style="text-decoration:none;"><h3>@ViewBag.DownloadNotes</h3></a>
                         <p>My Downloads</p>
                     </div>
 
@@ -79,7 +79,7 @@
                 <div class="col-md-4 mb-2">
 
                     <div class="dashboard-border">
-                        <h3>12</h3>
+                        <h3>0</h3>
                         <p>My Rejected Notes</p>
                     </div>
 
@@ -88,8 +88,8 @@
                 <div class="col-md-4 mb-2">
 
                     <div class="dashboard-border">
-                        <h3>102</h3>
-                        <p>Buyes Requests</p>
+                        <a href="@Url.Action("BuyerRequest","BuyerRequest")" style="text-decoration:none;"><h3>@ViewBag.BuyerRequests</h3></a>
+                        <p>Buyer Requests</p>
                     </div>
 
                 </div>
@@ -158,7 +158,7 @@
                             }
                             else
                             {
-                                <td align="center"><abbr title="Edit Note"><i class="fa fa-eye"></i></abbr></td>
+                                <td align="center"><a href="@Url.Action("NoteDetails","NoteDetails", new { id = item.NID })"><abbr title="Edit Note"><i class="fa fa-eye"></i></abbr></a></td>
                             }
                         </tr>
                     }
@@ -175,7 +175,7 @@
     <div class="row justify-content-center">
 
         <div class="pagination">
-            @Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page , search = Request.QueryString["search"]}))
+            @Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page , search = Request.QueryString["search"], sortby = Request.QueryString["sortby"]}))
         </div>
 
     </div>

@@ -467,6 +467,12 @@ select.input-validation-error {
     color: #333333;
 
 }
+.current-page-link a {
+
+    color: #6255a5!important;
+    border-bottom: 3px solid #6255a5;
+
+}
 .navbar-light .navbar-nav .nav-link:hover {
 
     color: #6255a5;
@@ -485,11 +491,16 @@ select.input-validation-error {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: url("../images/Dashboard/user-img.png");
+    padding: 0;
+
+}
+.dropdown-item:hover{
+
+    background-color: #6255a5;
+    color: white;
 
 }
 .navbar-button {
-
     font-family: Open Sans;
     font-size: 16px;
     background-color: #6555a5;
@@ -499,7 +510,6 @@ select.input-validation-error {
     color: #fff;
     line-height: 22px;
     /* margin-left: 30px; */
-
 }
 .navbar-button:hover {
 
@@ -1175,7 +1185,17 @@ ul.social-list li:nth-child(3) a:hover {
     margin: 15px 0;
 
 }
-.book-title h5{
+.note-detail img {
+
+    width:100%;
+
+}
+.note-image-box {
+
+    max-height: 253px;
+
+}
+.book-title h5 a{
 
     /* height: 50px; */
     font-family: Open Sans;
@@ -1183,6 +1203,7 @@ ul.social-list li:nth-child(3) a:hover {
     font-weight: 600;
     line-height: 26px;
     color: #6255a5;
+    text-decoration: none;
 
 }
 .note-detail ul{
@@ -1214,6 +1235,36 @@ ul.social-list li:nth-child(3) a:hover {
 
     color: rgb(254,193,6);
 
+}
+.score {
+    display: block;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.score-wrap {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+}
+
+.score .stars-active {
+    color: #EEBD01;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.score .stars-inactive {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-text-stroke: initial;
+    /* overflow: hidden; */
 }
 .note-detail .reviews{
 
@@ -1281,6 +1332,11 @@ ul.social-list li:nth-child(3) a:hover {
 
     padding: 15px;
     
+}
+.note-details-padding img{
+
+    width: inherit;
+    max-width: 300px;
 }
 #note-details-container h4 {
 
@@ -1801,20 +1857,6 @@ abbr[title] {
     margin-bottom: 10px;
 
 }
-.save-publish-button {
-
-    background-color: #6255a5;
-    width: 150px;
-    border-radius: 3px;
-    color: #fff;
-    font-family: Open Sans;
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 600;
-    margin-right: 10px;
-    margin-bottom: 10px;
-
-}
 .save-publish-button:hover {
 
     background-color: #4f4294;
@@ -1857,7 +1899,19 @@ abbr[title] {
     color: #6255a5;
 
 }
+#my-downloads-container .table th a {
 
+    text-decoration: none;
+    color: black;
+
+}
+
+#my-downloads-container .table td a {
+
+    text-decoration: none;
+    color: black;
+
+}
 .dropdown {
     position: relative;
     display: inline-block;
@@ -1877,8 +1931,17 @@ abbr[title] {
     text-decoration: none;
     display: block;
 }
-.dropdown-content a:hover {background-color: rgb(255, 255, 255);}
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown-content a:hover {
+
+    color: white!important;
+    background-color: #6255a5;
+
+}
+.dropdown:hover .dropdown-content {
+
+    display: block;
+
+}
 
 
 
@@ -1902,6 +1965,24 @@ abbr[title] {
     height: 100px;
     text-align: center;
 
+}
+#add-spam-popup-container {
+
+    padding: 20px 30px 20px 30px;
+
+}
+#add-spam-popup-container h2 {
+
+    font-family: Open Sans;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #6255a5;
+
+}
+#spam-comments {
+    height: 100px;
+    text-align: center;
 }
 
 /* Rating */
@@ -1983,6 +2064,15 @@ abbr[title] {
     line-height: 38px;
     color: #6255a5;
 
+}
+#my-sold-notes-container .table th a {
+    text-decoration: none;
+    color: black;
+}
+
+#my-sold-notes-container .table td a {
+    text-decoration: none;
+    color: black;
 }
 .title-color {
 

@@ -24,6 +24,9 @@ namespace NotesMarketPlace.Context
         public string Status { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public bool IsAllowed { get; set; }
+        public bool IsDownloaded { get; set; }
+        public Nullable<System.DateTime> DownloadedDate { get; set; }
     
         public virtual NoteTable NoteTable { get; set; }
         public virtual UserTable UserTable { get; set; }

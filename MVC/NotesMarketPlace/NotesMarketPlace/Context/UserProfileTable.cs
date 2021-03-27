@@ -20,7 +20,7 @@ namespace NotesMarketPlace.Context
         public string Gender { get; set; }
         public string CountryCode { get; set; }
         public string PhoneNumber { get; set; }
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string City { get; set; }

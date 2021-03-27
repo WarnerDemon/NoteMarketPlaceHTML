@@ -11,6 +11,9 @@
     <!-- Title -->
     <title>@ViewBag.Title</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/FrontContent/images/home/favicon.ico" />
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -38,7 +41,7 @@
             <a class="navbar-brand img-responsive" href="#">
 
                 <!-- Logo Image -->
-                <img class="img-fluid" src="~/Content/FrontContent/images/User-Profile/logo.png" alt="">
+                <img class="img-fluid" src="~/Content/FrontContent/images/User-Profile/logo.png" alt="" onclick="location.href='@Url.Action("Home", "Home")'">
 
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,38 +54,35 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchNotes" ? "current-page-link nav-item" : "nav-item")">
                             <a class="nav-link" href="@Url.Action("SearchNotes","SearchNotes")">Search Notes</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "current-page-link nav-item" : "nav-item")">
                             <a class="nav-link" href="@Url.Action("Dashboard","Dashboard")">Sell Your Notes</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "BuyerRequest" ? "current-page-link nav-item" : "nav-item")">
                                 <a class="nav-link" href="@Url.Action("BuyerRequest","BuyerRequest")">Buyer Requests</a>
                             </li>
                         }
-                        <li class="nav-item">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "FAQ" ? "current-page-link nav-item" : "nav-item")">
                             <a class="nav-link" href="@Url.Action("FAQ","FAQ")">FAQ</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ContactUs" ? "current-page-link nav-item" : "nav-item")">
                             <a class="nav-link" href="@Url.Action("ContactUs","ContactUs")">Contact Us</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <!--<li class="nav-item">
-                                <a class="nav-link navbar-user-photo" href="#"></a>
-                            </li>-->
                             <li class="nav-item dropdown">
-                                <a class="nav-link navbar-user-photo" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                <a href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="navbar-user-photo" src="../@ViewBag.ProfilePicture" /></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Dwnloads</a>
-                                    <a class="dropdown-item" href="#">My Sold Notes</a>
+                                    <a class="dropdown-item" href="@Url.Action("UserProfile","UserProfile")">My Profile</a>
+                                    <a class="dropdown-item" href="@Url.Action("MyDownloads","MyDownloads")">My Downloads</a>
+                                    <a class="dropdown-item" href="@Url.Action("MySoldNotes","MySoldNotes")">My Sold Notes</a>
                                     <a class="dropdown-item" href="#">My Rejected Notes</a>
-                                    <a class="dropdown-item" href="#">Change Password</a>
-                                    <a class="dropdown-item title-color" href="#"><b>Logout</b></a>
+                                    <a class="dropdown-item" href="@Url.Action("ChangePassword","SignUp")">Change Password</a>
+                                    <a class="dropdown-item title-color" href="@Url.Action("Logout", "SignUp")"><b>Logout</b></a>
                                 </div>
                             </li>
                         }

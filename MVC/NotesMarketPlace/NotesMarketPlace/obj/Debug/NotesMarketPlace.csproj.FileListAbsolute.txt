@@ -77,3 +77,6 @@ C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\PagedList.dll
 C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\PagedList.Mvc.dll
 C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\PagedList.xml
 C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\PagedList.Mvc.xml
+C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\DotNetZip.dll
+C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\DotNetZip.pdb
+C:\Users\gohil\source\repos\NotesMarketPlace\NotesMarketPlace\bin\DotNetZip.xml

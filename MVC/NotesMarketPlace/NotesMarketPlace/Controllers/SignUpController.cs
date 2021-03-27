@@ -80,7 +80,7 @@ namespace NotesMarketPlace.Controllers
 
             var fromEmail = new MailAddress("thehamojha@gmail.com");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "Replace with actual password"; // Replace with actual password
+            var fromEmailPassword = "*********"; // Replace with actual password
             string subject = "Note Marketplace - Email Verification";
 
             string body = "Hello " + username + "," +
@@ -147,8 +147,7 @@ namespace NotesMarketPlace.Controllers
                             cookie.HttpOnly = true;
                             Response.Cookies.Add(cookie);
 
-
-                            if (Url.IsLocalUrl(ReturnUrl))
+                            /*if (Url.IsLocalUrl(ReturnUrl))
                             {
                                 return Redirect(ReturnUrl);
                             }
@@ -156,6 +155,19 @@ namespace NotesMarketPlace.Controllers
                             {
                                 //05-03-2021 Updated third parameter , new { userid = v.UID }
                                 return RedirectToAction("DashBoard", "DashBoard");
+                            }*/
+                            var upobj = dbobj.UserProfileTable.Where(a => a.UID == v.UID).FirstOrDefault();
+                            if (upobj==null)
+                            {
+                                return RedirectToAction("UserProfile", "UserProfile");
+                            }
+                            else if (!String.IsNullOrEmpty(ReturnUrl))
+                            {
+                                return Redirect(ReturnUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("SearchNotes", "SearchNotes");
                             }
                         }
                         else
@@ -224,8 +236,8 @@ namespace NotesMarketPlace.Controllers
         {
             var fromEmail = new MailAddress("thehamojha@gmail.com");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "Replace with actual password"; // Replace with actual password
-            string subject = "Note Marketplace - Email Verification";
+            var fromEmailPassword = "*********"; // Replace with actual password
+            string subject = "Note Marketplace - Forgot Password";
 
             string body = "Hello," +
                 "<br/><br/>We have generated a new password for you" +
@@ -248,7 +260,42 @@ namespace NotesMarketPlace.Controllers
                 Body = body,
                 IsBodyHtml = true
             })
-                smtp.Send(message);
+            smtp.Send(message);
+        }
+
+        [Authorize]
+        [Route("ChangePassword")]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        public ActionResult ChangePassword(Models.ChangePassword model)
+        {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                if (string.Compare(Crypto.Hash(model.OldPassword), obj.Password) == 0)
+                {
+                    obj.Password = Crypto.Hash(model.NewPassword);
+                    obj.ModifiedDate = DateTime.Now;
+
+                    dbobj.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+                    dbobj.SaveChanges();
+
+                    FormsAuthentication.SignOut();
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("OldPassword", "OldPassword Is Incorrect");
+                }
+            }
+            return View();
         }
     }
 }

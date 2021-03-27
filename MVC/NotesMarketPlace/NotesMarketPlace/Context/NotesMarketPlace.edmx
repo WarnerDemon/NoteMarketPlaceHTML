@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NotesMarketPlace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NotesMarketPlace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminTable">
           <Key>
             <PropertyRef Name="UID" />
@@ -93,6 +93,9 @@
           <Property Name="PreviewAttachment" Type="varchar(max)" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="ActionBy" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="TotalReviews" Type="int" />
+          <Property Name="TotalSpams" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -181,6 +184,9 @@
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="BuyerID" Type="int" Nullable="false" />
           <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="IsAllowed" Type="bit" Nullable="false" />
+          <Property Name="IsDownloaded" Type="bit" Nullable="false" />
+          <Property Name="DownloadedDate" Type="datetime" />
           <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -208,7 +214,7 @@
           <Property Name="Gender" Type="varchar" MaxLength="20" />
           <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ProfilePicture" Type="varbinary(max)" />
+          <Property Name="ProfilePicture" Type="varchar(max)" />
           <Property Name="AddressLine1" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="AddressLine2" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
@@ -627,8 +633,7 @@
             <End Role="UserTable1" EntitySet="UserTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NotesMarketPlace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -685,7 +690,7 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_NoteTable_CountryTable" FromRole="CountryTable" ToRole="NoteTable" />
-          <NavigationProperty Name="UserProfileTable" Relationship="Self.FK_UserProfileTable_CountryTable" FromRole="CountryTable" ToRole="UserProfileTable" />
+          <NavigationProperty Name="UserProfileTable" Relationship="NotesMarketPlace.FK_UserProfileTable_CountryTable" FromRole="CountryTable" ToRole="UserProfileTable" />
         </EntityType>
         <EntityType Name="NotesAttachmentTable">
           <Key>
@@ -741,6 +746,9 @@
           <NavigationProperty Name="ReviewTable" Relationship="Self.FK_ReviewTable_NoteTable" FromRole="NoteTable" ToRole="ReviewTable" />
           <NavigationProperty Name="SpamTable" Relationship="Self.FK_Table_1_NoteTable" FromRole="NoteTable" ToRole="SpamTable" />
           <NavigationProperty Name="TransectionTable" Relationship="Self.FK_TransectionTable_NoteTable" FromRole="NoteTable" ToRole="TransectionTable" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="TotalReviews" Type="Int32" />
+          <Property Name="TotalSpams" Type="Int32" />
         </EntityType>
         <EntityType Name="ReferenceDataTable">
           <Key>
@@ -839,6 +847,9 @@
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_TransectionTable_NoteTable" FromRole="TransectionTable" ToRole="NoteTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_TransectionTable_UserTable" FromRole="TransectionTable" ToRole="UserTable" />
           <NavigationProperty Name="UserTable1" Relationship="Self.FK_TransectionTable_UserTable1" FromRole="TransectionTable" ToRole="UserTable" />
+          <Property Name="IsAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="IsDownloaded" Type="Boolean" Nullable="false" />
+          <Property Name="DownloadedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TypeTable">
           <Key>
@@ -853,34 +864,6 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_NoteTable_TypeTable" FromRole="TypeTable" ToRole="NoteTable" />
-        </EntityType>
-        <EntityType Name="UserProfileTable">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="University" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="College" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CountryTable" Relationship="Self.FK_UserProfileTable_CountryTable" FromRole="UserProfileTable" ToRole="CountryTable" />
-          <NavigationProperty Name="UserTable" Relationship="Self.FK_UserProfileTable_UserTable" FromRole="UserProfileTable" ToRole="UserTable" />
-          <NavigationProperty Name="UserTable1" Relationship="Self.FK_UserProfileTable_UserTable1" FromRole="UserProfileTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -909,10 +892,10 @@
           <NavigationProperty Name="SpamTable" Relationship="Self.FK_Table_1_UserTable" FromRole="UserTable" ToRole="SpamTable" />
           <NavigationProperty Name="TransectionTable" Relationship="Self.FK_TransectionTable_UserTable" FromRole="UserTable" ToRole="TransectionTable" />
           <NavigationProperty Name="TransectionTable1" Relationship="Self.FK_TransectionTable_UserTable1" FromRole="UserTable" ToRole="TransectionTable" />
-          <NavigationProperty Name="UserProfileTable" Relationship="Self.FK_UserProfileTable_UserTable" FromRole="UserTable" ToRole="UserProfileTable" />
-          <NavigationProperty Name="UserProfileTable1" Relationship="Self.FK_UserProfileTable_UserTable1" FromRole="UserTable" ToRole="UserProfileTable" />
           <NavigationProperty Name="UserTable1" Relationship="Self.FK_UserTable_UserTable" FromRole="UserTable" ToRole="UserTable1" />
           <NavigationProperty Name="UserTable2" Relationship="Self.FK_UserTable_UserTable" FromRole="UserTable1" ToRole="UserTable" />
+          <NavigationProperty Name="UserProfileTable" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable" FromRole="UserTable" ToRole="UserProfileTable" />
+          <NavigationProperty Name="UserProfileTable1" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable1" FromRole="UserTable" ToRole="UserProfileTable" />
         </EntityType>
         <Association Name="FK_NoteTable_CategoryTable">
           <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
@@ -934,18 +917,6 @@
               <PropertyRef Name="CountryID" />
             </Principal>
             <Dependent Role="NoteTable">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserProfileTable_CountryTable">
-          <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="1" />
-          <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryTable">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="UserProfileTable">
               <PropertyRef Name="CountryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1154,30 +1125,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserProfileTable_UserTable">
-          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
-          <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserTable">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="UserProfileTable">
-              <PropertyRef Name="UID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserProfileTable_UserTable1">
-          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
-          <End Role="UserProfileTable" Type="Self.UserProfileTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserTable">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="UserProfileTable">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="UserTable1" Type="Self.UserTable" Multiplicity="*" />
@@ -1205,7 +1152,6 @@
           <EntitySet Name="SystemConfigurationTable" EntityType="Self.SystemConfigurationTable" />
           <EntitySet Name="TransectionTable" EntityType="Self.TransectionTable" />
           <EntitySet Name="TypeTable" EntityType="Self.TypeTable" />
-          <EntitySet Name="UserProfileTable" EntityType="Self.UserProfileTable" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" />
           <AssociationSet Name="FK_NoteTable_CategoryTable" Association="Self.FK_NoteTable_CategoryTable">
             <End Role="CategoryTable" EntitySet="CategoryTable" />
@@ -1214,10 +1160,6 @@
           <AssociationSet Name="FK_NoteTable_CountryTable" Association="Self.FK_NoteTable_CountryTable">
             <End Role="CountryTable" EntitySet="CountryTable" />
             <End Role="NoteTable" EntitySet="NoteTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfileTable_CountryTable" Association="Self.FK_UserProfileTable_CountryTable">
-            <End Role="CountryTable" EntitySet="CountryTable" />
-            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
           </AssociationSet>
           <AssociationSet Name="FK_NotesAttachmentTable_NoteTable" Association="Self.FK_NotesAttachmentTable_NoteTable">
             <End Role="NoteTable" EntitySet="NoteTable" />
@@ -1287,19 +1229,88 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="TransectionTable" EntitySet="TransectionTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfileTable_UserTable" Association="Self.FK_UserProfileTable_UserTable">
-            <End Role="UserTable" EntitySet="UserTable" />
-            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserProfileTable_UserTable1" Association="Self.FK_UserProfileTable_UserTable1">
-            <End Role="UserTable" EntitySet="UserTable" />
-            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserTable_UserTable" Association="Self.FK_UserTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="UserTable1" EntitySet="UserTable" />
           </AssociationSet>
+          <EntitySet Name="UserProfileTable" EntityType="NotesMarketPlace.UserProfileTable" />
+          <AssociationSet Name="FK_UserProfileTable_CountryTable" Association="NotesMarketPlace.FK_UserProfileTable_CountryTable">
+            <End Role="CountryTable" EntitySet="CountryTable" />
+            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfileTable_UserTable" Association="NotesMarketPlace.FK_UserProfileTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfileTable_UserTable1" Association="NotesMarketPlace.FK_UserProfileTable_UserTable1">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="UserProfileTable" EntitySet="UserProfileTable" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="UserProfileTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="University" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="College" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CountryTable" Relationship="NotesMarketPlace.FK_UserProfileTable_CountryTable" FromRole="UserProfileTable" ToRole="CountryTable" />
+          <NavigationProperty Name="UserTable" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable" FromRole="UserProfileTable" ToRole="UserTable" />
+          <NavigationProperty Name="UserTable1" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable1" FromRole="UserProfileTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_UserProfileTable_CountryTable">
+          <End Type="NotesMarketPlace.CountryTable" Role="CountryTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.UserProfileTable" Role="UserProfileTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryTable">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="UserProfileTable">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfileTable_UserTable">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.UserProfileTable" Role="UserProfileTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="UserProfileTable">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfileTable_UserTable1">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="0..1" />
+          <End Type="NotesMarketPlace.UserProfileTable" Role="UserProfileTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="UserProfileTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1380,6 +1391,9 @@
           <EntitySetMapping Name="NoteTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.NoteTable">
               <MappingFragment StoreEntitySet="NoteTable">
+                <ScalarProperty Name="TotalSpams" ColumnName="TotalSpams" />
+                <ScalarProperty Name="TotalReviews" ColumnName="TotalReviews" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="NID" ColumnName="NID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1486,6 +1500,9 @@
           <EntitySetMapping Name="TransectionTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.TransectionTable">
               <MappingFragment StoreEntitySet="TransectionTable">
+                <ScalarProperty Name="DownloadedDate" ColumnName="DownloadedDate" />
+                <ScalarProperty Name="IsDownloaded" ColumnName="IsDownloaded" />
+                <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
                 <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="NID" ColumnName="NID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1513,32 +1530,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfileTable">
-            <EntityTypeMapping TypeName="NotesMarketPlace.UserProfileTable">
-              <MappingFragment StoreEntitySet="UserProfileTable">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="University" ColumnName="University" />
-                <ScalarProperty Name="College" ColumnName="College" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
@@ -1555,6 +1546,32 @@
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="SecretCode" ColumnName="SecretCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfileTable">
+            <EntityTypeMapping TypeName="NotesMarketPlace.UserProfileTable">
+              <MappingFragment StoreEntitySet="UserProfileTable">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="College" ColumnName="College" />
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
