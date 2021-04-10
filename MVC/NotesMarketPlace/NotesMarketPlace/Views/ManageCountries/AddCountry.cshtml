@@ -1,0 +1,71 @@
+﻿@model NotesMarketPlace.Models.AddCountry
+
+@{
+
+    ViewBag.Title = "Add Country";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/AddCountry.css" />
+}
+
+<!-- Add Country Container -->
+
+<div class="container" id="add-country-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>Add Country</h2>
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("AddCountry", "ManageCountries", FormMethod.Post))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="country-name" class="label-text">Country Name *</label>
+                    @Html.ValidationMessageFor(x => x.CountryName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.CountryName, new { @class = "form-control label-text input-field", @id = "country-name", @placeholder = "Country Name", @maxlength = "20" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="label-text">Country Code *</label>
+                    @Html.ValidationMessageFor(x => x.CountryCode, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.CountryCode, new { @class = "form-control label-text input-field", @id = "country-code", @placeholder = "Enter Country Code", @maxlength = "10" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="add-country-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- Add Country Container End -->

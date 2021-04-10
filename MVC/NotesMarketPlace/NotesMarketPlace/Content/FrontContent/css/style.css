@@ -1466,7 +1466,11 @@ ul.social-list li:nth-child(3) a:hover {
     padding-bottom: 90%;
 }
 
+.customers-star-rating {
 
+    height: 400px;
+    overflow: scroll;
+}
 
 #grey-border {
 
@@ -1760,7 +1764,15 @@ abbr[title] {
     color: #333333;
 
 }
+#published-container .table th a {
+    text-decoration: none;
+    color: black;
+}
 
+#published-container .table td a {
+    text-decoration: none;
+    color: black;
+}
 
 
 
@@ -2117,7 +2129,15 @@ abbr[title] {
     color: #6255a5;
 
 }
+#my-rejected-notes-container .table th a {
+    text-decoration: none;
+    color: black;
+}
 
+#my-rejected-notes-container .table td a {
+    text-decoration: none;
+    color: black;
+}
 
 
 

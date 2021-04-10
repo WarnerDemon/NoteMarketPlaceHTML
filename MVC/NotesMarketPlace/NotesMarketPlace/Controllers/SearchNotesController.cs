@@ -20,13 +20,19 @@ namespace NotesMarketPlace.Controllers
             var emailid = User.Identity.Name.ToString();
             Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
 
+            var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
+            if (upobj == null)
+            {
+                return RedirectToAction("UserProfile", "UserProfile");
+            }
+
             System.Linq.IQueryable<NoteTable> filtered;     //Empty Variable for Holding Notes
 
             if (String.IsNullOrEmpty(search) && String.IsNullOrEmpty(TypeID) && String.IsNullOrEmpty(CategoryID) 
                 && String.IsNullOrEmpty(InstituteName) && String.IsNullOrEmpty(CourseName) && String.IsNullOrEmpty(CountryID) && String.IsNullOrEmpty(Rating))
             {
                 //  All Books
-                filtered = dbobj.NoteTable.ToList().AsQueryable();
+                filtered = dbobj.NoteTable.Where(x => x.Status == 4 && x.IsActive == true).ToList().AsQueryable();
             }
             else
             {
@@ -41,7 +47,7 @@ namespace NotesMarketPlace.Controllers
                     var IntRating = Rating == "" ? 6 : Int32.Parse(Rating);
                     var filtered_rating = dbobj.NoteTable.Where(x => x.Rating >= IntRating*20);
 
-                    filtered = filtered_type.Union(filtered_category).Union(filtered_institute).Union(filtered_course).Union(filtered_country).Union(filtered_rating).ToList().AsQueryable();
+                    filtered = filtered_type.Union(filtered_category).Union(filtered_institute).Union(filtered_course).Union(filtered_country).Union(filtered_rating).Where(x => x.Status == 4 && x.IsActive == true).ToList().AsQueryable();
                 }
                 else    // Search + Dropdown
                 {
@@ -56,7 +62,7 @@ namespace NotesMarketPlace.Controllers
                     var IntRating = Rating == "" ? 6 : Int32.Parse(Rating);
                     var filtered_rating = dbobj.NoteTable.Where(x => x.Rating >= IntRating * 20);
 
-                    filtered = filtered_title.Union(filtered_type).Union(filtered_category).Union(filtered_institute).Union(filtered_course).Union(filtered_country).Union(filtered_rating).ToList().AsQueryable();
+                    filtered = filtered_title.Union(filtered_type).Union(filtered_category).Union(filtered_institute).Union(filtered_course).Union(filtered_country).Union(filtered_rating).Where(x => x.Status == 4 && x.IsActive == true).ToList().AsQueryable();
                 }
                 
             }

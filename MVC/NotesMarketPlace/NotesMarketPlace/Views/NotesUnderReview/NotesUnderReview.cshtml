@@ -1,0 +1,193 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.NoteTable>
+
+@{
+
+    ViewBag.Title = "Notes Under Review";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/NotesUnderReview.css" />
+}
+<!-- Notes Under Review Container -->
+
+<div class="container" id="notes-under-review-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Notes Under Review</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    @using (Html.BeginForm("NotesUnderReview", "NotesUnderReview", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-md-12">
+
+                <label for="seller" class="label-text">Seller</label>
+
+            </div>
+
+            <div class="col-md-6 mb-2">
+                @Html.DropDownList("Seller", ViewBag.Seller as SelectList, "Select Seller", new { @class = "form-control label-text select-seller", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-end">
+
+                <input class="form-control mr-2 notes-under-review-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn notes-under-review-search-button" type="submit">SEARCH</button>
+
+            </div>
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("NOTE TITLE", "NotesUnderReview", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "NotesUnderReview", new { sortby = ViewBag.SortCategory, search = Request.QueryString["search"] })</th>
+                        <th scope="col">SELLER</th>
+                        <th scope="col"></th>
+                        <th scope="col">@Html.ActionLink("DATE ADDED", "NotesUnderReview", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col"></th>
+                        <th scope="col">ACTION</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="11" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td class="label-color"><a href="@Url.Action("AdminNoteDetails","Admin", new { nid = item.NID })" style="color:#6255a5;">@item.Title</a></td>
+                            <td>@item.CategoryTable.Name</td>
+                            <td>@item.UserTable1.FirstName @item.UserTable1.LastName</td>
+                            <td align="center"><a href="@Url.Action("MemberDetails","MemberDetails", new { uid = item.UID })"><abbr title="Member Details"><i class="fa fa-eye"></i></abbr></a></td>
+                            <td>@item.CreatedDate.Value.ToShortDateString()</td>
+                            <td>@item.ReferenceDataTable.StatusName</td>
+                            <td>
+                                <a class="btn btn-success" style="color: white;" href="@Url.Action("UpdateStatus","NotesUnderReview", new { nid = item.NID, Status = 4 })" onclick="return confirm('If you approve the notes – System will publish the notes over portal. Please press yes to continue.');">Approve</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" style="color: white;" onclick="Reject_Popup(@item.NID,'@item.Title','@item.CategoryTable.Name')">Reject</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-secondary" style="color: white;" href="@Url.Action("UpdateStatus","NotesUnderReview", new { nid = item.NID, Status = 3 })" onclick="return confirm('Via marking the note In Review – System will let user know that review process has been initiated. Please press yes to continue.');">InReview</a>
+                            </td>
+                            <td class="dropdown">
+                                <i class="fa fa-ellipsis-v float-right"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("DownloadForAdmin","NotesUnderReview", new { nid = item.NID })">Download Note</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("NotesUnderReview", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"], Seller = Request.QueryString["Seller"] }))
+        </div>
+
+    </div>
+
+    <br />
+
+</div>
+
+
+<!-- Notes Under Review Container End -->
+<!-- Reject Popup -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="reject-popup-container">
+
+            <div class="row">
+
+                <div class="col">
+
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col">
+
+                    @using (Html.BeginForm("UpdateStatus", "NotesUnderReview", FormMethod.Post))
+                    {
+                        <input type="hidden" id="myField-Note-ID" name="nid" />
+                        <input type="hidden" name="Status" value="5" />
+                        <h2 id="myField-Note-Title">
+                        </h2>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="comments" class="label-text">Remarks</label>
+                            <input type="text" class="form-control user-profile-input-field" id="reject-comments" placeholder="Write Remarks" name="Remarks" maxlength="200">
+                        </div>
+
+                        <button style="float:right;" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button style="float:right; margin-right: 5px;" class="btn btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to reject seller request?');">Reject</button>
+
+                    }
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Reject Popup End-->
+
+<script>
+
+    var Reject_Popup = function (nid, title, category) {
+
+        document.getElementById('myField-Note-ID').value = nid;
+        document.getElementById('myField-Note-Title').innerHTML = title + " - " + category;
+        $("#exampleModal2").modal("show");
+
+    }
+
+</script>

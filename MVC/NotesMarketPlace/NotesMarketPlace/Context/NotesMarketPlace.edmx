@@ -7,13 +7,14 @@
     <Schema Namespace="NotesMarketPlace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminTable">
           <Key>
-            <PropertyRef Name="UID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
-          <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ProfilePicture" Type="varbinary(max)" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="ProfilePicture" Type="varchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -28,10 +29,10 @@
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
-          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactUsTable">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="Rating" Type="float" />
           <Property Name="TotalReviews" Type="int" />
           <Property Name="TotalSpams" Type="int" />
+          <Property Name="RemarksByAdmin" Type="varchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -165,13 +167,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SupportEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SupportPhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Facebook" Type="varchar(max)" />
           <Property Name="Twitter" Type="varchar(max)" />
           <Property Name="LinkedIn" Type="varchar(max)" />
-          <Property Name="DefaultNoteImage" Type="varbinary(max)" Nullable="false" />
-          <Property Name="DefaultProfilePicture" Type="varbinary(max)" Nullable="false" />
+          <Property Name="DefaultNoteImage" Type="varchar(max)" Nullable="false" />
+          <Property Name="DefaultProfilePicture" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="TransectionTable">
           <Key>
@@ -181,6 +184,7 @@
           <Property Name="NID" Type="int" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="BuyerID" Type="int" Nullable="false" />
           <Property Name="SellerID" Type="int" Nullable="false" />
@@ -247,6 +251,42 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="SecretCode" Type="uniqueidentifier" />
         </EntityType>
+        <Association Name="FK_AdminTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="AdminTable" Type="Self.AdminTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="AdminTable">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="CategoryTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="CountryTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NotesAttachmentTable_NoteTable">
           <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
           <End Role="NotesAttachmentTable" Type="Self.NotesAttachmentTable" Multiplicity="*" />
@@ -343,6 +383,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NoteTable_UserTable2">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="NoteTable">
+              <PropertyRef Name="ActionBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReferenceDataTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="ReferenceDataTable" Type="Self.ReferenceDataTable" Multiplicity="*" />
@@ -427,39 +479,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransectionTable_NoteTable">
-          <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="1" />
-          <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NoteTable">
-              <PropertyRef Name="NID" />
-            </Principal>
-            <Dependent Role="TransectionTable">
-              <PropertyRef Name="NID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransectionTable_UserTable">
-          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
-          <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
+        <Association Name="FK_TypeTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="TypeTable" Type="Self.TypeTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserTable">
               <PropertyRef Name="UID" />
             </Principal>
-            <Dependent Role="TransectionTable">
-              <PropertyRef Name="BuyerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransectionTable_UserTable1">
-          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
-          <End Role="TransectionTable" Type="Self.TransectionTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserTable">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="TransectionTable">
-              <PropertyRef Name="SellerID" />
+            <Dependent Role="TypeTable">
+              <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -540,6 +568,18 @@
           <EntitySet Name="TypeTable" EntityType="Self.TypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfileTable" EntityType="Self.UserProfileTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdminTable_UserTable" Association="Self.FK_AdminTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="AdminTable" EntitySet="AdminTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryTable_UserTable" Association="Self.FK_CategoryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryTable_UserTable" Association="Self.FK_CountryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="CountryTable" EntitySet="CountryTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_NotesAttachmentTable_NoteTable" Association="Self.FK_NotesAttachmentTable_NoteTable">
             <End Role="NoteTable" EntitySet="NoteTable" />
             <End Role="NotesAttachmentTable" EntitySet="NotesAttachmentTable" />
@@ -572,6 +612,10 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="NoteTable" EntitySet="NoteTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_NoteTable_UserTable2" Association="Self.FK_NoteTable_UserTable2">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="NoteTable" EntitySet="NoteTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReferenceDataTable_UserTable" Association="Self.FK_ReferenceDataTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="ReferenceDataTable" EntitySet="ReferenceDataTable" />
@@ -600,17 +644,9 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="SpamTable" EntitySet="SpamTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransectionTable_NoteTable" Association="Self.FK_TransectionTable_NoteTable">
-            <End Role="NoteTable" EntitySet="NoteTable" />
-            <End Role="TransectionTable" EntitySet="TransectionTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransectionTable_UserTable" Association="Self.FK_TransectionTable_UserTable">
+          <AssociationSet Name="FK_TypeTable_UserTable" Association="Self.FK_TypeTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
-            <End Role="TransectionTable" EntitySet="TransectionTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransectionTable_UserTable1" Association="Self.FK_TransectionTable_UserTable1">
-            <End Role="UserTable" EntitySet="UserTable" />
-            <End Role="TransectionTable" EntitySet="TransectionTable" />
+            <End Role="TypeTable" EntitySet="TypeTable" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfileTable_CountryTable" Association="Self.FK_UserProfileTable_CountryTable">
             <End Role="CountryTable" EntitySet="CountryTable" />
@@ -637,35 +673,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NotesMarketPlace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AdminTable">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SecondaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CategoryTable">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-          </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="IsActive" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NoteTable" Relationship="Self.FK_NoteTable_CategoryTable" FromRole="CategoryTable" ToRole="NoteTable" />
-        </EntityType>
         <EntityType Name="ContactUsTable">
           <Key>
             <PropertyRef Name="ID" />
@@ -691,6 +698,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_NoteTable_CountryTable" FromRole="CountryTable" ToRole="NoteTable" />
           <NavigationProperty Name="UserProfileTable" Relationship="NotesMarketPlace.FK_UserProfileTable_CountryTable" FromRole="CountryTable" ToRole="UserProfileTable" />
+          <NavigationProperty Name="UserTable" Relationship="NotesMarketPlace.FK_CountryTable_UserTable" FromRole="CountryTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="NotesAttachmentTable">
           <Key>
@@ -735,7 +743,6 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CategoryTable" Relationship="Self.FK_NoteTable_CategoryTable" FromRole="NoteTable" ToRole="CategoryTable" />
           <NavigationProperty Name="CountryTable" Relationship="Self.FK_NoteTable_CountryTable" FromRole="NoteTable" ToRole="CountryTable" />
           <NavigationProperty Name="NotesAttachmentTable" Relationship="Self.FK_NotesAttachmentTable_NoteTable" FromRole="NoteTable" ToRole="NotesAttachmentTable" />
           <NavigationProperty Name="ReferenceDataTable" Relationship="Self.FK_NoteTable_ReferenceDataTable" FromRole="NoteTable" ToRole="ReferenceDataTable" />
@@ -749,6 +756,9 @@
           <Property Name="Rating" Type="Double" />
           <Property Name="TotalReviews" Type="Int32" />
           <Property Name="TotalSpams" Type="Int32" />
+          <Property Name="RemarksByAdmin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable2" Relationship="NotesMarketPlace.FK_NoteTable_UserTable2" FromRole="NoteTable" ToRole="UserTable" />
+          <NavigationProperty Name="CategoryTable" Relationship="NotesMarketPlace.FK_NoteTable_CategoryTable" FromRole="NoteTable" ToRole="CategoryTable" />
         </EntityType>
         <EntityType Name="ReferenceDataTable">
           <Key>
@@ -816,20 +826,6 @@
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_Table_1_NoteTable" FromRole="SpamTable" ToRole="NoteTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_Table_1_UserTable" FromRole="SpamTable" ToRole="UserTable" />
         </EntityType>
-        <EntityType Name="SystemConfigurationTable">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SupportEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SupportPhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LinkedIn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DefaultNoteImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="DefaultProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="TransectionTable">
           <Key>
             <PropertyRef Name="TID" />
@@ -850,6 +846,7 @@
           <Property Name="IsAllowed" Type="Boolean" Nullable="false" />
           <Property Name="IsDownloaded" Type="Boolean" Nullable="false" />
           <Property Name="DownloadedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsPaid" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeTable">
           <Key>
@@ -864,6 +861,7 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NoteTable" Relationship="Self.FK_NoteTable_TypeTable" FromRole="TypeTable" ToRole="NoteTable" />
+          <NavigationProperty Name="UserTable" Relationship="NotesMarketPlace.FK_TypeTable_UserTable" FromRole="TypeTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -896,19 +894,12 @@
           <NavigationProperty Name="UserTable2" Relationship="Self.FK_UserTable_UserTable" FromRole="UserTable1" ToRole="UserTable" />
           <NavigationProperty Name="UserProfileTable" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable" FromRole="UserTable" ToRole="UserProfileTable" />
           <NavigationProperty Name="UserProfileTable1" Relationship="NotesMarketPlace.FK_UserProfileTable_UserTable1" FromRole="UserTable" ToRole="UserProfileTable" />
+          <NavigationProperty Name="NoteTable2" Relationship="NotesMarketPlace.FK_NoteTable_UserTable2" FromRole="UserTable" ToRole="NoteTable" />
+          <NavigationProperty Name="AdminTable" Relationship="NotesMarketPlace.FK_AdminTable_UserTable" FromRole="UserTable" ToRole="AdminTable" />
+          <NavigationProperty Name="CategoryTable" Relationship="NotesMarketPlace.FK_CategoryTable_UserTable" FromRole="UserTable" ToRole="CategoryTable" />
+          <NavigationProperty Name="TypeTable" Relationship="NotesMarketPlace.FK_TypeTable_UserTable" FromRole="UserTable" ToRole="TypeTable" />
+          <NavigationProperty Name="CountryTable" Relationship="NotesMarketPlace.FK_CountryTable_UserTable" FromRole="UserTable" ToRole="CountryTable" />
         </EntityType>
-        <Association Name="FK_NoteTable_CategoryTable">
-          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
-          <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CategoryTable">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="NoteTable">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NoteTable_CountryTable">
           <End Role="CountryTable" Type="Self.CountryTable" Multiplicity="0..1" />
           <End Role="NoteTable" Type="Self.NoteTable" Multiplicity="*" />
@@ -1138,8 +1129,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NotesMarketPlaceEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminTable" EntityType="Self.AdminTable" />
-          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" />
           <EntitySet Name="ContactUsTable" EntityType="Self.ContactUsTable" />
           <EntitySet Name="CountryTable" EntityType="Self.CountryTable" />
           <EntitySet Name="NotesAttachmentTable" EntityType="Self.NotesAttachmentTable" />
@@ -1149,14 +1138,9 @@
           <EntitySet Name="ReviewTable" EntityType="Self.ReviewTable" />
           <EntitySet Name="RoleTable" EntityType="Self.RoleTable" />
           <EntitySet Name="SpamTable" EntityType="Self.SpamTable" />
-          <EntitySet Name="SystemConfigurationTable" EntityType="Self.SystemConfigurationTable" />
           <EntitySet Name="TransectionTable" EntityType="Self.TransectionTable" />
           <EntitySet Name="TypeTable" EntityType="Self.TypeTable" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" />
-          <AssociationSet Name="FK_NoteTable_CategoryTable" Association="Self.FK_NoteTable_CategoryTable">
-            <End Role="CategoryTable" EntitySet="CategoryTable" />
-            <End Role="NoteTable" EntitySet="NoteTable" />
-          </AssociationSet>
           <AssociationSet Name="FK_NoteTable_CountryTable" Association="Self.FK_NoteTable_CountryTable">
             <End Role="CountryTable" EntitySet="CountryTable" />
             <End Role="NoteTable" EntitySet="NoteTable" />
@@ -1246,6 +1230,33 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="UserProfileTable" EntitySet="UserProfileTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_NoteTable_UserTable2" Association="NotesMarketPlace.FK_NoteTable_UserTable2">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="NoteTable" EntitySet="NoteTable" />
+          </AssociationSet>
+          <EntitySet Name="SystemConfigurationTable" EntityType="NotesMarketPlace.SystemConfigurationTable" />
+          <EntitySet Name="AdminTable" EntityType="NotesMarketPlace.AdminTable" />
+          <AssociationSet Name="FK_AdminTable_UserTable" Association="NotesMarketPlace.FK_AdminTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="AdminTable" EntitySet="AdminTable" />
+          </AssociationSet>
+          <EntitySet Name="CategoryTable" EntityType="NotesMarketPlace.CategoryTable" />
+          <AssociationSet Name="FK_NoteTable_CategoryTable" Association="NotesMarketPlace.FK_NoteTable_CategoryTable">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="NoteTable" EntitySet="NoteTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryTable_UserTable" Association="NotesMarketPlace.FK_CategoryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeTable_UserTable" Association="NotesMarketPlace.FK_TypeTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="TypeTable" EntitySet="TypeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryTable_UserTable" Association="NotesMarketPlace.FK_CountryTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="CountryTable" EntitySet="CountryTable" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserProfileTable">
           <Key>
@@ -1311,42 +1322,131 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NoteTable_UserTable2">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.NoteTable" Role="NoteTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="NoteTable">
+              <PropertyRef Name="ActionBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SystemConfigurationTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupportEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupportPhoneNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedIn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultNoteImage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultProfilePicture" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AdminTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="NotesMarketPlace.FK_AdminTable_UserTable" FromRole="AdminTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_AdminTable_UserTable">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.AdminTable" Role="AdminTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="AdminTable">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NoteTable" Relationship="NotesMarketPlace.FK_NoteTable_CategoryTable" FromRole="CategoryTable" ToRole="NoteTable" />
+          <NavigationProperty Name="UserTable" Relationship="NotesMarketPlace.FK_CategoryTable_UserTable" FromRole="CategoryTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_NoteTable_CategoryTable">
+          <End Type="NotesMarketPlace.CategoryTable" Role="CategoryTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.NoteTable" Role="NoteTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="NoteTable">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryTable_UserTable">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="NotesMarketPlace.CategoryTable" Role="CategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="CategoryTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeTable_UserTable">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="0..1" />
+          <End Type="NotesMarketPlace.TypeTable" Role="TypeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="TypeTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryTable_UserTable">
+          <End Type="NotesMarketPlace.UserTable" Role="UserTable" Multiplicity="0..1" />
+          <End Type="NotesMarketPlace.CountryTable" Role="CountryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="CountryTable">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceStoreContainer" CdmEntityContainer="NotesMarketPlaceEntities">
-          <EntitySetMapping Name="AdminTable">
-            <EntityTypeMapping TypeName="NotesMarketPlace.AdminTable">
-              <MappingFragment StoreEntitySet="AdminTable">
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CategoryTable">
-            <EntityTypeMapping TypeName="NotesMarketPlace.CategoryTable">
-              <MappingFragment StoreEntitySet="CategoryTable">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ContactUsTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.ContactUsTable">
               <MappingFragment StoreEntitySet="ContactUsTable">
@@ -1391,6 +1491,7 @@
           <EntitySetMapping Name="NoteTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.NoteTable">
               <MappingFragment StoreEntitySet="NoteTable">
+                <ScalarProperty Name="RemarksByAdmin" ColumnName="RemarksByAdmin" />
                 <ScalarProperty Name="TotalSpams" ColumnName="TotalSpams" />
                 <ScalarProperty Name="TotalReviews" ColumnName="TotalReviews" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
@@ -1482,24 +1583,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemConfigurationTable">
-            <EntityTypeMapping TypeName="NotesMarketPlace.SystemConfigurationTable">
-              <MappingFragment StoreEntitySet="SystemConfigurationTable">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
-                <ScalarProperty Name="SupportPhoneNumber" ColumnName="SupportPhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
-                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
-                <ScalarProperty Name="DefaultNoteImage" ColumnName="DefaultNoteImage" />
-                <ScalarProperty Name="DefaultProfilePicture" ColumnName="DefaultProfilePicture" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TransectionTable">
             <EntityTypeMapping TypeName="NotesMarketPlace.TransectionTable">
               <MappingFragment StoreEntitySet="TransectionTable">
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="DownloadedDate" ColumnName="DownloadedDate" />
                 <ScalarProperty Name="IsDownloaded" ColumnName="IsDownloaded" />
                 <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
@@ -1572,6 +1659,53 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemConfigurationTable">
+            <EntityTypeMapping TypeName="NotesMarketPlace.SystemConfigurationTable">
+              <MappingFragment StoreEntitySet="SystemConfigurationTable">
+                <ScalarProperty Name="DefaultProfilePicture" ColumnName="DefaultProfilePicture" />
+                <ScalarProperty Name="DefaultNoteImage" ColumnName="DefaultNoteImage" />
+                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SupportPhoneNumber" ColumnName="SupportPhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminTable">
+            <EntityTypeMapping TypeName="NotesMarketPlace.AdminTable">
+              <MappingFragment StoreEntitySet="AdminTable">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTable">
+            <EntityTypeMapping TypeName="NotesMarketPlace.CategoryTable">
+              <MappingFragment StoreEntitySet="CategoryTable">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -48,9 +48,9 @@ namespace NotesMarketPlace.Controllers
         [NonAction]
         public void SendEmailToAdmin(ContactUsTable obj)
         {
-            var fromEmail = new MailAddress("thehamojha@gmail.com"); //Email of Company
-            var toEmail = new MailAddress("gohilyagnik3@gmail.com"); //Email of admin
-            var fromEmailPassword = "*********"; // Replace with actual password
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail); //Email of Company
+            var toEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().Email); //Email of admin
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
             string subject = obj.FullName + " - Query";
 
             string body = "Hello," +

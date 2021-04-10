@@ -16,8 +16,13 @@ namespace NotesMarketPlace.Controllers
         {
             var emailid = User.Identity.Name.ToString();
             Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
             if (obj != null)
             {
+                if (obj.RoleID != 3)
+                {
+                    return RedirectToAction("AdminDashboard", "Admin");
+                }
                 ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == obj.UID).Select(x => x.ProfilePicture).FirstOrDefault();
             }
             return View();

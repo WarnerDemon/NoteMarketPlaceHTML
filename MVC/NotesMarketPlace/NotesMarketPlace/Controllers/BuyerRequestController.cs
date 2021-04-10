@@ -6,12 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
 namespace NotesMarketPlace.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class BuyerRequestController : Controller
     {
         NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities();
@@ -19,12 +21,18 @@ namespace NotesMarketPlace.Controllers
         [Route("BuyerRequest")]
         public ActionResult BuyerRequest(string search, int? page, string sortby)
         {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
+            var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
+            if (upobj == null)
+            {
+                return RedirectToAction("UserProfile", "UserProfile");
+            }
+
             ViewBag.SortDate = string.IsNullOrEmpty(sortby) ? "Date Desc" : "";
             ViewBag.SortTitle = sortby == "Title" ? "Title Desc" : "Title";
             ViewBag.SortCategort = sortby == "Category" ? "Category Desc" : "Category";
-
-            var emailid = User.Identity.Name.ToString();
-            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
 
             var filtered_title = dbobj.TransectionTable.Where(x => x.Title.Contains(search) || search == null);
             var filtered_category = dbobj.TransectionTable.Where(x => x.Category.Contains(search));
@@ -81,13 +89,49 @@ namespace NotesMarketPlace.Controllers
 
         public ActionResult AllowDownload(int tid)
         {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
             TransectionTable deal = dbobj.TransectionTable.Where(x => x.TID == tid).FirstOrDefault();
             deal.IsAllowed = true;
 
             dbobj.Entry(deal).State = System.Data.Entity.EntityState.Modified;
             dbobj.SaveChanges();
+            NotifyBuyer(deal.UserTable.Email, deal.UserTable.FirstName, obj.FirstName);
 
             return RedirectToAction("BuyerRequest");
+        }
+
+        [Authorize]
+        public void NotifyBuyer(string emailID, string Buyre, string Seller)
+        {
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);
+            var toEmail = new MailAddress(emailID);
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
+            string subject = Seller + " Allows you to download a note";
+
+            string body = "Hello " + Buyre + "," +
+                "<br/><br/>We would like to inform you that, " + Seller + " Allows you to download a note." +
+                "Please login and see My Download tabs to download particular note." +
+                "<br/><br/>Regards,<br/>Notes Marketplace";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            smtp.Send(message);
         }
     }
 }

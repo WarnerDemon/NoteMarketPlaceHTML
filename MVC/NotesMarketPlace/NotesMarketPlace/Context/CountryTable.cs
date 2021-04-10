@@ -34,5 +34,6 @@ namespace NotesMarketPlace.Context
         public virtual ICollection<NoteTable> NoteTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfileTable> UserProfileTable { get; set; }
+        public virtual UserTable UserTable { get; set; }
     }
 }

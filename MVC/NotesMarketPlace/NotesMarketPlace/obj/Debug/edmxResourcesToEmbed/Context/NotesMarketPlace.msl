@@ -1,36 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceStoreContainer" CdmEntityContainer="NotesMarketPlaceEntities">
-    <EntitySetMapping Name="AdminTable">
-      <EntityTypeMapping TypeName="NotesMarketPlace.AdminTable">
-        <MappingFragment StoreEntitySet="AdminTable">
-          <ScalarProperty Name="UID" ColumnName="UID" />
-          <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
-          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CategoryTable">
-      <EntityTypeMapping TypeName="NotesMarketPlace.CategoryTable">
-        <MappingFragment StoreEntitySet="CategoryTable">
-          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ContactUsTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.ContactUsTable">
         <MappingFragment StoreEntitySet="ContactUsTable">
@@ -75,6 +45,7 @@
     <EntitySetMapping Name="NoteTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.NoteTable">
         <MappingFragment StoreEntitySet="NoteTable">
+          <ScalarProperty Name="RemarksByAdmin" ColumnName="RemarksByAdmin" />
           <ScalarProperty Name="TotalSpams" ColumnName="TotalSpams" />
           <ScalarProperty Name="TotalReviews" ColumnName="TotalReviews" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
@@ -166,24 +137,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SystemConfigurationTable">
-      <EntityTypeMapping TypeName="NotesMarketPlace.SystemConfigurationTable">
-        <MappingFragment StoreEntitySet="SystemConfigurationTable">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
-          <ScalarProperty Name="SupportPhoneNumber" ColumnName="SupportPhoneNumber" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
-          <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
-          <ScalarProperty Name="DefaultNoteImage" ColumnName="DefaultNoteImage" />
-          <ScalarProperty Name="DefaultProfilePicture" ColumnName="DefaultProfilePicture" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TransectionTable">
       <EntityTypeMapping TypeName="NotesMarketPlace.TransectionTable">
         <MappingFragment StoreEntitySet="TransectionTable">
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
           <ScalarProperty Name="DownloadedDate" ColumnName="DownloadedDate" />
           <ScalarProperty Name="IsDownloaded" ColumnName="IsDownloaded" />
           <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
@@ -256,6 +213,53 @@
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemConfigurationTable">
+      <EntityTypeMapping TypeName="NotesMarketPlace.SystemConfigurationTable">
+        <MappingFragment StoreEntitySet="SystemConfigurationTable">
+          <ScalarProperty Name="DefaultProfilePicture" ColumnName="DefaultProfilePicture" />
+          <ScalarProperty Name="DefaultNoteImage" ColumnName="DefaultNoteImage" />
+          <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SupportPhoneNumber" ColumnName="SupportPhoneNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTable">
+      <EntityTypeMapping TypeName="NotesMarketPlace.AdminTable">
+        <MappingFragment StoreEntitySet="AdminTable">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryTable">
+      <EntityTypeMapping TypeName="NotesMarketPlace.CategoryTable">
+        <MappingFragment StoreEntitySet="CategoryTable">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

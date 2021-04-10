@@ -179,7 +179,7 @@
     <div class="row justify-content-center">
 
         <div class="pagination">
-            @Html.PagedListPager(Model, page => Url.Action("SearchNotes", new { page , search = Request.QueryString["search"], TypeID = Request.QueryString["TypeID"], CategoryID = Request.QueryString["CategoryID"], CourseName = Request.QueryString["CourseName"], CountryID = Request.QueryString["CountryID"] }))
+            @Html.PagedListPager(Model, page => Url.Action("SearchNotes", new { page , search = Request.QueryString["search"], TypeID = Request.QueryString["TypeID"], CategoryID = Request.QueryString["CategoryID"], InstituteName = Request.QueryString["InstituteName"], CourseName = Request.QueryString["CourseName"], CountryID = Request.QueryString["CountryID"], Rating = Request.QueryString["Rating"] }))
         </div>
 
     </div>

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace NotesMarketPlace.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class UserProfileController : Controller
     {
         NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities();
@@ -121,7 +121,8 @@ namespace NotesMarketPlace.Controllers
                     }
                     else
                     {
-                        upobj.ProfilePicture = "Default/User.jpg";
+                        /*upobj.ProfilePicture = "Default/User.jpg";*/
+                        upobj.ProfilePicture = dbobj.SystemConfigurationTable.Select(x => x.DefaultProfilePicture).ToString();
                         dbobj.SaveChanges();
                     }
 

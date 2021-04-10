@@ -1,0 +1,218 @@
+﻿@{
+
+    ViewBag.Title = "Note Details";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/NoteDetails.css" />
+
+}
+@model NotesMarketPlace.Context.NoteTable
+
+
+<!-- Note Detail main container -->
+
+<div class="container" id="note-details-container">
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h4>Notes Details</h4>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-3 note-details-padding">
+
+            <img class="img-thumbnail" src="../@Model.DisplayPicture" alt="">
+
+        </div>
+
+        <div class="col-xl-4 note-details-padding">
+
+            <h3>@Model.Title</h3>
+            <p>@Model.CategoryTable.Name</p>
+            <p>
+                @Model.Description
+            </p>
+            <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("DownloadForAdmin","NotesUnderReview", new { nid = Model.NID })'">DOWNLOAD</button>
+            @if (Model.IsActive == false)
+            {
+                <br /><br />
+                <p style="color: #ff0000">Seller Is Inactive</p>
+            }
+
+        </div>
+
+        <div class="col-xl-5 note-details-padding">
+
+            <div class="row">
+                <div class="col-md-12 left-list">Institution:<span class="pull-right right-list">@Model.InstituteName</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Country:<span class="pull-right right-list">@Model.CountryTable.CountryName</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Course Name:<span class="pull-right right-list">@Model.CourseName</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Course code:<span class="pull-right right-list">@Model.CourseCode</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Professor:<span class="pull-right right-list">@Model.Professor</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Number of Pages:<span class="pull-right right-list">@Model.NumberOfPages</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">Approved Date:<span class="pull-right right-list">November 25 2020</span></div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 left-list">
+                    Rating:
+                    <span class="pull-right right-list">
+                        <span class="score">
+                            <span class="score-wrap">
+                                @if (Model.Rating == null)
+                                {
+                                    Model.Rating = 0;
+                                }
+                                <span class="stars-active" style="width:@Model.Rating%">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </span>
+                                <span class="stars-inactive">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </span>
+                            </span>
+                            @if (Model.TotalReviews == null)
+                            {
+                                Model.TotalReviews = 0;
+                            }
+                            <span style="float: right; margin-left: 5px;">@Model.TotalReviews Reviews</span>
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                @if (Model.TotalSpams != null)
+                {
+                    <div class="col-md-12" id="red-list-item">@Model.TotalSpams Users marked this note as inappropriate</div>
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Note Detail main container End -->
+<!-- preview-review-container -->
+
+<div class="container" id="preview-review-container">
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <h4>Notes Preview</h4>
+            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                    @if (@Model.PreviewAttachment != null)
+                    {
+                        <iframe src="@Model.PreviewAttachment">
+                            <p style="font-size: 110%;">
+                                <em>
+                                    <strong>ERROR: </strong>
+                                    An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                </em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
+                            </p>
+                        </iframe>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col d-flex justify-content-center">
+                                <p>
+                                    <br /><br /><br />
+                                    Preview is not available
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <h4>Customer Reviews</h4>
+
+            <div class="customers-star-rating" id="grey-border">
+
+                @foreach (var item in ViewBag.Reviews)
+                {
+                    <div class="row grey-border-bottom">
+                        <div class="col-md-2" align="center">
+
+                            <img class="review-image" src="@item.UserImage" alt="">
+
+                        </div>
+
+                        <div class="col-md-10">
+
+                            <h5>@item.ReviewBy</h5><a href="@Url.Action("DeleteReview","Admin", new { ReviewID = item.ReviewID, ReturnUrl = HttpContext.Current.Request.Url.AbsoluteUri })" onclick="return confirm('Are you sure you want to delete this review?')"><abbr title="Delete Review"><i class="fa fa-trash-o pull-right"></i></abbr></a>
+                            <span class="score">
+                                <span class="score-wrap">
+                                    <span class="stars-active" style="width:@item.Stars%">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </span>
+                            <p>@item.Comment</p>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- preview-review-container End-->

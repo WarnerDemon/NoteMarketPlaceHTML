@@ -1,0 +1,110 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Models.ManageCountry>
+
+@{
+
+    ViewBag.Title = "Manage Country";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/ManageCountry.css" />
+}
+
+<!-- Manage Country Container -->
+
+<div class="container" id="manage-country-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Manage Country</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-2">
+
+            <button class="btn add-country-button" onclick="location.href='@Url.Action("AddCountry","ManageCountries")'">ADD COUNTRY</button>
+
+        </div>
+
+        @using (Html.BeginForm("ManageTypes", "ManageTypes", FormMethod.Get, new { @class = "col-md-6 d-flex justify-content-end" }))
+        {
+            <input class="form-control mr-2 add-country-search" type="text" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn add-country-search-button" type="submit">SEARCH</button>
+        }
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("COUNTRY NAME", "ManageCountries", new { sortby = ViewBag.SortCountry, search = Request.QueryString["search"] })</th>
+                        <th scope="col">COUNTRY CODE</th>
+                        <th scope="col">@Html.ActionLink("DATE ADDED", "ManageCountries", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("ADDED BY", "ManageCountries", new { sortby = ViewBag.SortAddedBy, search = Request.QueryString["search"] })</th>
+                        <th scope="col">ACTIVE</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td>@item.CountryName</td>
+                            <td>@item.CountryCode</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.AddedBy</td>
+                            @if (item.IsActive)
+                            {
+                                <td>Yes</td>
+                                <td><a href="@Url.Action("EditCountry","ManageCountries", new { CountryID = item.CountryID })"><abbr title="Edit Country"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateCountryStatus","ManageCountries", new { CountryID = item.CountryID, status = 0 })" onclick="return confirm('Are you sure you want to make this country Inactive?')"><abbr title="Inactive Country"><i class="fa fa-toggle-on" aria-hidden="true"></i></abbr></a></td>
+                            }
+                            else
+                            {
+                                <td>No</td>
+                                <td><a href="@Url.Action("EditCountry","ManageCountries", new { CountryID = item.CountryID })"><abbr title="Edit Country"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateCountryStatus","ManageCountries", new { CountryID = item.CountryID, status = 1 })" onclick="return confirm('Are you sure you want to make this country Active?')"><abbr title="Active Country"><i class="fa fa-toggle-off" aria-hidden="true"></i></abbr></a></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("ManageCountries", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Manage Country End -->

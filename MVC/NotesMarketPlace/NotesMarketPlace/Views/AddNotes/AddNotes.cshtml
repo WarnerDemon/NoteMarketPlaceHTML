@@ -50,7 +50,10 @@
 
             <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                    @Html.HiddenFor(x => x.NID)
+                    @if (ViewBag.Clone == null)
+                    {
+                        @Html.HiddenFor(x => x.NID)
+                    }
                     <label for="title" class="label-text">Title *</label>
                     @Html.ValidationMessageFor(x => x.Title, "", new { @class = "form-error" })
                     @Html.TextBoxFor(x => x.Title, new { @class = "form-control user-profile-input-field", @id = "title", @placeholder = "Enter your notes title" })
@@ -225,7 +228,7 @@
             <div class="col">
 
                 <button class="btn save-publish-button" type="submit" name="submitButton" value="1">SAVE</button>
-                <button class="btn save-publish-button" type="submit" name="submitButton" value="2">PUBLISH</button>
+                <button class="btn save-publish-button" type="submit" name="submitButton" value="2" onclick="return confirm('Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published to portal. Press yes to continue.')">PUBLISH</button>
 
             </div>
 

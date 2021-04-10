@@ -1,0 +1,189 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Models.PublishedNotes>
+
+@{
+
+    ViewBag.Title = "Published Notes";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/PublishedNotes.css" />
+}
+
+<!-- Published Notes Container -->
+
+<div class="container" id="published-notes-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Published Notes</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    @using (Html.BeginForm("PublishedNotes", "PublishedNotes", FormMethod.Get))
+    {
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <label for="seller" class="label-text">Seller</label>
+
+            </div>
+
+            <div class="col-md-6 mb-2">
+                @Html.DropDownList("Seller", ViewBag.Seller as SelectList, "Select Seller", new { @class = "form-control label-text select-seller", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-end">
+
+                <input class="form-control mr-2 published-notes-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn published-notes-search-button" type="submit">SEARCH</button>
+
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("NOTE TITLE", "PublishedNotes", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "PublishedNotes", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
+                        <th scope="col">SELL TYPE</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">SELLER</th>
+                        <th scope="col"></th>
+                        <th scope="col">@Html.ActionLink("PUBLISHED DATE", "PublishedNotes", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">APPROVED BY</th>
+                        <th scope="col" style="text-align: center;">NUMBER OF DOWNLOADS</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="11" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td><a href="@Url.Action("AdminNoteDetails","Admin", new { nid = item.NID })" style="color:#6255a5;">@item.Title</a></td>
+                            <td>@item.Category</td>
+                            <td>@item.SellType</td>
+                            <td>₹ @item.Price</td>
+                            <td>@item.Seller</td>
+                            <td align="center"><a href="@Url.Action("MemberDetails","MemberDetails", new { uid = item.UID })"><abbr title="Member Details"><i class="fa fa-eye"></i></abbr></a></td>
+                            <td>@item.PublishedDate</td>
+                            <td>@item.ApprovedBy</td>
+                            <td class="label-color" align="center">@item.TotalDownloads</td>
+                            <td class="dropdown">
+                                <i class="fa fa-ellipsis-v float-right"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("DownloadForAdmin","NotesUnderReview", new { nid = item.NID })">Download Notes</a>
+                                        <a href="@Url.Action("AdminNoteDetails","Admin", new { nid = item.NID })">View More Details</a>
+                                        <a onclick="Unpublish_Popup(@item.NID,'@item.Title')">Unpublish</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("PublishedNotes", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"], Seller = Request.QueryString["Seller"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Published Notes Container End -->
+<!-- Unpublish Popup -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="unpublish-popup-container">
+
+            <div class="row">
+
+                <div class="col">
+
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col">
+
+                    @using (Html.BeginForm("Unpublish", "PublishedNotes", new { ReturnUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Path) }, FormMethod.Post))
+                    {
+                        <input type="hidden" id="myField-Note-ID" name="nid" />
+                        <input type="hidden" name="Status" value="5" />
+                        <h2 id="myField-Note-Title">
+                        </h2>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="comments" class="label-text">Remarks</label>
+                            <input type="text" class="form-control user-profile-input-field" id="unpublish-comments" placeholder="Write Remarks" name="Remarks" maxlength="200">
+                        </div>
+
+                        <button style="float:right;" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button style="float:right; margin-right: 5px;" class="btn btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to Unpublish this note?');">Unpublish</button>
+
+                    }
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Unpublish Popup End-->
+
+<script>
+
+    var Unpublish_Popup = function (nid, title) {
+
+        document.getElementById('myField-Note-ID').value = nid;
+        document.getElementById('myField-Note-Title').innerHTML = title;
+        $("#exampleModal2").modal("show");
+
+    }
+
+</script>

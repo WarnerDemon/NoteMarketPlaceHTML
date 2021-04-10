@@ -29,6 +29,11 @@ namespace NotesMarketPlace.Context
             this.UserTable1 = new HashSet<UserTable>();
             this.UserProfileTable = new HashSet<UserProfileTable>();
             this.UserProfileTable1 = new HashSet<UserProfileTable>();
+            this.NoteTable2 = new HashSet<NoteTable>();
+            this.AdminTable = new HashSet<AdminTable>();
+            this.CategoryTable = new HashSet<CategoryTable>();
+            this.TypeTable = new HashSet<TypeTable>();
+            this.CountryTable = new HashSet<CountryTable>();
         }
     
         public int UID { get; set; }
@@ -71,5 +76,15 @@ namespace NotesMarketPlace.Context
         public virtual ICollection<UserProfileTable> UserProfileTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfileTable> UserProfileTable1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoteTable> NoteTable2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdminTable> AdminTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TypeTable> TypeTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CountryTable> CountryTable { get; set; }
     }
 }

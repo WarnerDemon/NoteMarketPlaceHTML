@@ -80,16 +80,16 @@
                                     <a class="dropdown-item" href="@Url.Action("UserProfile","UserProfile")">My Profile</a>
                                     <a class="dropdown-item" href="@Url.Action("MyDownloads","MyDownloads")">My Downloads</a>
                                     <a class="dropdown-item" href="@Url.Action("MySoldNotes","MySoldNotes")">My Sold Notes</a>
-                                    <a class="dropdown-item" href="#">My Rejected Notes</a>
+                                    <a class="dropdown-item" href="@Url.Action("MyRejectedNotes","MyRejectedNotes")">My Rejected Notes</a>
                                     <a class="dropdown-item" href="@Url.Action("ChangePassword","SignUp")">Change Password</a>
-                                    <a class="dropdown-item title-color" href="@Url.Action("Logout", "SignUp")"><b>Logout</b></a>
+                                    <a class="dropdown-item title-color" onclick="if(confirm('Are you sure, you want to logout?')) location.href='@Url.Action("Logout", "SignUp")'"><b>Logout</b></a>
                                 </div>
                             </li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <button class="btn navbar-button" type="submit" onclick="location.href='@Url.Action("Logout", "SignUp")'">Logout</button>
+                                <button class="btn navbar-button" type="submit" onclick="if(confirm('Are you sure, you want to logout?')) location.href='@Url.Action("Logout", "SignUp")'">Logout</button>
                             </li>
                         }
                         else
@@ -128,10 +128,15 @@
 
             </div>
 
+            @{
+                NotesMarketPlace.Context.NotesMarketPlaceEntities dbobj = new NotesMarketPlace.Context.NotesMarketPlaceEntities();
+                var social = dbobj.SystemConfigurationTable.FirstOrDefault();
+            }
+
             <ul class="social-list">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="@social.Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="@social.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="@social.LinkedIn" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             </ul>
 
         </div>

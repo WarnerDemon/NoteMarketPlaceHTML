@@ -10,21 +10,27 @@ using System.Web.Mvc;
 
 namespace NotesMarketPlace.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class MyDownloadsController : Controller
     {
         NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities();
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [Route("MyDownloads")]
         public ActionResult MyDownloads(string search, int? page, string sortby)
         {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
+            var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
+            if (upobj == null)
+            {
+                return RedirectToAction("UserProfile", "UserProfile");
+            }
+
             ViewBag.SortDate = string.IsNullOrEmpty(sortby) ? "Date Desc" : "";
             ViewBag.SortTitle = sortby == "Title" ? "Title Desc" : "Title";
             ViewBag.SortCategort = sortby == "Category" ? "Category Desc" : "Category";
-
-            var emailid = User.Identity.Name.ToString();
-            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
 
             var filtered_title = dbobj.TransectionTable.Where(x => x.Title.Contains(search) || search == null);
             var filtered_category = dbobj.TransectionTable.Where(x => x.Category.Contains(search));
@@ -87,7 +93,7 @@ namespace NotesMarketPlace.Controllers
                 int total_stars = dbobj.ReviewTable.Where(x => x.NID == nid).Select(x => x.Rating).Sum();
 
                 book.TotalReviews = total_reviews;
-                book.Rating = (total_stars / total_reviews) * 20;
+                book.Rating = ((double)total_stars / total_reviews) * 20;
 
                 dbobj.Entry(book).State = System.Data.Entity.EntityState.Modified;
                 dbobj.SaveChanges();
@@ -177,9 +183,9 @@ namespace NotesMarketPlace.Controllers
 
         public void NotifyAdmin(string ReportedBy, string NoteTitle, string SellerName)
         {
-            var fromEmail = new MailAddress("thehamojha@gmail.com");//Support Email Address
-            var toEmail = new MailAddress("gohilyagnik3@gmail.com");
-            var fromEmailPassword = "*********"; // Replace with actual password
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);//Support Email Address
+            var toEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().Email);
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
             string subject = ReportedBy + " Reported an issue for " + NoteTitle;
 
             string body = "Hello Admins, " +

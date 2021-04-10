@@ -16,12 +16,13 @@ namespace NotesMarketPlace.Context
     {
         public int ID { get; set; }
         public string SupportEmail { get; set; }
+        public string Password { get; set; }
         public string SupportPhoneNumber { get; set; }
         public string Email { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string LinkedIn { get; set; }
-        public byte[] DefaultNoteImage { get; set; }
-        public byte[] DefaultProfilePicture { get; set; }
+        public string DefaultNoteImage { get; set; }
+        public string DefaultProfilePicture { get; set; }
     }
 }

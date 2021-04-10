@@ -1,0 +1,130 @@
+﻿@model NotesMarketPlace.Models.AdminProfile
+
+@{
+
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/MyProfile.css" />
+
+}
+
+<!-- My Profile Container -->
+
+<div class="container" id="my-profile-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>My Profile</h2>
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("AdminProfile", "AdminProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="first-name" class="label-text">First Name *</label>
+                    @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control label-text input-field", @id = "first-name", @placeholder = "First Name" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="last-name" class="label-text">Last Name *</label>
+                    @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control label-text input-field", @id = "last-name", @placeholder = "Last Name" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="email" class="label-text">Email *</label>
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control label-text input-field", @id = "email", @placeholder = "Email Address" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="email2" class="label-text">Secondary Email</label>
+                    @Html.ValidationMessageFor(x => x.SecondaryEmail, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.SecondaryEmail, new { @class = "form-control label-text input-field", @id = "email2", @placeholder = "Secondary Email Address" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-2">
+                <div class="form-group">
+                    <label for="phone-number-country" class="label-text">Country</label>
+                    @Html.DropDownListFor(x => x.CountryCode, new SelectList(ViewBag.CountryCodelist, "Value", "Text", Model.CountryCode), "Select Country", new { @class = "form-control label-text input-field", @id = "phone-number-country" })
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="form-group">
+                    <label for="phone-number" class="label-text">Phone Number</label>
+                    @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control label-text input-field", @id = "phone-number", @placeholder = "Enter your phone number" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="profile-picture" class="label-text">Profile Picture <span class="form-error" id="uploadpicture-error"></span></label>
+                    @Html.TextBoxFor(x => x.ProfilePicture, new { @class = "form-control label-text input-field", @id = "profile-picture", @onchange = "return ProfilePictureValidation()", type = "file" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="my-profile-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- My Profile Container End -->

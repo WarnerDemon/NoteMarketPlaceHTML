@@ -51,11 +51,11 @@ namespace NotesMarketPlace.Controllers
                 });
             }
             // ==================================================
-            ViewBag.Reviews = ReviewsList;
+            ViewBag.Reviews = ReviewsList.OrderByDescending(x=>x.Stars);
             return View(Note);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [Route("Download")]
         public ActionResult Download(int nid)
         {
@@ -89,6 +89,7 @@ namespace NotesMarketPlace.Controllers
                         tobj.NID = nid;
                         tobj.Title = noteobj.Title;
                         tobj.Category = noteobj.CategoryTable.Name;
+                        tobj.IsPaid = false;
                         tobj.Price = noteobj.Price;
                         tobj.BuyerID = obj.UID;
                         tobj.SellerID = noteobj.UID;
@@ -117,6 +118,7 @@ namespace NotesMarketPlace.Controllers
                         tobj.NID = nid;
                         tobj.Title = noteobj.Title;
                         tobj.Category = noteobj.CategoryTable.Name;
+                        tobj.IsPaid = true;
                         tobj.Price = noteobj.Price;
                         tobj.BuyerID = obj.UID;
                         tobj.SellerID = noteobj.UID;
@@ -180,9 +182,9 @@ namespace NotesMarketPlace.Controllers
         [Authorize]
         public void NotifySeller(string emailID, string Buyre, string Seller)
         {
-            var fromEmail = new MailAddress("thehamojha@gmail.com");
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "*********"; // Replace with actual password
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
             string subject = Buyre + " wants to purchase your notes";
 
             string body = "Hello "+ Seller + "," +

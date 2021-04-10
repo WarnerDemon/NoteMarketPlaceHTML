@@ -1,7 +1,0 @@
-While checking code, replace email address and password with
-your email and password in following controller:
-
-SignUpController.cs
-NoteDetailsController.cs
-MyDownloadsController.cs
-ContactUsController.cs

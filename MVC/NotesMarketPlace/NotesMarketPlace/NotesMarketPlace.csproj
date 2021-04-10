@@ -110,6 +110,7 @@
     <Content Include="Content\AdminContent\css\AddCategory.css" />
     <Content Include="Content\AdminContent\css\AddCountry.css" />
     <Content Include="Content\AdminContent\css\AddType.css" />
+    <Content Include="Content\AdminContent\css\AdminNavbar.css" />
     <Content Include="Content\AdminContent\css\bootstrap\bootstrap.min.css" />
     <Content Include="Content\AdminContent\css\Dashboard.css" />
     <Content Include="Content\AdminContent\css\DownloadedNotes.css" />
@@ -321,30 +322,63 @@
     <Compile Include="Context\UserTable.cs">
       <DependentUpon>NotesMarketPlace.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AddAdminController.cs" />
     <Compile Include="Controllers\AddNotesController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminProfileController.cs" />
     <Compile Include="Controllers\BuyerRequestController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DownloadedNotesController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageCategoryController.cs" />
+    <Compile Include="Controllers\ManageCountriesController.cs" />
+    <Compile Include="Controllers\ManageSystemConfigurationsController.cs" />
+    <Compile Include="Controllers\ManageTypesController.cs" />
+    <Compile Include="Controllers\MemberDetailsController.cs" />
+    <Compile Include="Controllers\AllMembersController.cs" />
     <Compile Include="Controllers\MyDownloadsController.cs" />
+    <Compile Include="Controllers\MyRejectedNotesController.cs" />
     <Compile Include="Controllers\MySoldNotesController.cs" />
     <Compile Include="Controllers\NoteDetailsController.cs" />
+    <Compile Include="Controllers\NotesUnderReviewController.cs" />
+    <Compile Include="Controllers\PublishedNotesController.cs" />
+    <Compile Include="Controllers\RejectedNotesController.cs" />
     <Compile Include="Controllers\SearchNotesController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Controllers\SpamReportsController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddCategory.cs" />
+    <Compile Include="Models\AddCountry.cs" />
     <Compile Include="Models\AddNotes.cs" />
+    <Compile Include="Models\AddType.cs" />
+    <Compile Include="Models\AdminDashboard.cs" />
+    <Compile Include="Models\AddAdmin.cs" />
+    <Compile Include="Models\AdminProfile.cs" />
     <Compile Include="Models\BuyerRequest.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\Dashboard.cs" />
     <Compile Include="Models\DisplayReview.cs" />
     <Compile Include="Models\ForgotPassword.cs" />
+    <Compile Include="Models\ManageAdministrator.cs" />
+    <Compile Include="Models\ManageCategory.cs" />
+    <Compile Include="Models\ManageCountry.cs" />
+    <Compile Include="Models\ManageSystemConfigurations.cs" />
+    <Compile Include="Models\ManageType.cs" />
+    <Compile Include="Models\MemberDetails.cs" />
+    <Compile Include="Models\MemberNotes.cs" />
+    <Compile Include="Models\MemberProfile.cs" />
+    <Compile Include="Models\Members.cs" />
+    <Compile Include="Models\PublishedNotes.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\UserRoleProvider.cs" />
     <Compile Include="Models\UserTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -376,7 +410,6 @@
     <None Include="packages.config" />
     <Content Include="Views\SignUp\SignUp.cshtml" />
     <Content Include="Views\SearchNotes\SearchNotes.cshtml" />
-    <Content Include="Views\Shared\NavbarBefore.cshtml" />
     <Content Include="Views\NoteDetails\NoteDetails.cshtml" />
     <Content Include="Views\Shared\NavbarAfter.cshtml" />
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
@@ -393,6 +426,31 @@
     <Content Include="Views\NoteDetails\ThanksPopup.cshtml" />
     <Content Include="Views\MySoldNotes\MySoldNotes.cshtml" />
     <Content Include="Views\SignUp\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\ManageAdmin.cshtml" />
+    <Content Include="Views\Shared\AdminNavbar.cshtml" />
+    <Content Include="Views\Admin\AdminDashboard.cshtml" />
+    <Content Include="Views\NotesUnderReview\NotesUnderReview.cshtml" />
+    <Content Include="Views\MyRejectedNotes\MyRejectedNotes.cshtml" />
+    <Content Include="Views\Admin\AdminNoteDetails.cshtml" />
+    <Content Include="Views\MemberDetails\MemberDetails.cshtml" />
+    <Content Include="Views\PublishedNotes\PublishedNotes.cshtml" />
+    <Content Include="Views\DownloadedNotes\DownloadedNotes.cshtml" />
+    <Content Include="Views\RejectedNotes\RejectedNotes.cshtml" />
+    <Content Include="Views\AllMembers\AllMembers.cshtml" />
+    <Content Include="Views\ManageSystemConfigurations\ManageSystemConfigurations.cshtml" />
+    <Content Include="Views\AddAdmin\AddAdmin.cshtml" />
+    <Content Include="Views\AdminProfile\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\EditAdmin.cshtml" />
+    <Content Include="Views\ManageCategory\ManageCategory.cshtml" />
+    <Content Include="Views\ManageCategory\AddCategory.cshtml" />
+    <Content Include="Views\ManageCategory\EditCategory.cshtml" />
+    <Content Include="Views\ManageTypes\AddType.cshtml" />
+    <Content Include="Views\ManageTypes\EditType.cshtml" />
+    <Content Include="Views\ManageTypes\ManageTypes.cshtml" />
+    <Content Include="Views\ManageCountries\ManageCountries.cshtml" />
+    <Content Include="Views\ManageCountries\AddCountry.cshtml" />
+    <Content Include="Views\ManageCountries\EditCountry.cshtml" />
+    <Content Include="Views\SpamReports\SpamReports.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -404,6 +462,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Default\" />
     <Folder Include="Members\" />
+    <Folder Include="Views\SuperAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

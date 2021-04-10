@@ -4,20 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
 namespace NotesMarketPlace.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class AddNotesController : Controller
     {
         NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities();
 
         [HttpGet]
         [Route("AddNotes")]
-        public ActionResult AddNotes(int? id)
+        public ActionResult AddNotes(int? id, string clone)
         {
+            var emailid = User.Identity.Name.ToString();
+            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
+
+            var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
+            if (upobj == null)
+            {
+                return RedirectToAction("UserProfile", "UserProfile");
+            }
+
             if (id != null)     //for edit note
             {
                 Context.NoteTable noteobj = dbobj.NoteTable.Where(x => x.NID == id).FirstOrDefault();
@@ -40,11 +51,11 @@ namespace NotesMarketPlace.Controllers
                 ViewBag.Type = new SelectList(dbobj.TypeTable, "TypeID", "Name");
                 ViewBag.Country = new SelectList(dbobj.CountryTable, "CountryID", "CountryName");
                 ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == noteobj.UID).Select(x => x.ProfilePicture).FirstOrDefault();
+                ViewBag.Clone = clone;
                 return View(editobj);
             }
+
             //for new note
-            var emailid = User.Identity.Name.ToString();
-            Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
 
             ViewBag.Category = new SelectList(dbobj.CategoryTable, "CategoryID", "Name");
             ViewBag.Type = new SelectList(dbobj.TypeTable, "TypeID", "Name");
@@ -113,8 +124,9 @@ namespace NotesMarketPlace.Controllers
                     else
                     {
                         noteobj.Status = 2;
+                        NotifyAdmin(obj.FirstName, model.Title);
                     }
-                    noteobj.ActionBy = 3;
+                    noteobj.ActionBy = obj.UID;
                     noteobj.CreatedDate = DateTime.Now;
                     noteobj.IsActive = true;
 
@@ -139,7 +151,8 @@ namespace NotesMarketPlace.Controllers
                     }
                     else
                     {
-                        noteobj.DisplayPicture = "Default/Book.jpg";
+                        /*noteobj.DisplayPicture = "Default/Book.jpg";*/
+                        noteobj.DisplayPicture = dbobj.SystemConfigurationTable.Select(x=>x.DefaultNoteImage).ToString();
                         dbobj.SaveChanges();
                     }
 
@@ -215,8 +228,9 @@ namespace NotesMarketPlace.Controllers
                     else
                     {
                         oldnote.Status = 2;
+                        NotifyAdmin(obj.FirstName, model.Title);
                     }
-                    oldnote.ActionBy = 3;
+                    oldnote.ActionBy = obj.UID;
                     oldnote.ModifiedDate = DateTime.Now;
                     oldnote.IsActive = true;
 
@@ -304,7 +318,38 @@ namespace NotesMarketPlace.Controllers
             return View();
 
         }
-            
+        [Authorize]
+        public void NotifyAdmin(string Seller, string Title)
+        {
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);
+            var toEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().Email);
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
+            string subject = Seller + " sent his note for review";
+
+            string body = "Hello Admins," +
+                "<br/><br/>We want to inform you that, " + Seller + " sent his note " + Title +
+                "for review. Please look at the notes and take required actions." +
+                "<br/><br/>Regards,<br/>Notes Marketplace";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            smtp.Send(message);
+        }
+
     }
     
 }

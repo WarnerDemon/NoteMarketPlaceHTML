@@ -7,6 +7,7 @@ namespace NotesMarketPlace.Models
 {
     public class DisplayReview
     {
+        public int ReviewID { get; set; }
         public string ReviewBy { get; set; }
         public string UserImage { get; set; }
         public int Stars { get; set; }

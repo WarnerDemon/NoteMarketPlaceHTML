@@ -1,0 +1,116 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Models.ManageAdministrator>
+
+@{
+
+    ViewBag.Title = "Manage Administrator";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/ManageAdministrator.css" />
+}
+
+<!-- Manage Administrator Container -->
+
+<div class="container" id="manage-administrator-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Manage Administrator</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    
+    
+    <div class="row">
+
+        <div class="col-md-6 mb-2">
+
+            <button class="btn add-administrator-button" onclick="location.href='@Url.Action("AddAdmin","AddAdmin")'">ADD ADMINISTRATOR</button>
+
+        </div>
+
+        @using (Html.BeginForm("ManageAdmin", "Admin", FormMethod.Get, new { @class = "col-md-6 d-flex justify-content-end" }))
+        {
+            <input class="form-control mr-2 add-administrator-search" type="text" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn add-administrator-search-button" type="submit">SEARCH</button>
+        }
+
+    </div>
+    
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("FIRST NAME", "ManageAdmin", new { sortby = ViewBag.SortFirstName, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("LAST NAME", "ManageAdmin", new { sortby = ViewBag.SortLastName, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("EMAIL", "ManageAdmin", new { sortby = ViewBag.SortEmail, search = Request.QueryString["search"] })</th>
+                        <th scope="col">PHONE NO.</th>
+                        <th scope="col">@Html.ActionLink("DATE ADDED", "ManageAdmin", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">ACTIVE</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Email</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.CreatedDate.Value.ToShortDateString()</td>
+                            @if (item.IsActive)
+                            {
+                                <td>Yes</td>
+                                <td><a href="@Url.Action("EditAdmin","Admin", new { uid = item.UID })"><abbr title="Edit Admin"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateAdminStatus","Admin", new { uid = item.UID, status = 0 })" onclick="return confirm('Are you sure you want to make this administrator inactive?')"><abbr title="Inactive Admin"><i class="fa fa-toggle-on" aria-hidden="true"></i></abbr></a></td>
+                            }
+                            else
+                            {
+                                <td>No</td>
+                                <td><a href="@Url.Action("EditAdmin","Admin", new { uid = item.UID })"><abbr title="Edit Admin"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateAdminStatus","Admin", new { uid = item.UID, status = 1 })" onclick="return confirm('Are you sure you want to make this administrator Active?')"><abbr title="Active Admin"><i class="fa fa-toggle-off" aria-hidden="true"></i></abbr></a></td>
+                            }
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("ManageAdmin", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Manage Administrator End -->

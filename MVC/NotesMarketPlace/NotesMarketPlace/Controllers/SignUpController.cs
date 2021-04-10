@@ -41,6 +41,7 @@ namespace NotesMarketPlace.Controllers
                 obj.Email = model.Email;
                 obj.Password = Crypto.Hash(model.Password);
                 obj.IsEmailVerified = model.IsEmailVerified;
+                obj.CreatedDate = DateTime.Now;
                 obj.IsActive = true;
                 obj.SecretCode = Guid.NewGuid();
 
@@ -78,9 +79,9 @@ namespace NotesMarketPlace.Controllers
             var verifyUrl = "/EmailVerification/" + SecretCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("thehamojha@gmail.com");
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "*********"; // Replace with actual password
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
             string subject = "Note Marketplace - Email Verification";
 
             string body = "Hello " + username + "," +
@@ -119,7 +120,7 @@ namespace NotesMarketPlace.Controllers
 
         [HttpGet]
         [Route("Login")]
-        public ActionResult Login()
+        public ActionResult Login(string ReturnUrl)
         {
             return View();
         }
@@ -127,71 +128,84 @@ namespace NotesMarketPlace.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Login")]
-        public ActionResult Login(Models.UserLogin login, string ReturnUrl = "")
+        public ActionResult Login(Models.UserLogin login, string ReturnUrl)
         {
-            //string message = "";
-            using (NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities())
+            if (ModelState.IsValid)
             {
-                var v = dbobj.UserTable.Where(a => a.Email == login.Email).FirstOrDefault();
-                if (v != null)
+                //string message = "";
+                using (NotesMarketPlaceEntities dbobj = new NotesMarketPlaceEntities())
                 {
-                    if (v.IsEmailVerified == true)
+                    //  Current Logged in user
+                    var v = dbobj.UserTable.Where(a => a.Email == login.Email).FirstOrDefault();
+                    if (v != null)
                     {
-                        if (string.Compare(Crypto.Hash(login.Password), v.Password) == 0)
+                        if (v.IsActive)
                         {
-                            int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
-                            var ticket = new FormsAuthenticationTicket(login.Email, login.RememberMe, timeout);
-                            string encrypted = FormsAuthentication.Encrypt(ticket);
-                            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-                            cookie.Expires = DateTime.Now.AddMinutes(timeout);
-                            cookie.HttpOnly = true;
-                            Response.Cookies.Add(cookie);
+                            if (v.IsEmailVerified == true)
+                            {
+                                if (string.Compare(Crypto.Hash(login.Password), v.Password) == 0)
+                                {
+                                    int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                                    var ticket = new FormsAuthenticationTicket(login.Email, login.RememberMe, timeout);
+                                    string encrypted = FormsAuthentication.Encrypt(ticket);
+                                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                                    cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                                    cookie.HttpOnly = true;
+                                    Response.Cookies.Add(cookie);
 
-                            /*if (Url.IsLocalUrl(ReturnUrl))
-                            {
-                                return Redirect(ReturnUrl);
+                                    if (v.RoleID == 3)   //  Normal User
+                                    {
+                                        var upobj = dbobj.UserProfileTable.Where(a => a.UID == v.UID).FirstOrDefault();
+                                        if (upobj == null)
+                                        {
+                                            return RedirectToAction("UserProfile", "UserProfile");
+                                        }
+                                        else if (!String.IsNullOrEmpty(ReturnUrl))
+                                        {
+                                            return Redirect(ReturnUrl);
+                                        }
+                                        else
+                                        {
+                                            return RedirectToAction("SearchNotes", "SearchNotes");
+                                        }
+                                    }
+                                    else    //  Admin User
+                                    {
+                                        return RedirectToAction("AdminDashboard", "Admin");
+                                    }
+
+                                }
+                                else
+                                {
+                                    //message = "Invalid Password";
+                                    ModelState.AddModelError("Password", "Invalid Password");
+                                    return View(login);
+                                }
                             }
                             else
                             {
-                                //05-03-2021 Updated third parameter , new { userid = v.UID }
-                                return RedirectToAction("DashBoard", "DashBoard");
-                            }*/
-                            var upobj = dbobj.UserProfileTable.Where(a => a.UID == v.UID).FirstOrDefault();
-                            if (upobj==null)
-                            {
-                                return RedirectToAction("UserProfile", "UserProfile");
-                            }
-                            else if (!String.IsNullOrEmpty(ReturnUrl))
-                            {
-                                return Redirect(ReturnUrl);
-                            }
-                            else
-                            {
-                                return RedirectToAction("SearchNotes", "SearchNotes");
+                                ModelState.AddModelError("Email", "Email is not verified");
+                                return View(login);
                             }
                         }
                         else
                         {
-                            //message = "Invalid Password";
-                            ModelState.AddModelError("Password", "Invalid Password");
+                            ModelState.AddModelError("Email", "User is not active");
                             return View(login);
                         }
+                        
                     }
                     else
                     {
-                        ModelState.AddModelError("Email", "Email is not verified");
+                        //message = "Invalid Email";
+                        ModelState.AddModelError("Email", "Invalid Email");
                         return View(login);
                     }
                 }
-                else
-                {
-                    //message = "Invalid Email";
-                    ModelState.AddModelError("Email", "Invalid Email");
-                    return View(login);
-                }
             }
+            //return RedirectToAction("Login");
             //ViewBag.Message = message;
-            //return View();
+            return View();
         }
 
         [Authorize]
@@ -234,9 +248,9 @@ namespace NotesMarketPlace.Controllers
         [NonAction]
         public void SendPassword(string emailID, string pwd)
         {
-            var fromEmail = new MailAddress("thehamojha@gmail.com");
+            var fromEmail = new MailAddress(dbobj.SystemConfigurationTable.FirstOrDefault().SupportEmail);
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "*********"; // Replace with actual password
+            var fromEmailPassword = dbobj.SystemConfigurationTable.FirstOrDefault().Password; // Replace with actual password
             string subject = "Note Marketplace - Forgot Password";
 
             string body = "Hello," +

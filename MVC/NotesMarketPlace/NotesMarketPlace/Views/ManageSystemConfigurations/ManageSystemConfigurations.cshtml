@@ -1,0 +1,170 @@
+﻿@model NotesMarketPlace.Models.ManageSystemConfigurations
+@{
+
+    ViewBag.Title = "Manage System Configuration";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/ManageSystemConfiguration.css" />
+}
+<!-- Manage System Configuration Container -->
+
+<div class="container" id="manage-system-configuration-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>Manage System Configuration</h2>
+
+        </div>
+
+    </div>
+
+    <br>
+    @using (Html.BeginForm("ManageSystemConfigurations", "ManageSystemConfigurations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="support-email" class="label-text">Support Email Address *</label>
+                    @Html.ValidationMessageFor(x => x.SupportEmail, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.SupportEmail, new { @class = "form-control label-text input-field", @id = "support-email", @placeholder = "Enter Support Email Address" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="support-email" class="label-text">Support Email Password *</label>
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "form-error" })
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control label-text input-field", @placeholder = "Enter Your Password" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="support-email" class="label-text">ConfirmPassword Password *</label>
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control label-text input-field", @placeholder = "Re-Enter Your Password" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "form-error" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="phone-number" class="label-text">Support Phone Number *</label>
+                    @Html.ValidationMessageFor(x => x.SupportPhoneNumber, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.SupportPhoneNumber, new { @class = "form-control label-text input-field", @id = "phone-number", @placeholder = "Enter Phone Number" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="email" class="label-text">Email Address(es) (for various events system will send notifications to these users)*</label>
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control label-text input-field", @id = "email", @placeholder = "Enter Email Address" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="facebook" class="label-text">Facebook URL</label>
+                    @Html.ValidationMessageFor(x => x.Facebook, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Facebook, new { @class = "form-control label-text input-field", @id = "facebook", @placeholder = "Enter facebook URL" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="twitter" class="label-text">Twitter URL</label>
+                    @Html.ValidationMessageFor(x => x.Twitter, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Twitter, new { @class = "form-control label-text input-field", @id = "twitter", @placeholder = "Enter Twitter URL" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="linkedin" class="label-text">Linkedin URL</label>
+                    @Html.ValidationMessageFor(x => x.LinkedIn, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.LinkedIn, new { @class = "form-control label-text input-field", @id = "linkedin", @placeholder = "Enter Linkedin URL" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="upload-image" class="label-text">Default image for notes (if seller do not upload) <span class="form-error" id="uploadpicture-error"></span></label>
+                    @Html.TextBoxFor(x => x.DefaultNoteImage, new { @class = "form-control user-profile-input-field upload-image", @id = "display-picture", @onchange = "return picturevalidation()", type = "file" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="form-group">
+                    <label for="upload-image" class="label-text">Default profile picture (if seller do not upload)  <span class="form-error" id="profile-picture-error"></span></label>
+                    @Html.TextBoxFor(x => x.DefaultProfilePicture, new { @class = "form-control user-profile-input-field upload-image", @id = "profile-picture", @onchange = "return ProfilePictureValidation()", type = "file" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="manage-system-configuration-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- Manage System Configuration Container End -->

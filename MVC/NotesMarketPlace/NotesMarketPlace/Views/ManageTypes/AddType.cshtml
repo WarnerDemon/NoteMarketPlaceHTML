@@ -1,0 +1,71 @@
+﻿@model NotesMarketPlace.Models.AddType
+
+@{
+
+    ViewBag.Title = "Add Type";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/AddType.css" />
+}
+
+<!-- Add Type Container -->
+
+<div class="container" id="add-type-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>Add Type</h2>
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("AddType", "ManageTypes", FormMethod.Post))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="type-name" class="label-text">Type *</label>
+                    @Html.ValidationMessageFor(x => x.TypeName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.TypeName, new { @class = "form-control label-text input-field", @id = "type-name", @placeholder = "Type Name", @maxlength = "20" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="label-text">Description *</label>
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "form-error" })
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control label-text input-field", @id = "exampleFormControlTextarea1", @rows = "5", @placeholder = "Enter your description", @maxlength = "200" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="add-type-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- Add Type Container End -->

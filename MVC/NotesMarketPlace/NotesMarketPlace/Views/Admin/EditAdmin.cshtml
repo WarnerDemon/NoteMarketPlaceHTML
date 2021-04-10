@@ -1,0 +1,106 @@
+﻿@model NotesMarketPlace.Models.AddAdmin
+
+@{
+
+    ViewBag.Title = "Edit Administrator";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/AddAdministrator.css" />
+}
+<!-- Add Administrator Container -->
+
+<div class="container" id="add-administrator-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>Edit Administrator</h2>
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("EditAdmin", "Admin", FormMethod.Post))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    @Html.HiddenFor(x => x.UID)
+                    <label for="first-name" class="label-text">First Name *</label>
+                    @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control label-text input-field", @id = "first-name", @placeholder = "First Name" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="last-name" class="label-text">Last Name *</label>
+                    @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control label-text input-field", @id = "last-name", @placeholder = "Last Name" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="email" class="label-text">Email *</label>
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control label-text input-field", @id = "email", @placeholder = "Email Address" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-2">
+                <div class="form-group">
+                    <label for="phone-number-country" class="label-text">Country</label>
+                    @Html.DropDownListFor(x => x.CountryCode, new SelectList(ViewBag.CountryCodelist, "Value", "Text", Model.CountryCode), "Select Code", new { @class = "form-control label-text input-field", @id = "phone-number-country" })
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+                <div class="form-group">
+                    <label for="phone-number" class="label-text">Phone Number</label>
+                    @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control label-text input-field", @id = "phone-number", @placeholder = "Enter your phone number" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="add-administrator-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- Add Administrator Container End -->
+
+<br>

@@ -1,0 +1,125 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.NoteTable>
+
+@{
+
+    ViewBag.Title = "Rejected Notes";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/RejectedNotes.css" />
+}
+
+<!-- Rejected Notes Notes Container -->
+
+<div class="container" id="rejected-notes-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Rejected Notes</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    @using (Html.BeginForm("RejectedNotes", "RejectedNotes", FormMethod.Get))
+    {
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <label for="seller" class="label-text">Seller</label>
+
+            </div>
+
+            <div class="col-md-6 mb-2">
+
+                @Html.DropDownList("Seller", ViewBag.Seller as SelectList, "Select Seller", new { @class = "form-control label-text select-seller", @id = "exampleFormControlSelect1", onchange = "this.form.submit();" })
+
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-end">
+
+                <input class="form-control mr-2 rejected-notes-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn rejected-notes-search-button" type="submit">SEARCH</button>
+
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("NOTE TITLE", "RejectedNotes", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "RejectedNotes", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
+                        <th scope="col">SELLER</th>
+                        <th scope="col"></th>
+                        <th scope="col">@Html.ActionLink("REJECTED DATE", "RejectedNotes", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">REJECTED BY</th>
+                        <th scope="col">REMARK</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td class="label-color"><a href="@Url.Action("AdminNoteDetails","Admin", new { nid = item.NID })" style="color:#6255a5;">@item.Title</a></td>
+                            <td>@item.CategoryTable.Name</td>
+                            <td>@item.UserTable1.FirstName @item.UserTable1.LastName</td>
+                            <td align="center"><a href="@Url.Action("MemberDetails","MemberDetails", new { uid = item.UID })"><abbr title="Seller Details"><i class="fa fa-eye"></i></abbr></a></td>
+                            <td>@item.ModifiedDate</td>
+                            <td>@item.UserTable2.FirstName @item.UserTable2.LastName</td>
+                            <td>@item.RemarksByAdmin</td>
+                            <td class="dropdown">
+                                <i class="fa fa-ellipsis-v float-right"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("UpdateStatus","NotesUnderReview", new { nid = item.NID, Status = 4 })" onclick="return confirm('If you approve the notes – System will publish the notes over portal. Please press yes to continue.');">Approve</a>
+                                        <a href="@Url.Action("DownloadForAdmin","NotesUnderReview", new { nid = item.NID })">Download Notes</a>
+                                        <a href="@Url.Action("AdminNoteDetails","Admin", new { nid = item.NID })">View More Details</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("RejectedNotes", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"], Seller = Request.QueryString["Seller"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Rejected Notes Notes Container End -->

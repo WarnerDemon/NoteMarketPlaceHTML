@@ -1,0 +1,110 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Models.ManageType>
+
+@{
+
+    ViewBag.Title = "Manage Type";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/ManageType.css" />
+}
+
+<!-- Manage Type Container -->
+
+<div class="container" id="manage-type-container">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Manage Type</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-2">
+
+            <button class="btn add-type-button" onclick="location.href='@Url.Action("AddType","ManageTypes")'">ADD TYPE</button>
+
+        </div>
+
+        @using (Html.BeginForm("ManageTypes", "ManageTypes", FormMethod.Get, new { @class = "col-md-6 d-flex justify-content-end" }))
+        {
+            <input class="form-control mr-2 add-type-search" type="text" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn add-type-search-button" type="submit">SEARCH</button>
+        }
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("TYPE", "ManageTypes", new { sortby = ViewBag.SortType, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("DESCRIPTION", "ManageTypes", new { sortby = ViewBag.SortDescription, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("DATE ADDED", "ManageTypes", new { sortby = ViewBag.SortDate, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("ADDED BY", "ManageTypes", new { sortby = ViewBag.SortAddedBy, search = Request.QueryString["search"] })</th>
+                        <th scope="col">ACTIVE</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td>@item.TypeName</td>
+                            <td>@item.Description</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.AddedBy</td>
+                            @if (item.IsActive)
+                            {
+                                <td>Yes</td>
+                                <td><a href="@Url.Action("EditType","ManageTypes", new { TypeID = item.TypeID })"><abbr title="Edit Type"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateTypeStatus","ManageTypes", new { TypeID = item.TypeID, status = 0 })" onclick="return confirm('Are you sure you want to make this type Inactive?')"><abbr title="Inactive Type"><i class="fa fa-toggle-on" aria-hidden="true"></i></abbr></a></td>
+                            }
+                            else
+                            {
+                                <td>No</td>
+                                <td><a href="@Url.Action("EditType","ManageTypes", new { TypeID = item.TypeID })"><abbr title="Edit Type"><i class="fa fa-pencil mr-sm-2"></i></abbr></a> <a href="@Url.Action("UpdateTypeStatus","ManageTypes", new { TypeID = item.TypeID, status = 1 })" onclick="return confirm('Are you sure you want to make this type Active?')"><abbr title="Active Type"><i class="fa fa-toggle-off" aria-hidden="true"></i></abbr></a></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("ManageTypes", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Manage Type End -->

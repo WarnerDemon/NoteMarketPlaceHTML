@@ -39,7 +39,7 @@
                         <th scope="col">SR NO.</th>
                         <th scope="col">@Html.ActionLink("NOTE TITLE", "BuyerRequest", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
                         <th scope="col">@Html.ActionLink("CATEGORY", "BuyerRequest", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
-                        <th scope="col">SELLER</th>
+                        <th scope="col">BUYER</th>
                         <th scope="col">PHONE NO.</th>
                         <th scope="col">SELL TYPE</th>
                         <th scope="col">PRICE</th>
@@ -99,7 +99,7 @@
     <div class="row justify-content-center">
 
         <div class="pagination">
-            @Html.PagedListPager(Model, page => Url.Action("BuyerRequest", new { page, search = Request.QueryString["search"] }))
+            @Html.PagedListPager(Model, page => Url.Action("BuyerRequest", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
         </div>
 
     </div>

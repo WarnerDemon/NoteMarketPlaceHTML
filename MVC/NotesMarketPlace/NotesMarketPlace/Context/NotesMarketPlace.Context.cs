@@ -25,8 +25,6 @@ namespace NotesMarketPlace.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AdminTable> AdminTable { get; set; }
-        public virtual DbSet<CategoryTable> CategoryTable { get; set; }
         public virtual DbSet<ContactUsTable> ContactUsTable { get; set; }
         public virtual DbSet<CountryTable> CountryTable { get; set; }
         public virtual DbSet<NotesAttachmentTable> NotesAttachmentTable { get; set; }
@@ -36,10 +34,12 @@ namespace NotesMarketPlace.Context
         public virtual DbSet<ReviewTable> ReviewTable { get; set; }
         public virtual DbSet<RoleTable> RoleTable { get; set; }
         public virtual DbSet<SpamTable> SpamTable { get; set; }
-        public virtual DbSet<SystemConfigurationTable> SystemConfigurationTable { get; set; }
         public virtual DbSet<TransectionTable> TransectionTable { get; set; }
         public virtual DbSet<TypeTable> TypeTable { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
         public virtual DbSet<UserProfileTable> UserProfileTable { get; set; }
+        public virtual DbSet<SystemConfigurationTable> SystemConfigurationTable { get; set; }
+        public virtual DbSet<AdminTable> AdminTable { get; set; }
+        public virtual DbSet<CategoryTable> CategoryTable { get; set; }
     }
 }

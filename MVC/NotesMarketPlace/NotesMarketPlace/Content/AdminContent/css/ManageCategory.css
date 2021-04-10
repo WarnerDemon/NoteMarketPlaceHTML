@@ -2,87 +2,6 @@ body, html {
     height: 100%;
 }
 
-
-
-/* ========== Navigation ========== */
-.nav-border{
-
-    border-bottom: 1px solid #d1d1d1;
-
-}
-.navbar-light .navbar-nav .nav-link {
-
-    font-family: Open Sans;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    color: #333333;
-
-}
-.navbar-light .navbar-nav .nav-link:hover {
-
-    color: #6255a5;
-    border-bottom: 3px solid #6255a5;
-
-}
-.navbar-light .navbar-nav .nav-item {
-
-    margin: 0 5px;
-    display: flex;
-    align-items: center;
-
-}
-.navbar-user-photo {
-
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: url("../images/Dashboard/user-img.png");
-
-}
-.navbar-button {
-
-    font-family: Open Sans;
-    font-size: 16px;
-    background-color: #6555a5;
-    width: 89px;
-    /* height: 30px; */
-    border-radius: 3px;
-    color: #fff;
-    line-height: 22px;
-    /* margin-left: 30px; */
-
-}
-.navbar-button:hover {
-
-    background-color: #4f4294;
-    color: #fff;
-
-}
-.top-navbar-container {
-
-    padding: 10px 0px 10px 10px;
-
-}
-.bg-light{
-
-    background-color: rgb(255, 255, 255) !important;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ====================
     Manage Category
    ==================== */
@@ -168,6 +87,27 @@ body, html {
     color: #333333;
 
 }
+#manage-category-container .table th a {
+
+    text-decoration: none;
+    color: black;
+
+}
+
+#manage-category-container .table td a {
+
+    text-decoration: none;
+    color: black;
+
+}
+
+abbr[title] {
+
+    border-bottom: none !important;
+    cursor: inherit !important;
+    text-decoration: none !important;
+
+}
 .table-border {
 
     border: 1px solid #d1d1d1;
@@ -176,55 +116,5 @@ body, html {
 .shadow-on-hover tr:hover {
 
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
-
-}
-
-
-
-
-
-/* ========== Pagination ========== */
-.pagination {
-    display: inline-block;
-    padding-top: 20px;
-}
-  
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-  
-.pagination a.active {
-    background-color: #6255a5;
-    color: white;
-    border-radius: 50%;
-}
-  
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 50%;
-}
-
-
-
-
-
-/* ========== Footer ========== */
-.main-footer {
-
-    border-top: 1px solid #d1d1d1;
-    padding-top: 10px;
-    background-color: #fff;
-
-}
-.main-footer p {
-
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    color: #333333;
 
 }

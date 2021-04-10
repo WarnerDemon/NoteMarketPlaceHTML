@@ -27,6 +27,7 @@ namespace NotesMarketPlace.Context
         public bool IsAllowed { get; set; }
         public bool IsDownloaded { get; set; }
         public Nullable<System.DateTime> DownloadedDate { get; set; }
+        public bool IsPaid { get; set; }
     
         public virtual NoteTable NoteTable { get; set; }
         public virtual UserTable UserTable { get; set; }

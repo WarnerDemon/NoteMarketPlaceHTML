@@ -2,76 +2,6 @@ body, html {
     height: 100%;
 }
 
-/* ========== Navigation ========== */
-.nav-border{
-
-    border-bottom: 1px solid #d1d1d1;
-
-}
-.navbar-light .navbar-nav .nav-link {
-
-    font-family: Open Sans;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    color: #333333;
-
-}
-.navbar-light .navbar-nav .nav-link:hover {
-
-    color: #6255a5;
-    border-bottom: 3px solid #6255a5;
-
-}
-.navbar-light .navbar-nav .nav-item {
-
-    margin: 0 5px;
-    display: flex;
-    align-items: center;
-
-}
-.navbar-user-photo {
-
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: url("../images/Dashboard/user-img.png");
-
-}
-.navbar-button {
-
-    font-family: Open Sans;
-    font-size: 16px;
-    background-color: #6555a5;
-    width: 89px;
-    /* height: 30px; */
-    border-radius: 3px;
-    color: #fff;
-    line-height: 22px;
-    /* margin-left: 30px; */
-
-}
-.navbar-button:hover {
-
-    background-color: #4f4294;
-    color: #fff;
-
-}
-.top-navbar-container {
-
-    padding: 10px 0px 10px 10px;
-
-}
-.bg-light{
-
-    background-color: rgb(255, 255, 255) !important;
-
-}
-
-
-
-
-
 /* ====================
         Note Details
    ==================== */
@@ -88,6 +18,11 @@ body, html {
 
     padding: 15px;
     
+}
+.note-details-padding img{
+
+    width: inherit;
+    max-width: 300px;
 }
 #note-details-container h4 {
 
@@ -157,6 +92,38 @@ body, html {
     color: rgb(254,193,6);
 
 }
+
+.score {
+    display: block;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.score-wrap {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+}
+
+.score .stars-active {
+    color: #EEBD01;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.score .stars-inactive {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-text-stroke: initial;
+    /* overflow: hidden; */
+}
+
 #red-list-item {
 
     font-family: Open Sans;
@@ -222,7 +189,12 @@ body, html {
     padding-bottom: 90%;
 }
 
+.customers-star-rating {
 
+    height: 400px;
+    overflow: scroll;
+
+}
 
 #grey-border {
 
@@ -256,6 +228,19 @@ body, html {
     margin-bottom: 10px;
 
 }
+.grey-border-bottom a{
+
+    text-decoration: none;
+    color: black;
+
+}
+abbr[title] {
+
+    border-bottom: none !important;
+    cursor: inherit !important;
+    text-decoration: none !important;
+
+}
 .review-image {
 
     width: 50px;
@@ -265,104 +250,4 @@ body, html {
     background-color: #6255a5;
 
 }
-/* Popup */
-#popup-container {
 
-    padding: 20px 30px 30px 40px;
-
-}
-#popup-top-image {
-
-    width: 63px;
-    height: 63px;
-    border-radius: 50%;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
-
-}
-#popup-container h2 {
-
-    font-family: Open Sans;
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 30px;
-    color: #6255a5;
-
-}
-#popup-container h4 {
-
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
-    color: #333333;
-
-}
-#popup-container p {
-
-    font-family: Open Sans;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
-    color: #333333;
-
-}
-
-
-
-
-
-
-/* ========== Footer ========== */
-
-.main-footer {
-
-    height: 100px;
-    background-color: rgb(255, 255, 255);
-    border-top: 1px solid #d1d1d1;
-
-}
-
-.copyright-text {
-
-    font-family: Open Sans;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
-    color: #333333;
-
-    margin-top: 40px;
-
-}
-
-/* ========== Social Icon ========== */
-
-.social-list {
-
-    float: right;
-    position: relative;
-    margin-top: -45px;
-    padding: 0;
-
-}
-
-ul.social-list li {
-
-    display: inline-block;
-    padding: 0;
-
-}
-ul.social-list li a {
-
-
-    background-color: #6555a5;
-    border: 1px solid #fff;
-    width: 35px;
-    height: 35px;
-    display: inline-block;
-    line-height: 35px;
-    color: rgb(255, 255, 255);
-    border-radius: 50%;
-    padding-left: 10px;
-    /* margin-left: 5px; */
-
-}

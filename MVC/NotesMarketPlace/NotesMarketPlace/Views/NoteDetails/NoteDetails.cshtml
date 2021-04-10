@@ -6,271 +6,172 @@
 }
 @model NotesMarketPlace.Context.NoteTable
 
-<!--  GIF  -->
+@if (Model.IsActive || ViewBag.IsDealAvailable != null)
+{
+    <!--  GIF  -->
 
-<div class="loading" align="center">
-    Loading. Please wait.<br />
-    <br />
-    <img src="~/Content/FrontContent/images/loader.gif" alt="" />
-</div>
-
-<style type="text/css">
-
-.gifmodal {
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: black;
-    z-index: 99;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    -moz-opacity: 0.8;
-    min-height: 100%;
-    width: 100%;
-
-}
-
-.loading {
-
-    font-family: Open Sans;
-    font-size: 10pt;
-    border: 5px solid #6255a5;
-    border-radius: 5px;
-    width: 200px;
-    height: 100px;
-    display: none;
-    position: fixed;
-    background-color: White;
-    z-index: 999;
-
-}
-
-</style>
-
-<!--  GIF  -->
-
-<!-- Note Detail main container -->
-
-<div class="container" id="note-details-container">
-
-    <br>
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-            <h4>Notes Details</h4>
-
-        </div>
-
+    <div class="loading" align="center">
+        Loading. Please wait.<br />
+        <br />
+        <img src="~/Content/FrontContent/images/loader.gif" alt="" />
     </div>
 
-    <div class="row">
+    <style type="text/css">
 
-        <div class="col-xl-3 note-details-padding">
+        .gifmodal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 99;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            -moz-opacity: 0.8;
+            min-height: 100%;
+            width: 100%;
+        }
 
-            <img class="img-thumbnail" src="../@Model.DisplayPicture" alt="">
+        .loading {
+            font-family: Open Sans;
+            font-size: 10pt;
+            border: 5px solid #6255a5;
+            border-radius: 5px;
+            width: 200px;
+            height: 100px;
+            display: none;
+            position: fixed;
+            background-color: White;
+            z-index: 999;
+        }
+    </style>
+
+    <!--  GIF  -->
+
+    <!-- Note Detail main container -->
+
+    <div class="container" id="note-details-container">
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h4>Notes Details</h4>
+
+            </div>
 
         </div>
 
-        <div class="col-xl-4 note-details-padding">
+        <div class="row">
 
-            <h3>@Model.Title</h3>
-            <p>@Model.CategoryTable.Name</p>
-            <p>
-                @Model.Description
-            </p>
-            @if (Model.IsPaid)
-            {
-                if (!Request.IsAuthenticated)
+            <div class="col-xl-3 note-details-padding">
+
+                <img class="img-thumbnail" src="../@Model.DisplayPicture" alt="">
+
+            </div>
+
+            <div class="col-xl-4 note-details-padding">
+
+                <h3>@Model.Title</h3>
+                <p>@Model.CategoryTable.Name</p>
+                <p>
+                    @Model.Description
+                </p>
+                @if (Model.IsPaid)
                 {
-                    <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Login","SignUp")'">DOWNLOAD / ₹ @Model.Price</button>
-                }
-                else
-                {
-                    if (Model.UID == ViewBag.CurrentUserID)
+                    if (!Request.IsAuthenticated)
                     {
-                        <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">YOUR BOOK</button>
+                        <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Login","SignUp", new { ReturnUrl = HttpContext.Current.Request.Url.AbsoluteUri })'">DOWNLOAD / ₹ @Model.Price</button>
                     }
                     else
                     {
-                        if (ViewBag.IsDealAvailable != null)
+                        if (Model.UID == ViewBag.CurrentUserID)
                         {
-                            if (ViewBag.IsDealAvailable)
-                            {
-                                <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">DOWNLOAD / ₹ @Model.Price</button>
-                            }
-                            else
-                            {
-                                <button class="btn book-download-button" type="submit" onclick="alert('You Already Requested');">REQUESTED</button>
-                            }
-
+                            <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">YOUR BOOK</button>
                         }
                         else
                         {
-                            <button class="btn book-download-button" type="submit" onclick="thanks_popup(@Model.NID)">DOWNLOAD / ₹ @Model.Price</button>
+                            if (ViewBag.IsDealAvailable != null)
+                            {
+                                if (ViewBag.IsDealAvailable)
+                                {
+                                    <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">DOWNLOAD / ₹ @Model.Price</button>
+                                }
+                                else
+                                {
+                                    <button class="btn book-download-button" type="submit" onclick="alert('You Already Requested');">REQUESTED</button>
+                                }
+
+                            }
+                            else
+                            {
+                                <button class="btn book-download-button" type="submit" onclick="if(confirm('Are you sure you want to download this Paid note. Please confirm.')) thanks_popup(@Model.NID)">DOWNLOAD / ₹ @Model.Price</button>
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                if (!Request.IsAuthenticated)
-                {
-                    <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Login","SignUp")'">FREE DOWNLOAD</button>
-                }
                 else
                 {
-                    if (Model.UID == ViewBag.CurrentUserID)
+                    if (!Request.IsAuthenticated)
                     {
-                        <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">YOUR BOOK</button>
+                        <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Login","SignUp", new { ReturnUrl = HttpContext.Current.Request.Url.AbsoluteUri })'">FREE DOWNLOAD</button>
                     }
                     else
                     {
-                        <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">FREE DOWNLOAD</button>
+                        if (Model.UID == ViewBag.CurrentUserID)
+                        {
+                            <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">YOUR BOOK</button>
+                        }
+                        else
+                        {
+                            <button class="btn book-download-button" type="submit" onclick="location.href='@Url.Action("Download", "NoteDetails", new { nid = Model.NID })'">FREE DOWNLOAD</button>
+                        }
                     }
                 }
-            }
 
-        </div>
+            </div>
 
-        <div class="col-xl-5 note-details-padding">
+            <div class="col-xl-5 note-details-padding">
 
-            <div class="row">
-                <div class="col-md-12 left-list">Institution:<span class="pull-right right-list">@Model.InstituteName</span></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Country:<span class="pull-right right-list">@Model.CountryTable.CountryName</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Course Name:<span class="pull-right right-list">@Model.CourseName</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Course code:<span class="pull-right right-list">@Model.CourseCode</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Professor:<span class="pull-right right-list">@Model.Professor</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Number of Pages:<span class="pull-right right-list">@Model.NumberOfPages</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">Approved Date:<span class="pull-right right-list">November 25 2020</span></div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 left-list">
-                    Rating:
-                    <span class="pull-right right-list">
-                        <span class="score">
-                            <span class="score-wrap">
-                                @if (Model.Rating == null)
-                                {
-                                    Model.Rating = 0;
-                                }
-                                <span class="stars-active" style="width:@Model.Rating%">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </span>
-                                <span class="stars-inactive">
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </span>
-                            </span>
-                            @if (Model.TotalReviews == null)
-                            {
-                                Model.TotalReviews = 0;
-                            }
-                            <span style="float: right; margin-left: 5px;">@Model.TotalReviews Reviews</span>
-                        </span>
-                    </span>
+                <div class="row">
+                    <div class="col-md-12 left-list">Institution:<span class="pull-right right-list">@Model.InstituteName</span></div>
                 </div>
-                <div class="col-md-6"></div>
-            </div>
-            <div class="row">
-                @if (Model.TotalSpams != null)
-                {
-                    <div class="col-md-12" id="red-list-item">@Model.TotalSpams Users marked this note as inappropriate</div>
-                }
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- Note Detail main container End -->
-<!-- preview-review-container -->
-
-<div class="container" id="preview-review-container">
-
-    <div class="row">
-
-        <div class="col-md-5">
-            <h4>Notes Preview</h4>
-            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
-                <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
-                    @if (@Model.PreviewAttachment != null)
-                    {
-                        <iframe src="@Model.PreviewAttachment">
-                            <p style="font-size: 110%;">
-                                <em>
-                                    <strong>ERROR: </strong>
-                                    An &#105;frame should be displayed here but your browser version does not support &#105;frames.
-                                </em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
-                            </p>
-                        </iframe>
-                    }
-                    else
-                    {
-                        <div class="row">
-                            <div class="col d-flex justify-content-center">
-                                <p>
-                                    <br /><br /><br />
-                                    Preview is not available
-                                </p>
-                            </div>
-                        </div>
-                    }
-
+                <div class="row">
+                    <div class="col-md-12 left-list">Country:<span class="pull-right right-list">@Model.CountryTable.CountryName</span></div>
+                    <div class="col-md-6"></div>
                 </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-7">
-            <h4>Customer Reviews</h4>
-
-            <div id="grey-border">
-
-                @foreach (var item in ViewBag.Reviews)
-                {
-                    <div class="row grey-border-bottom">
-                        <div class="col-md-2" align="center">
-
-                            <img class="review-image" src="@item.UserImage" alt="">
-
-                        </div>
-
-                        <div class="col-md-10">
-
-                            <h5>@item.ReviewBy</h5>
+                <div class="row">
+                    <div class="col-md-12 left-list">Course Name:<span class="pull-right right-list">@Model.CourseName</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Course code:<span class="pull-right right-list">@Model.CourseCode</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Professor:<span class="pull-right right-list">@Model.Professor</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Number of Pages:<span class="pull-right right-list">@Model.NumberOfPages</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">Approved Date:<span class="pull-right right-list">November 25 2020</span></div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left-list">
+                        Rating:
+                        <span class="pull-right right-list">
                             <span class="score">
                                 <span class="score-wrap">
-                                    <span class="stars-active" style="width:@item.Stars%">
+                                    @if (Model.Rating == null)
+                                    {
+                                        Model.Rating = 0;
+                                    }
+                                    <span class="stars-active" style="width:@Model.Rating%">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -285,112 +186,220 @@
                                         <i class="fa fa-star-o" aria-hidden="true"></i>
                                     </span>
                                 </span>
+                                @if (Model.TotalReviews == null)
+                                {
+                                    Model.TotalReviews = 0;
+                                }
+                                <span style="float: right; margin-left: 5px;">@Model.TotalReviews Reviews</span>
                             </span>
-                            <p>@item.Comment</p>
+                        </span>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    @if (Model.TotalSpams != null)
+                    {
+                        <div class="col-md-12" id="red-list-item">@Model.TotalSpams Users marked this note as inappropriate</div>
+                    }
+                </div>
 
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Note Detail main container End -->
+    <!-- preview-review-container -->
+
+    <div class="container" id="preview-review-container">
+
+        <div class="row">
+
+            <div class="col-md-5">
+                <h4>Notes Preview</h4>
+                <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                    <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                        @if (@Model.PreviewAttachment != null)
+                        {
+                            <iframe src="@Model.PreviewAttachment">
+                                <p style="font-size: 110%;">
+                                    <em>
+                                        <strong>ERROR: </strong>
+                                        An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                    </em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
+                                </p>
+                            </iframe>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <p>
+                                        <br /><br /><br />
+                                        Preview is not available
+                                    </p>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-7">
+                <h4>Customer Reviews</h4>
+
+                <div class="customers-star-rating" id="grey-border">
+
+                    @foreach (var item in ViewBag.Reviews)
+                    {
+                        <div class="row grey-border-bottom">
+                            <div class="col-md-2" align="center">
+
+                                <img class="review-image" src="@item.UserImage" alt="">
+
+                            </div>
+
+                            <div class="col-md-10">
+
+                                <h5>@item.ReviewBy</h5>
+                                <span class="score">
+                                    <span class="score-wrap">
+                                        <span class="stars-active" style="width:@item.Stars%">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="stars-inactive">
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                                <p>@item.Comment</p>
+
+                            </div>
                         </div>
-                    </div>
-                }
+                    }
+
+                </div>
+
+
 
             </div>
-
-
 
         </div>
 
     </div>
 
-</div>
+    <!-- preview-review-container End-->
+    <!-- Thanks Popup -->
 
-<!-- preview-review-container End-->
-<!-- Thanks Popup -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="popup-container">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" id="popup-container">
+                <div class="row">
 
-            <div class="row">
+                    <div class="col">
 
-                <div class="col">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
 
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col" align="center">
-
-                    <div id="popup-top-image">
-                        <img src="~/Content/FrontContent/images/Notes Details/SUCCESS.png" alt="">
                     </div>
-                    <br>
-                    <h2>
-                        Thank you for purchasing!
-                    </h2>
-                    <br>
-                    <br>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col" align="center">
+
+                        <div id="popup-top-image">
+                            <img src="~/Content/FrontContent/images/Notes Details/SUCCESS.png" alt="">
+                        </div>
+                        <br>
+                        <h2>
+                            Thank you for purchasing!
+                        </h2>
+                        <br>
+                        <br>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col" id="thanks-content">
+
+
+
+                    </div>
 
                 </div>
 
             </div>
-
-            <div class="row">
-
-                <div class="col" id="thanks-content">
-
-
-
-                </div>
-
-            </div>
-
         </div>
     </div>
-</div>
 
-<!-- Thanks Popup End -->
-<script>
+    <!-- Thanks Popup End -->
+    <script>
 
-    var gifmodal, loading;
-    function ShowProgress() {
-        gifmodal = document.createElement("DIV");
-        gifmodal.className = "gifmodal";
-        document.body.appendChild(gifmodal);
-        loading = document.getElementsByClassName("loading")[0];
-        loading.style.display = "block";
-        var top = Math.max(window.innerHeight / 2 - loading.offsetHeight / 2, 0);
-        var left = Math.max(window.innerWidth / 2 - loading.offsetWidth / 2, 0);
-        loading.style.top = top + "px";
-        loading.style.left = left + "px";
-    };
+        var gifmodal, loading;
+        function ShowProgress() {
+            gifmodal = document.createElement("DIV");
+            gifmodal.className = "gifmodal";
+            document.body.appendChild(gifmodal);
+            loading = document.getElementsByClassName("loading")[0];
+            loading.style.display = "block";
+            var top = Math.max(window.innerHeight / 2 - loading.offsetHeight / 2, 0);
+            var left = Math.max(window.innerWidth / 2 - loading.offsetWidth / 2, 0);
+            loading.style.top = top + "px";
+            loading.style.left = left + "px";
+        };
 
 
-    var thanks_popup = function (nid) {
-        ShowProgress();
-        $.ajax({
-            type: "GET",
-            url: "/Download?nid=" + nid,
-            success: function (response) {
+        var thanks_popup = function (nid) {
+            ShowProgress();
+            $.ajax({
+                type: "GET",
+                url: "/Download?nid=" + nid,
+                success: function (response) {
 
-                $("#thanks-content").html(response);
+                    $("#thanks-content").html(response);
 
-                setTimeout(function () {
-                    document.body.removeChild(gifmodal);
-                    loading.style.display = "none";
-                }, 1);
+                    setTimeout(function () {
+                        document.body.removeChild(gifmodal);
+                        loading.style.display = "none";
+                    }, 1);
 
-                $("#exampleModal").modal("show");
-            },
-        })
+                    $("#exampleModal").modal("show");
+                },
+            })
 
-        $('#exampleModal').on('hidden.bs.modal', function () {
-            location.reload();
-        });
-    }
+            $('#exampleModal').on('hidden.bs.modal', function () {
+                location.reload();
+            });
+        }
 
-</script>
+    </script>
+}
+else
+{
+    <br /><br /><br /><br /><br /><br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 style="color: #6255A5;">Book Not Available</h2>
+            </div>
+        </div>
+    </div>
+}

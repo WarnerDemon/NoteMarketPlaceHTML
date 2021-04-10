@@ -1,0 +1,72 @@
+﻿@model NotesMarketPlace.Models.AddCategory
+
+@{
+
+    ViewBag.Title = "Edit Category";
+    Layout = "~/Views/Shared/AdminNavbar.cshtml";
+    <link rel="stylesheet" href="~/Content/AdminContent/css/AddCategory.css" />
+}
+
+<!-- Add Category Container -->
+
+<div class="container" id="add-category-container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h2>Edit Category</h2>
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("EditCategory", "ManageCategory", FormMethod.Post))
+    {
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    @Html.HiddenFor(x => x.CategoryID)
+                    <label for="category-name" class="label-text">Category Name *</label>
+                    @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "form-error" })
+                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control label-text input-field", @id = "first-name", @placeholder = "Category Name", @maxlength = "20" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="label-text">Description *</label>
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "form-error" })
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control label-text input-field", @id = "exampleFormControlTextarea1", @rows = "5", @placeholder = "Enter your description", @maxlength = "200" })
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    <button class="btn" id="add-category-submit-button">SUBMIT</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<!-- Add Category Container End -->

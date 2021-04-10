@@ -50,8 +50,8 @@ namespace NotesMarketPlace.Context
         public Nullable<double> Rating { get; set; }
         public Nullable<int> TotalReviews { get; set; }
         public Nullable<int> TotalSpams { get; set; }
+        public string RemarksByAdmin { get; set; }
     
-        public virtual CategoryTable CategoryTable { get; set; }
         public virtual CountryTable CountryTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NotesAttachmentTable> NotesAttachmentTable { get; set; }
@@ -67,5 +67,7 @@ namespace NotesMarketPlace.Context
         public virtual ICollection<SpamTable> SpamTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransectionTable> TransectionTable { get; set; }
+        public virtual UserTable UserTable2 { get; set; }
+        public virtual CategoryTable CategoryTable { get; set; }
     }
 }

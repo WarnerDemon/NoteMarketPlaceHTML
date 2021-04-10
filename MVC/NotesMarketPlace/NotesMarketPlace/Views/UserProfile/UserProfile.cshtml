@@ -93,7 +93,7 @@
                 <div class="col-md-2 col-sm-2">
                     <div class="form-group">
                         <label for="phone-number-country" class="label-text">Country</label>
-                        @Html.DropDownListFor(x => x.CountryCode, new SelectList(ViewBag.CountryCode, "Value", "Text"), "+91", new { @class = "form-control user-profile-input-field", @id = "phone-number-country" })
+                        @Html.DropDownListFor(x => x.CountryCode, new SelectList(ViewBag.CountryCode, "Value", "Text"), "Select Country", new { @class = "form-control user-profile-input-field", @id = "phone-number-country" })
                     </div>
                 </div>
 

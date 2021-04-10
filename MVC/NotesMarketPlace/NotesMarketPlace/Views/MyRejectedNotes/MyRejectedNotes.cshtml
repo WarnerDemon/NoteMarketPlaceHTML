@@ -1,0 +1,96 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<NotesMarketPlace.Context.NoteTable>
+@{
+
+    ViewBag.Title = "My Rejected Notes";
+    Layout = "~/Views/Shared/NavbarAfter.cshtml";
+
+}
+
+<!-- My Rejected Notes Container -->
+
+<div class="container" id="my-rejected-notes-container">
+
+    @using (Html.BeginForm("MyRejectedNotes","MyRejectedNotes",FormMethod.Get))
+    {
+        <div class="row">
+
+            <div class="col-md-6">
+                <h3>My Rejected Notes</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <input class="form-control mr-2 dashboard-search" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn dashboard-search-button" type="submit">SEARCH</button>
+            </div>
+
+        </div>
+    }
+
+    <br>
+
+    <div class="row">
+
+        <div class="col table-responsive-md">
+
+            <table class="table shadow-on-hover table-border">
+                <thead>
+                    <tr>
+                        <th scope="col">SR NO.</th>
+                        <th scope="col">@Html.ActionLink("NOTE TITLE", "MyRejectedNotes", new { sortby = ViewBag.SortTitle, search = Request.QueryString["search"] })</th>
+                        <th scope="col">@Html.ActionLink("CATEGORY", "MyRejectedNotes", new { sortby = ViewBag.SortCategort, search = Request.QueryString["search"] })</th>
+                        <th scope="col">REMARKS</th>
+                        <th scope="col">CLONE</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">No record found</td>
+                        </tr>
+                    }
+                    @{ int c = 0; }
+                    @foreach (var item in Model)
+                    {
+                        c += 1;
+                        <tr>
+                            <td scope="row">@c</td>
+                            <td><a href="@Url.Action("NoteDetails","NoteDetails", new { nid = item.NID })" style="color:#6255a5;">@item.Title</a></td>
+                            <td>@item.CategoryTable.Name</td>
+                            <td>@item.RemarksByAdmin</td>
+                            <td><a href="@Url.Action("AddNotes","AddNotes", new { id = item.NID, clone = "clone" })" style="color:#6255a5;">Clone</a></td>
+                            <td class="dropdown">
+                                <i class="fa fa-ellipsis-v"></i>
+                                <div class="dropdown">
+                                    <div class="dropdown-content">
+                                        <a href="@Url.Action("Download","NoteDetails", new { nid = item.NID })">Download Note</a>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="row justify-content-center">
+
+        <div class="pagination">
+            @Html.PagedListPager(Model, page => Url.Action("MyRejectedNotes", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
+        </div>
+
+    </div>
+
+</div>
+
+<!-- My Rejected Notes Container End -->

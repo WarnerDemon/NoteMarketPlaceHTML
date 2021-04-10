@@ -95,7 +95,7 @@
     <div class="row justify-content-center">
 
         <div class="pagination">
-            @Html.PagedListPager(Model, page => Url.Action("MySoldNotes", new { page, search = Request.QueryString["search"] }))
+            @Html.PagedListPager(Model, page => Url.Action("MySoldNotes", new { page, search = Request.QueryString["search"], sortby = Request.QueryString["sortby"] }))
         </div>
 
     </div>
