@@ -128,7 +128,7 @@
                                 <li><i class="fa fa-book"></i>@item.NumberOfPages Pages</li>
                             }
                             <li><i class="fa fa-calendar"></i>@item.CreatedDate.Value.ToShortDateString()</li>
-                            @if (item.TotalSpams == null)
+                            @if (item.TotalSpams == null || item.TotalSpams == 0)
                             {
                                 <li><i class="fa fa-flag"></i><span>0 User marked this note as inappropriate</span></li>
                             }

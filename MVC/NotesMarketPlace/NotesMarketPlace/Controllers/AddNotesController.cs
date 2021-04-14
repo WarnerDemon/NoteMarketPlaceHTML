@@ -47,9 +47,9 @@ namespace NotesMarketPlace.Controllers
                 editobj.Professor = noteobj.Professor;
                 editobj.Price = noteobj.Price;
 
-                ViewBag.Category = new SelectList(dbobj.CategoryTable, "CategoryID", "Name");
-                ViewBag.Type = new SelectList(dbobj.TypeTable, "TypeID", "Name");
-                ViewBag.Country = new SelectList(dbobj.CountryTable, "CountryID", "CountryName");
+                ViewBag.Category = new SelectList(dbobj.CategoryTable.Where(x=>x.IsActive), "CategoryID", "Name");
+                ViewBag.Type = new SelectList(dbobj.TypeTable.Where(x => x.IsActive), "TypeID", "Name");
+                ViewBag.Country = new SelectList(dbobj.CountryTable.Where(x => x.IsActive), "CountryID", "CountryName");
                 ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == noteobj.UID).Select(x => x.ProfilePicture).FirstOrDefault();
                 ViewBag.Clone = clone;
                 return View(editobj);
@@ -57,9 +57,9 @@ namespace NotesMarketPlace.Controllers
 
             //for new note
 
-            ViewBag.Category = new SelectList(dbobj.CategoryTable, "CategoryID", "Name");
-            ViewBag.Type = new SelectList(dbobj.TypeTable, "TypeID", "Name");
-            ViewBag.Country = new SelectList(dbobj.CountryTable, "CountryID", "CountryName");
+            ViewBag.Category = new SelectList(dbobj.CategoryTable.Where(x => x.IsActive), "CategoryID", "Name");
+            ViewBag.Type = new SelectList(dbobj.TypeTable.Where(x => x.IsActive), "TypeID", "Name");
+            ViewBag.Country = new SelectList(dbobj.CountryTable.Where(x => x.IsActive), "CountryID", "CountryName");
             ViewBag.ProfilePicture = dbobj.UserProfileTable.Where(x => x.UID == obj.UID).Select(x => x.ProfilePicture).FirstOrDefault();
             return View();
         }

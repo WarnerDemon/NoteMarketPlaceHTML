@@ -77,8 +77,18 @@ namespace NotesMarketPlace.Controllers
         public ActionResult DeleteSpamReports(int sid)
         {
             SpamTable report = dbobj.SpamTable.Where(x => x.ID == sid).FirstOrDefault();
+            int nid = report.NID;
 
             dbobj.SpamTable.Remove(report);
+            dbobj.SaveChanges();
+
+            var book = dbobj.NoteTable.Where(x => x.NID == nid).FirstOrDefault();
+
+            int total_spams = dbobj.SpamTable.Where(x => x.NID == nid).Count();
+
+            book.TotalSpams = total_spams;
+
+            dbobj.Entry(book).State = System.Data.Entity.EntityState.Modified;
             dbobj.SaveChanges();
 
             return RedirectToAction("SpamReports");

@@ -20,11 +20,15 @@ namespace NotesMarketPlace.Controllers
             var emailid = User.Identity.Name.ToString();
             Context.UserTable obj = dbobj.UserTable.Where(x => x.Email == emailid).FirstOrDefault();
 
-            var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
-            if (upobj == null)
+            if(obj != null)
             {
-                return RedirectToAction("UserProfile", "UserProfile");
+                var upobj = dbobj.UserProfileTable.Where(a => a.UID == obj.UID).FirstOrDefault();
+                if (upobj == null)
+                {
+                    return RedirectToAction("UserProfile", "UserProfile");
+                }
             }
+            
 
             System.Linq.IQueryable<NoteTable> filtered;     //Empty Variable for Holding Notes
 
